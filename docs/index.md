@@ -1,4 +1,4 @@
-# :package_description
+# Extended Builder field for Filament
 
 ## Introduction
 
