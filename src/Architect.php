@@ -10,7 +10,8 @@ class Architect implements Htmlable, Arrayable
 {
     public function __construct(
         private array $blocks
-    ) {}
+    ) {
+    }
 
     public static function make(array|string $blocks): self|string
     {

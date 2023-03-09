@@ -33,6 +33,6 @@ class Heading extends BaseBlock
                                 ->required(),
                         ]),
                 ]),
-            ];
+        ];
     }
 }

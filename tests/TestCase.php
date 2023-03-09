@@ -2,9 +2,9 @@
 
 namespace Codedor\FilamentArchitect\Tests;
 
+use Codedor\FilamentArchitect\Providers\FilamentArchitectServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Codedor\FilamentArchitect\Providers\FilamentArchitectServiceProvider;
 
 class TestCase extends Orchestra
 {
