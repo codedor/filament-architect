@@ -41,7 +41,7 @@ abstract class BaseBlock
             return $this->view;
         }
 
-        return 'architect.' . Str::slug($this->getName());
+        return 'filament-architect::architect.' . Str::of($this->getName())->snake('-');
     }
 
     public function setData(array $data): self

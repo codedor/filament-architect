@@ -14,7 +14,8 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
             ->name('filament-architect')
             ->setBasePath(__DIR__ . '/../')
             ->hasConfigFile()
-            ->hasMigration('create_package_table');
+            ->hasMigration('create_package_table')
+            ->hasViews();
     }
 
     public function registeringPackage()

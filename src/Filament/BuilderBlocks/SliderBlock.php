@@ -5,7 +5,7 @@ namespace Codedor\FilamentArchitect\Filament\BuilderBlocks;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 
-class MediaTextBlock extends BaseBlock
+class SliderBlock extends BaseBlock
 {
     public function schema(): array
     {

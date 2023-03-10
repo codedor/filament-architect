@@ -19,9 +19,11 @@ class TextBlock extends BaseBlock
                     Tabs\Tab::make('Settings')
                         ->schema([
                             TextInput::make('columns')
-                                ->numeric(),
+                                ->numeric()
+                                ->reactive(),
                             Checkbox::make('separate_editors')
-                                ->label('Use Separate Text Editors'),
+                                ->label('Use Separate Text Editors')
+                                ->reactive(),
                             Radio::make('width')
                                 ->options([
                                     'container' => 'Container',
@@ -34,13 +36,14 @@ class TextBlock extends BaseBlock
                             $fields = [MarkdownEditor::make('text.0')];
 
                             if ($get('separate_editors')) {
-                                for ($i = 1; $i <= $get('columns'); $i++) {
+                                for ($i = 1; $i < $get('columns'); $i++) {
                                     $fields[] = MarkdownEditor::make("text.{$i}");
                                 }
                             }
 
                             return $fields;
-                        }),
+                        })
+                        ->reactive(),
                 ]),
         ];
     }
