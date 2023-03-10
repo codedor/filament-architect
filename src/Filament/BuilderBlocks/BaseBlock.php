@@ -8,7 +8,9 @@ use Illuminate\View\View;
 abstract class BaseBlock
 {
     private ?string $name = null;
+
     private ?string $view = null;
+
     private array $data = [];
 
     abstract public function schema(): array;
@@ -39,7 +41,7 @@ abstract class BaseBlock
             return $this->view;
         }
 
-        return "architect." . Str::slug($this->getName());
+        return 'architect.' . Str::slug($this->getName());
     }
 
     public function setData(array $data): self

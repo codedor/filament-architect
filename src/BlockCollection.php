@@ -25,7 +25,7 @@ class BlockCollection extends Collection
         return $this->map(function ($block) {
             return Block::make($block->getName())
                 ->schema($block->schema());
-            })
+        })
             ->toArray();
     }
 
@@ -38,6 +38,7 @@ class BlockCollection extends Collection
                     ->filter(fn (array $blockData) => $this->has($blockData['type']))
                     ->map(function (array $blockData) {
                         $block = clone $this->get($blockData['type']);
+
                         return $block->setData($blockData)->render();
                     })
             );
