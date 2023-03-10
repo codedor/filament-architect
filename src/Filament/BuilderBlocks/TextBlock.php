@@ -34,7 +34,7 @@ class TextBlock extends BaseBlock
                             $fields = [MarkdownEditor::make('text.0')];
 
                             if ($get('separate_editors')) {
-                                for ($i=1; $i <= $get('columns'); $i++) {
+                                for ($i = 1; $i <= $get('columns'); $i++) {
                                     $fields[] = MarkdownEditor::make("text.{$i}");
                                 }
                             }
@@ -42,6 +42,6 @@ class TextBlock extends BaseBlock
                             return $fields;
                         }),
                 ]),
-            ];
+        ];
     }
 }

@@ -22,7 +22,7 @@ class CtaBlock extends BaseBlock
                                     'white' => 'White',
                                     'gray' => 'Gray',
                                     'primary' => 'Primary',
-                                ])
+                                ]),
                         ]),
                     Tabs\Tab::make('General')
                         ->schema([
@@ -54,6 +54,6 @@ class CtaBlock extends BaseBlock
                             Checkbox::make('non_interaction'),
                         ]),
                 ]),
-            ];
+        ];
     }
 }

@@ -56,6 +56,6 @@ class ButtonBlock extends BaseBlock
                                 ]),
                         ]),
                 ]),
-            ];
+        ];
     }
 }

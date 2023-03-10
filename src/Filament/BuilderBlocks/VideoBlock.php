@@ -22,7 +22,7 @@ class VideoBlock extends BaseBlock
                                     'vimeo' => 'Vimeo',
                                 ]),
                             TextInput::make('url')
-                                ->placeholder('Video ID or URL')
+                                ->placeholder('Video ID or URL'),
                         ]),
                     Tabs\Tab::make('Player Settings')
                         ->schema([

@@ -30,6 +30,6 @@ class MediaBlock extends BaseBlock
                                 ]),
                         ]),
                 ]),
-            ];
+        ];
     }
 }

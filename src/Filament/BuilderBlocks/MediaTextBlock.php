@@ -56,6 +56,6 @@ class MediaTextBlock extends BaseBlock
                             Checkbox::make('non_interaction'),
                         ]),
                 ]),
-            ];
+        ];
     }
 }

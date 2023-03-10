@@ -7,4 +7,3 @@ it('can fill collection from config', function () {
         ],
     ]);
 });
-
