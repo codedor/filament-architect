@@ -1,16 +1,17 @@
 <?php
 
 use Codedor\FilamentArchitect\BlockCollection;
+use Codedor\FilamentArchitect\Facades\BlockCollection as FacadesBlockCollection;
 use Codedor\FilamentArchitect\Filament\BuilderBlocks;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 
 it('can fill collection from original config', function () {
-    $collection = (new BlockCollection())->fromConfig();
+    $collection = FacadesBlockCollection::all();
 
     expect($collection)
-        ->count()->toBe(11)
-        ->toArray()->sequence(
+        ->toHaveCount(11)
+        ->sequence(
             function ($block, $key) {
                 $block->toBeInstanceOf(BuilderBlocks\ButtonBlock::class);
                 $key->toBe('ButtonBlock');
