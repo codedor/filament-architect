@@ -31,7 +31,7 @@ class BlockCollection extends Collection
 
     public function render(array $blocks): View
     {
-        return view('architect.index')
+        return view('filament-architect::overview')
             ->with(
                 'blocks',
                 collect($blocks)
