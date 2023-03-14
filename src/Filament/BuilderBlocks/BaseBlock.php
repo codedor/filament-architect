@@ -9,17 +9,11 @@ abstract class BaseBlock
 {
     private ?string $name = null;
 
-    private ?string $view = null;
+    protected ?string $view = null;
 
     private array $data = [];
 
     abstract public function schema(): array;
-
-    public function render(): View
-    {
-        return view($this->getViewName())
-            ->with('data', $this->data);
-    }
 
     public function name(string $name)
     {
@@ -41,7 +35,12 @@ abstract class BaseBlock
             return $this->view;
         }
 
-        return 'filament-architect::architect.' . Str::of($this->getName())->snake('-');
+        $file = 'architect.' . Str::of($this->getName())->snake('-');
+        if (view()->exists("filament-architect::{$file}")) {
+            return "filament-architect::{$file}";
+        }
+
+        return $file;
     }
 
     public function setData(array $data): self
@@ -51,8 +50,21 @@ abstract class BaseBlock
         return $this;
     }
 
+    public function setView(string $viewName): self
+    {
+        $this->view = $viewName;
+
+        return $this;
+    }
+
     public function data(): array
     {
         return $this->data;
+    }
+
+    public function render()
+    {
+        return view($this->getViewName())
+            ->with('data', $this->data);
     }
 }
