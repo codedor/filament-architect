@@ -9,7 +9,7 @@ beforeEach(function () {
             'type' => 'SpacerBlock',
             'data' => [
                 'height' => 32,
-                ]
+            ],
         ],
     ];
 });
