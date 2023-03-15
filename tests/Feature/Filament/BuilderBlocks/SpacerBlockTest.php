@@ -1,7 +1,6 @@
 <?php
 
 use Codedor\FilamentArchitect\Filament\BuilderBlocks\SpacerBlock;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 
 beforeEach(function () {

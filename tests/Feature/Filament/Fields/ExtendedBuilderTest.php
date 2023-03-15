@@ -1,6 +1,5 @@
 <?php
 
-use Codedor\FilamentArchitect\Facades\BlockCollection;
 use Codedor\FilamentArchitect\Filament\Fields\ExtendedBuilder;
 use Codedor\FilamentArchitect\Tests\Fixtures\Blocks\TestBlock;
 use Filament\Forms\Components\Builder\Block;

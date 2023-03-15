@@ -3,7 +3,6 @@
 namespace Codedor\FilamentArchitect\Filament\BuilderBlocks;
 
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 
 abstract class BaseBlock
 {

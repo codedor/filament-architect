@@ -6,7 +6,6 @@ use Codedor\FilamentArchitect\Providers\FilamentArchitectServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 
-
 class TestCase extends Orchestra
 {
     protected function setUp(): void
@@ -31,7 +30,7 @@ class TestCase extends Orchestra
 
         $app['config']->set('view.paths', [
             __DIR__ . '/views',
-            __DIR__ . '/../resources/views'
+            __DIR__ . '/../resources/views',
         ]);
         /*
         $migration = include __DIR__.'/../database/migrations/create_filament-architect_table.php.stub';
