@@ -39,7 +39,7 @@ class BlockCollection extends Collection
                     ->map(function (array $blockData) {
                         $block = clone $this->get($blockData['type']);
 
-                        return $block->setData($blockData)->render();
+                        return $block->data($blockData)->render();
                     })
             );
     }

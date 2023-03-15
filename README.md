@@ -1,8 +1,8 @@
-# Extended Builder field for Filament
+# Architect field for Filament
 
-## 
+This package extends the default [Builder](https://filamentphp.com/docs/2.x/forms/fields#builder) field from Filament with some default blocks.
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+![architect screenshot](./docs/architect.png)
 
 ## Installation
 
@@ -10,13 +10,6 @@ You can install the package via composer:
 
 ```bash
 composer require codedor/filament-architect
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-architect-migrations"
-php artisan migrate
 ```
 
 You can publish the config file with:
@@ -29,6 +22,9 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'default-blocks' => [
+        // ...
+    ]
 ];
 ```
 
@@ -41,8 +37,9 @@ php artisan vendor:publish --tag="filament-architect-views"
 ## Usage
 
 ```php
-$filamentArchitect = new Codedor\FilamentArchitect();
-echo $filamentArchitect->echoPhrase('Hello, Codedor!');
+\Codedor\FilamentArchitect\Filament\Fields\Architect::make('body')
+    ->collapsible()
+    ->required(),
 ```
 
 ## Documentation

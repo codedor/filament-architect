@@ -42,21 +42,21 @@ abstract class BaseBlock
         return $file;
     }
 
-    public function setData(array $data): self
+    public function data(array $data): self
     {
         $this->data = $data;
 
         return $this;
     }
 
-    public function setView(string $viewName): self
+    public function view(string $viewName): self
     {
         $this->view = $viewName;
 
         return $this;
     }
 
-    public function data(): array
+    public function getData(): array
     {
         return $this->data;
     }
@@ -64,6 +64,6 @@ abstract class BaseBlock
     public function render()
     {
         return view($this->getViewName())
-            ->with('data', $this->data);
+            ->with('data', $this->getData());
     }
 }

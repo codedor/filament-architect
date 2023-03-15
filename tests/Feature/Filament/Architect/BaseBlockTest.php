@@ -27,10 +27,10 @@ it('has a view name', function () {
 });
 
 it('can set data', function () {
-    $this->block->setData(['key' => 'value']);
+    $this->block->data(['key' => 'value']);
 
     expect($this->block)
-        ->data()->toBe(['key' => 'value']);
+        ->getData()->toBe(['key' => 'value']);
 });
 
 it('can render', function () {
@@ -39,7 +39,7 @@ it('can render', function () {
 });
 
 it('can render a custom view', function () {
-    $this->block->setView('architect.test-custom-block');
+    $this->block->view('architect.test-custom-block');
     expect($this->block)
         ->render()->toBeInstanceOf(View::class);
 });
