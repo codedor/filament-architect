@@ -1,7 +1,7 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\BuilderBlocks\MediaTextBlock;
-use Codedor\FilamentArchitect\Filament\BuilderBlocks\TextBlock;
+use Codedor\FilamentArchitect\Filament\Architect\MediaTextBlock;
+use Codedor\FilamentArchitect\Filament\Architect\TextBlock;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 

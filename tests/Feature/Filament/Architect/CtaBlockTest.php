@@ -1,15 +1,15 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\BuilderBlocks\MediaTextBlock;
+use Codedor\FilamentArchitect\Filament\Architect\CtaBlock;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 
 beforeEach(function () {
-    $this->mediaTextBlock = new MediaTextBlock();
+    $this->ctaBlock = new CtaBlock();
 });
 
 it('has a schema', function () {
-    expect($this->mediaTextBlock)
+    expect($this->ctaBlock)
         ->schema()->sequence(
             fn ($component) => $component
                 ->toBeInstanceOf(Tabs::class)

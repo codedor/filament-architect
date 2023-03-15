@@ -1,32 +1,34 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\BuilderBlocks;
+namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 
-class CtaBlock extends BaseBlock
+class MediaTextBlock extends BaseBlock
 {
     public function schema(): array
     {
         return [
-            Tabs::make('cta')
+            Tabs::make('media-text')
                 ->tabs([
                     Tabs\Tab::make('Settings')
                         ->schema([
-                            Select::make('variant')
+                            Radio::make('alignment')
                                 ->options([
-                                    'white' => 'White',
-                                    'gray' => 'Gray',
-                                    'primary' => 'Primary',
+                                    'left' => 'Left',
+                                    'right' => 'Right',
                                 ]),
+                            Checkbox::make('small_image')
+                                ->label('Use small image'),
                         ]),
                     Tabs\Tab::make('General')
                         ->schema([
-                            MarkdownEditor::make('title'),
+                            TextInput::make('image'),
                             MarkdownEditor::make('description'),
                             TextInput::make('text'),
                             Select::make('type')

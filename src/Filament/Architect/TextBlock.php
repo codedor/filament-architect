@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\BuilderBlocks;
+namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Closure;
 use Filament\Forms\Components\Checkbox;

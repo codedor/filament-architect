@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\BuilderBlocks\CardBlock;
+use Codedor\FilamentArchitect\Filament\Architect\CardBlock;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 

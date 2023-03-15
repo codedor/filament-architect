@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\BuilderBlocks;
+namespace Codedor\FilamentArchitect\Filament\Architect;
 
 class TableBlock extends BaseBlock
 {

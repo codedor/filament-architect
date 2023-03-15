@@ -2,7 +2,7 @@
 
 use Codedor\FilamentArchitect\BlockCollection;
 use Codedor\FilamentArchitect\Facades\BlockCollection as FacadesBlockCollection;
-use Codedor\FilamentArchitect\Filament\BuilderBlocks;
+use Codedor\FilamentArchitect\Filament\Architect;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 
@@ -13,47 +13,47 @@ it('can fill collection from original config', function () {
         ->toHaveCount(11)
         ->sequence(
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\ButtonBlock::class);
+                $block->toBeInstanceOf(Architect\ButtonBlock::class);
                 $key->toBe('ButtonBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\CardBlock::class);
+                $block->toBeInstanceOf(Architect\CardBlock::class);
                 $key->toBe('CardBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\CtaBlock::class);
+                $block->toBeInstanceOf(Architect\CtaBlock::class);
                 $key->toBe('CtaBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\MediaBlock::class);
+                $block->toBeInstanceOf(Architect\MediaBlock::class);
                 $key->toBe('MediaBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\MediaTextBlock::class);
+                $block->toBeInstanceOf(Architect\MediaTextBlock::class);
                 $key->toBe('MediaTextBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\SliderBlock::class);
+                $block->toBeInstanceOf(Architect\SliderBlock::class);
                 $key->toBe('SliderBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\SpacerBlock::class);
+                $block->toBeInstanceOf(Architect\SpacerBlock::class);
                 $key->toBe('SpacerBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\TableBlock::class);
+                $block->toBeInstanceOf(Architect\TableBlock::class);
                 $key->toBe('TableBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\TextBlock::class);
+                $block->toBeInstanceOf(Architect\TextBlock::class);
                 $key->toBe('TextBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\VideoBlock::class);
+                $block->toBeInstanceOf(Architect\VideoBlock::class);
                 $key->toBe('VideoBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(BuilderBlocks\VideoTextBlock::class);
+                $block->toBeInstanceOf(Architect\VideoTextBlock::class);
                 $key->toBe('VideoTextBlock');
             }
         );
@@ -62,7 +62,7 @@ it('can fill collection from original config', function () {
 it('can return the filament blocks', function () {
     $collection = new BlockCollection();
 
-    $collection->put('SpacerBlock', new BuilderBlocks\SpacerBlock());
+    $collection->put('SpacerBlock', new Architect\SpacerBlock());
 
     $blocks = $collection->filamentBlocks();
 
@@ -84,7 +84,7 @@ it('can return the filament blocks', function () {
 it('can render the blocks', function () {
     $collection = new BlockCollection();
 
-    $collection->put('SpacerBlock', new BuilderBlocks\SpacerBlock());
+    $collection->put('SpacerBlock', new Architect\SpacerBlock());
 
     $blockData = [
         'type' => 'SpacerBlock',

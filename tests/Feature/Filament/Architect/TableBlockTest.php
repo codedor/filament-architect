@@ -1,7 +1,7 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\BuilderBlocks\SpacerBlock;
-use Codedor\FilamentArchitect\Filament\BuilderBlocks\TableBlock;
+use Codedor\FilamentArchitect\Filament\Architect\SpacerBlock;
+use Codedor\FilamentArchitect\Filament\Architect\TableBlock;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 
