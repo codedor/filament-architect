@@ -6,6 +6,12 @@ use Codedor\FilamentArchitect\Facades\BlockCollection;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Htmlable;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ *
+ * @implements \Illuminate\Contracts\Support\Arrayable<TKey, TValue>
+ */
 class Architect implements Htmlable, Arrayable
 {
     public function __construct(
@@ -13,6 +19,9 @@ class Architect implements Htmlable, Arrayable
     ) {
     }
 
+    /**
+     * @return string|static<TKey, TValue>
+     */
     public static function make(array|string $blocks): self|string
     {
         if (is_string($blocks)) {
@@ -22,9 +31,9 @@ class Architect implements Htmlable, Arrayable
         return new self($blocks);
     }
 
-    public function toHtml()
+    public function toHtml(): string
     {
-        return BlockCollection::render($this->blocks);
+        return BlockCollection::render($this->blocks)->render();
     }
 
     public function toArray()

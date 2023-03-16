@@ -5,6 +5,7 @@ namespace Codedor\FilamentArchitect\Filament\Architect;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 
 class MediaBlock extends BaseBlock
@@ -14,7 +15,7 @@ class MediaBlock extends BaseBlock
         return [
             Tabs::make('buttons')
                 ->tabs([
-                    Tabs\Tab::make('Settings')
+                    Tab::make('Settings')
                         ->schema([
                             Radio::make('width')
                                 ->options([
@@ -22,7 +23,7 @@ class MediaBlock extends BaseBlock
                                     'container' => 'Container',
                                 ]),
                         ]),
-                    Tabs\Tab::make('General')
+                    Tab::make('General')
                         ->schema([
                             Repeater::make('images')
                                 ->schema([

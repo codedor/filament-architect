@@ -2,19 +2,20 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 
 abstract class BaseBlock
 {
-    private ?string $name = null;
-
     protected ?string $view = null;
+
+    private ?string $name = null;
 
     private array $data = [];
 
     abstract public function schema(): array;
 
-    public function name(string $name)
+    public function name(string $name): void
     {
         $this->name = $name;
     }
@@ -61,7 +62,7 @@ abstract class BaseBlock
         return $this->data;
     }
 
-    public function render()
+    public function render(): View
     {
         return view($this->getViewName())
             ->with('data', $this->getData());

@@ -7,6 +7,7 @@ use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 
 class MediaTextBlock extends BaseBlock
@@ -16,7 +17,7 @@ class MediaTextBlock extends BaseBlock
         return [
             Tabs::make('media-text')
                 ->tabs([
-                    Tabs\Tab::make('Settings')
+                    Tab::make('Settings')
                         ->schema([
                             Radio::make('alignment')
                                 ->options([
@@ -26,7 +27,7 @@ class MediaTextBlock extends BaseBlock
                             Checkbox::make('small_image')
                                 ->label('Use small image'),
                         ]),
-                    Tabs\Tab::make('General')
+                    Tab::make('General')
                         ->schema([
                             TextInput::make('image'),
                             MarkdownEditor::make('description'),

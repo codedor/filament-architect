@@ -7,6 +7,7 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 
 class TextBlock extends BaseBlock
@@ -16,7 +17,7 @@ class TextBlock extends BaseBlock
         return [
             Tabs::make('text')
                 ->tabs([
-                    Tabs\Tab::make('Settings')
+                    Tab::make('Settings')
                         ->schema([
                             TextInput::make('columns')
                                 ->numeric()
@@ -31,7 +32,7 @@ class TextBlock extends BaseBlock
                                 ]),
                             Checkbox::make('intro_text'),
                         ]),
-                    Tabs\Tab::make('General')
+                    Tab::make('General')
                         ->schema(function (Closure $get) {
                             $fields = [MarkdownEditor::make('text.0')];
 

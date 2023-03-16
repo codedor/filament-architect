@@ -6,6 +6,7 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 
 class CtaBlock extends BaseBlock
@@ -15,7 +16,7 @@ class CtaBlock extends BaseBlock
         return [
             Tabs::make('cta')
                 ->tabs([
-                    Tabs\Tab::make('Settings')
+                    Tab::make('Settings')
                         ->schema([
                             Select::make('variant')
                                 ->options([
@@ -24,7 +25,7 @@ class CtaBlock extends BaseBlock
                                     'primary' => 'Primary',
                                 ]),
                         ]),
-                    Tabs\Tab::make('General')
+                    Tab::make('General')
                         ->schema([
                             MarkdownEditor::make('title'),
                             MarkdownEditor::make('description'),

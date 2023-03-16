@@ -5,6 +5,7 @@ namespace Codedor\FilamentArchitect\Filament\Architect;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 
 class VideoBlock extends BaseBlock
@@ -14,7 +15,7 @@ class VideoBlock extends BaseBlock
         return [
             Tabs::make('video')
                 ->tabs([
-                    Tabs\Tab::make('Video link')
+                    Tab::make('Video link')
                         ->schema([
                             Radio::make('type')
                                 ->options([
@@ -24,7 +25,7 @@ class VideoBlock extends BaseBlock
                             TextInput::make('url')
                                 ->placeholder('Video ID or URL'),
                         ]),
-                    Tabs\Tab::make('Player Settings')
+                    Tab::make('Player Settings')
                         ->schema([
                             Checkbox::make('autoplay'),
                             Checkbox::make('muted'),
@@ -33,7 +34,7 @@ class VideoBlock extends BaseBlock
                             Checkbox::make('show_info'),
                             Checkbox::make('modest_branding'),
                         ]),
-                    Tabs\Tab::make('Layout')
+                    Tab::make('Layout')
                         ->schema([
                             TextInput::make('width')
                                 ->numeric()

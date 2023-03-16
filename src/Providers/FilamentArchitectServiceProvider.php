@@ -18,7 +18,7 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
             ->hasViews();
     }
 
-    public function registeringPackage()
+    public function registeringPackage(): void
     {
         $this->app->bind(BlockCollection::class, function () {
             return (new BlockCollection())->fromConfig();

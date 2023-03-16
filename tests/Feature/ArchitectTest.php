@@ -1,7 +1,6 @@
 <?php
 
 use Codedor\FilamentArchitect\Architect;
-use Illuminate\View\View;
 
 beforeEach(function () {
     $this->data = [
@@ -27,7 +26,7 @@ it('cannot make the class if data is a string', function () {
 
 it('can return html', function () {
     expect(new Architect($this->data))
-        ->toHtml()->toBeInstanceOf(View::class);
+        ->toHtml()->toBeString();
 });
 
 it('can return an array', function () {

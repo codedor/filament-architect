@@ -2,7 +2,17 @@
 
 use Codedor\FilamentArchitect\BlockCollection;
 use Codedor\FilamentArchitect\Facades\BlockCollection as FacadesBlockCollection;
-use Codedor\FilamentArchitect\Filament\Architect;
+use Codedor\FilamentArchitect\Filament\Architect\ButtonBlock;
+use Codedor\FilamentArchitect\Filament\Architect\CardBlock;
+use Codedor\FilamentArchitect\Filament\Architect\CtaBlock;
+use Codedor\FilamentArchitect\Filament\Architect\MediaBlock;
+use Codedor\FilamentArchitect\Filament\Architect\MediaTextBlock;
+use Codedor\FilamentArchitect\Filament\Architect\SliderBlock;
+use Codedor\FilamentArchitect\Filament\Architect\SpacerBlock;
+use Codedor\FilamentArchitect\Filament\Architect\TableBlock;
+use Codedor\FilamentArchitect\Filament\Architect\TextBlock;
+use Codedor\FilamentArchitect\Filament\Architect\VideoBlock;
+use Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 
@@ -13,47 +23,47 @@ it('can fill collection from original config', function () {
         ->toHaveCount(11)
         ->sequence(
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\ButtonBlock::class);
+                $block->toBeInstanceOf(ButtonBlock::class);
                 $key->toBe('ButtonBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\CardBlock::class);
+                $block->toBeInstanceOf(CardBlock::class);
                 $key->toBe('CardBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\CtaBlock::class);
+                $block->toBeInstanceOf(CtaBlock::class);
                 $key->toBe('CtaBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\MediaBlock::class);
+                $block->toBeInstanceOf(MediaBlock::class);
                 $key->toBe('MediaBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\MediaTextBlock::class);
+                $block->toBeInstanceOf(MediaTextBlock::class);
                 $key->toBe('MediaTextBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\SliderBlock::class);
+                $block->toBeInstanceOf(SliderBlock::class);
                 $key->toBe('SliderBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\SpacerBlock::class);
+                $block->toBeInstanceOf(SpacerBlock::class);
                 $key->toBe('SpacerBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\TableBlock::class);
+                $block->toBeInstanceOf(TableBlock::class);
                 $key->toBe('TableBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\TextBlock::class);
+                $block->toBeInstanceOf(TextBlock::class);
                 $key->toBe('TextBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\VideoBlock::class);
+                $block->toBeInstanceOf(VideoBlock::class);
                 $key->toBe('VideoBlock');
             },
             function ($block, $key) {
-                $block->toBeInstanceOf(Architect\VideoTextBlock::class);
+                $block->toBeInstanceOf(VideoTextBlock::class);
                 $key->toBe('VideoTextBlock');
             }
         );
@@ -62,7 +72,7 @@ it('can fill collection from original config', function () {
 it('can return the filament blocks', function () {
     $collection = new BlockCollection();
 
-    $collection->put('SpacerBlock', new Architect\SpacerBlock());
+    $collection->put('SpacerBlock', new SpacerBlock());
 
     $blocks = $collection->filamentBlocks();
 
@@ -84,7 +94,7 @@ it('can return the filament blocks', function () {
 it('can render the blocks', function () {
     $collection = new BlockCollection();
 
-    $collection->put('SpacerBlock', new Architect\SpacerBlock());
+    $collection->put('SpacerBlock', new SpacerBlock());
 
     $blockData = [
         'type' => 'SpacerBlock',

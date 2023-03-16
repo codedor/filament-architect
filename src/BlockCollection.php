@@ -2,27 +2,43 @@
 
 namespace Codedor\FilamentArchitect;
 
+use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
 use Filament\Forms\Components\Builder\Block;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 
+/**
+ * @template TKey of array-key
+ * @template TBlock of \Codedor\FilamentArchitect\Filament\Architect\BaseBlock
+ *
+ * @extends Collection<TKey, TBlock>
+ */
 class BlockCollection extends Collection
 {
+    /**
+     * Run a map over each of the items.
+     *
+     * @return static<TKey, TBlock>
+     */
     public function fromConfig(): self
     {
-        collect(config('filament-architect.default-blocks', []))
-            ->each(function ($blockClass) {
+        collect((array) config('filament-architect.default-blocks', []))
+            ->each(function ($blockClass): void {
+                /** @var TBlock $class */
                 $class = new $blockClass();
 
-                $this->items[$class->getName()] = $class;
+                $this->put($class->getName(), $class);
             });
 
         return $this;
     }
 
+    /**
+     * Run a map over each of the items.
+     */
     public function filamentBlocks(): array
     {
-        return $this->map(function ($block) {
+        return $this->map(function (BaseBlock $block): Block {
             return Block::make($block->getName())
                 ->schema($block->schema());
         })
@@ -37,7 +53,9 @@ class BlockCollection extends Collection
                 collect($blocks)
                     ->filter(fn (array $blockData) => $this->has($blockData['type']))
                     ->map(function (array $blockData) {
-                        $block = clone $this->get($blockData['type']);
+                        /** @var TBlock $block */
+                        $block = $this->get($blockData['type']);
+                        $block = clone $block;
 
                         return $block->data($blockData)->render();
                     })

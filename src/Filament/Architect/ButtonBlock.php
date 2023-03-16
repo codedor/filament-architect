@@ -7,6 +7,7 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 
 class ButtonBlock extends BaseBlock
@@ -16,7 +17,7 @@ class ButtonBlock extends BaseBlock
         return [
             Tabs::make('buttons')
                 ->tabs([
-                    Tabs\Tab::make('Settings')
+                    Tab::make('Settings')
                         ->schema([
                             Radio::make('alignment')
                                 ->options([
@@ -25,7 +26,7 @@ class ButtonBlock extends BaseBlock
                                     'right' => 'Right',
                                 ]),
                         ]),
-                    Tabs\Tab::make('General')
+                    Tab::make('General')
                         ->schema([
                             Repeater::make('buttons')
                                 ->schema([
