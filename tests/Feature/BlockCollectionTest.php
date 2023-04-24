@@ -83,11 +83,11 @@ it('can return the filament blocks', function () {
                 ->toBeInstanceOf(Block::class)
                 ->getName()->toBe('SpacerBlock')
                 ->getChildComponents()
-                    ->toHaveCount(1)
-                    ->sequence(fn ($field) => $field
-                        ->toBeInstanceOf(TextInput::class)
-                        ->getName()->toBe('height')
-                    )
+                ->toHaveCount(1)
+                ->sequence(fn ($field) => $field
+                    ->toBeInstanceOf(TextInput::class)
+                    ->getName()->toBe('height')
+                )
         );
 });
 
@@ -107,12 +107,12 @@ it('can render the blocks', function () {
     expect($view)
         ->getName()->toBe('filament-architect::overview')
         ->getData()->sequence(fn ($blockViews) => $blockViews
-            ->sequence(fn ($blockView) => $blockView
-                ->getName()->toBe('filament-architect::architect.spacer-block')
-                ->getData()->sequence(function ($viewData, $key) use ($blockData) {
-                    $key->toBe('data');
-                    $viewData->toBe($blockData);
-                })
-            )
+        ->sequence(fn ($blockView) => $blockView
+            ->getName()->toBe('filament-architect::architect.spacer-block')
+            ->getData()->sequence(function ($viewData, $key) use ($blockData) {
+                $key->toBe('data');
+                $viewData->toBe($blockData);
+            })
+        )
         );
 });
