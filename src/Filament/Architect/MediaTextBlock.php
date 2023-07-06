@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Codedor\MediaLibrary\Components\Fields\AttachmentInput;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Radio;
@@ -9,6 +10,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
+use FilamentTiptapEditor\TiptapEditor;
 
 class MediaTextBlock extends BaseBlock
 {
@@ -23,38 +25,13 @@ class MediaTextBlock extends BaseBlock
                                 ->options([
                                     'left' => 'Left',
                                     'right' => 'Right',
-                                ]),
-                            Checkbox::make('small_image')
-                                ->label('Use small image'),
+                                ])
+                                ->default('left'),
                         ]),
                     Tab::make('General')
                         ->schema([
-                            TextInput::make('image'),
-                            MarkdownEditor::make('description'),
-                            TextInput::make('text'),
-                            Select::make('type')
-                                ->options([
-                                    'filled' => 'Filled button',
-                                    'filled-arrow' => 'Filled arrow button',
-                                    'outline' => 'Outline button',
-                                    'outline-arrow' => 'Outline arrow button',
-                                    'ghost' => 'Ghost button',
-                                ]),
-                            TextInput::make('url')
-                                ->url(),
-                            TextInput::make('category'),
-                            Select::make('action')
-                                ->options([
-                                    'hit' => 'Hit',
-                                    'play' => 'Play',
-                                    'pause' => 'Pause',
-                                    'download' => 'Download',
-                                    'view' => 'View',
-                                    'open' => 'Open',
-                                    'close' => 'Close',
-                                ]),
-                            TextInput::make('label'),
-                            Checkbox::make('non_interaction'),
+                            AttachmentInput::make('image'),
+                            TiptapEditor::make('description'),
                         ]),
                 ]),
         ];
