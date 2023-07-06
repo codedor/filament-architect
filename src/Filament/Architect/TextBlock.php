@@ -9,6 +9,7 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
+use FilamentTiptapEditor\TiptapEditor;
 
 class TextBlock extends BaseBlock
 {
@@ -21,24 +22,35 @@ class TextBlock extends BaseBlock
                         ->schema([
                             TextInput::make('columns')
                                 ->numeric()
-                                ->reactive(),
+                                ->reactive()
+                                ->afterStateUpdated(function ($component, Closure $get) {
+                                    $component->getContainer()->getParentComponent()->getContainer()->getParentComponent()->getChildComponentContainer()->getComponents()[1]->fillStateWithNull();
+                                }),
                             Checkbox::make('separate_editors')
                                 ->label('Use Separate Text Editors')
                                 ->reactive(),
                             Radio::make('width')
                                 ->options([
+                                    'full-width' => 'Full Width',
                                     'container' => 'Container',
                                     'text-container' => 'Text Container',
                                 ]),
-                            Checkbox::make('intro_text'),
                         ]),
                     Tab::make('General')
                         ->schema(function (Closure $get) {
-                            $fields = [MarkdownEditor::make('text.0')];
+                            $fields = [
+                                TiptapEditor::make('text.0')
+                                    ->label('')
+                                    ->default('')
+                                    ->reactive(),
+                            ];
 
                             if ($get('separate_editors')) {
                                 for ($i = 1; $i < $get('columns'); $i++) {
-                                    $fields[] = MarkdownEditor::make("text.{$i}");
+                                    $fields[] = TiptapEditor::make("text.{$i}")
+                                        ->default('')
+                                        ->label('')
+                                        ->reactive();
                                 }
                             }
 
