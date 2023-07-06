@@ -52,7 +52,7 @@ class ButtonComponent
                                         TextInput::make('label'),
                                         Checkbox::make('non_interaction'),
                                     ])
-                                    ->statePath('tracking')
+                                    ->statePath('tracking'),
                             ])
                             ->action(function ($data) use ($set, $statePath) {
                                 $set($statePath, $data);

@@ -77,25 +77,25 @@ class TextBlock extends BaseBlock
                                 ->disableItemMovement()
                                 ->defaultItems(1),
                         ]),
-//                            $fields = [
-//                                TiptapEditor::make('text.0')
-//                                    ->label('')
-//                                    ->default('')
-//                                    ->reactive(),
-//                            ];
-//
-//                            if ($get('separate_editors')) {
-//                                for ($i = 1; $i < $get('columns'); $i++) {
-//                                    $fields[] = TiptapEditor::make("text.{$i}")
-//                                        ->default('')
-//                                        ->label('')
-//                                        ->reactive();
-//                                }
-//                            }
-//
-//                            return $fields;
-//                        })
-//                        ->reactive(),
+                    //                            $fields = [
+                    //                                TiptapEditor::make('text.0')
+                    //                                    ->label('')
+                    //                                    ->default('')
+                    //                                    ->reactive(),
+                    //                            ];
+                    //
+                    //                            if ($get('separate_editors')) {
+                    //                                for ($i = 1; $i < $get('columns'); $i++) {
+                    //                                    $fields[] = TiptapEditor::make("text.{$i}")
+                    //                                        ->default('')
+                    //                                        ->label('')
+                    //                                        ->reactive();
+                    //                                }
+                    //                            }
+                    //
+                    //                            return $fields;
+                    //                        })
+                    //                        ->reactive(),
                 ]),
         ];
     }
