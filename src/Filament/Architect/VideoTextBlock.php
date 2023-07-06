@@ -2,44 +2,35 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Awcodes\FilamentOembed\Forms\Components\OEmbed;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
+use FilamentTiptapEditor\TiptapEditor;
 
 class VideoTextBlock extends BaseBlock
 {
     public function schema(): array
     {
         return [
-            Tabs::make('video')
+            Tabs::make('media-text')
                 ->tabs([
-                    Tab::make('Video link')
+                    Tab::make('Settings')
                         ->schema([
-                            Radio::make('type')
+                            Radio::make('alignment')
                                 ->options([
-                                    'youtube' => 'Youtube',
-                                    'vimeo' => 'Vimeo',
-                                ]),
-                            TextInput::make('url')
-                                ->placeholder('Video ID or URL'),
+                                    'left' => 'Left',
+                                    'right' => 'Right',
+                                ])
+                                ->default('left'),
                         ]),
-                    Tab::make('Player Settings')
+                    Tab::make('General')
                         ->schema([
-                            Checkbox::make('autoplay'),
-                            Checkbox::make('muted'),
-                            Checkbox::make('loop'),
-                            Checkbox::make('fullscreen'),
-                            Checkbox::make('show_info'),
-                            Checkbox::make('modest_branding'),
-                        ]),
-                    Tab::make('Layout')
-                        ->schema([
-                            TextInput::make('width')
-                                ->numeric()
-                                ->suffix('%')
-                                ->helperText('Width of the video iframe in %'),
+                            OEmbed::make('video'),
+                            TiptapEditor::make('description')
+                                ->required(),
                         ]),
                 ]),
         ];
