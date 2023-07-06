@@ -3,13 +3,9 @@
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Codedor\MediaLibrary\Components\Fields\AttachmentInput;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\TextInput;
 use FilamentTiptapEditor\TiptapEditor;
 
 class MediaTextBlock extends BaseBlock
