@@ -43,7 +43,8 @@ class MediaBlock extends BaseBlock
                                 ])
                                 ->minItems(1)
                                 ->maxItems(3)
-                                ->reactive(),
+                                ->reactive()
+                                ->grid(3),
                         ]),
                 ]),
         ];
