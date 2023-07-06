@@ -2,7 +2,13 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Awcodes\DropInAction\Forms\Components\DropInAction;
+use Closure;
+use Codedor\FilamentArchitect\Filament\Components\ButtonComponent;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
@@ -14,47 +20,8 @@ class CtaBlock extends BaseBlock
     public function schema(): array
     {
         return [
-            Tabs::make('cta')
-                ->tabs([
-                    Tab::make('Settings')
-                        ->schema([
-                            Select::make('variant')
-                                ->options([
-                                    'white' => 'White',
-                                    'gray' => 'Gray',
-                                    'primary' => 'Primary',
-                                ]),
-                        ]),
-                    Tab::make('General')
-                        ->schema([
-                            MarkdownEditor::make('title'),
-                            MarkdownEditor::make('description'),
-                            TextInput::make('text'),
-                            Select::make('type')
-                                ->options([
-                                    'filled' => 'Filled button',
-                                    'filled-arrow' => 'Filled arrow button',
-                                    'outline' => 'Outline button',
-                                    'outline-arrow' => 'Outline arrow button',
-                                    'ghost' => 'Ghost button',
-                                ]),
-                            TextInput::make('url')
-                                ->url(),
-                            TextInput::make('category'),
-                            Select::make('action')
-                                ->options([
-                                    'hit' => 'Hit',
-                                    'play' => 'Play',
-                                    'pause' => 'Pause',
-                                    'download' => 'Download',
-                                    'view' => 'View',
-                                    'open' => 'Open',
-                                    'close' => 'Close',
-                                ]),
-                            TextInput::make('label'),
-                            Checkbox::make('non_interaction'),
-                        ]),
-                ]),
+            TextInput::make('title'),
+            ButtonComponent::make('button'),
         ];
     }
 }

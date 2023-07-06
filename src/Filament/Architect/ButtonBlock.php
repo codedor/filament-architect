@@ -2,7 +2,10 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Codedor\FilamentArchitect\Filament\Components\ButtonComponent;
+use Codedor\LinkPicker\Forms\Components\LinkPickerInput;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -30,31 +33,11 @@ class ButtonBlock extends BaseBlock
                         ->schema([
                             Repeater::make('buttons')
                                 ->schema([
-                                    TextInput::make('text'),
-                                    Select::make('type')
-                                        ->options([
-                                            'filled' => 'Filled button',
-                                            'filled-arrow' => 'Filled arrow button',
-                                            'outline' => 'Outline button',
-                                            'outline-arrow' => 'Outline arrow button',
-                                            'ghost' => 'Ghost button',
-                                        ]),
-                                    TextInput::make('url')
-                                        ->url(),
-                                    TextInput::make('category'),
-                                    Select::make('action')
-                                        ->options([
-                                            'hit' => 'Hit',
-                                            'play' => 'Play',
-                                            'pause' => 'Pause',
-                                            'download' => 'Download',
-                                            'view' => 'View',
-                                            'open' => 'Open',
-                                            'close' => 'Close',
-                                        ]),
-                                    TextInput::make('label'),
-                                    Checkbox::make('non_interaction'),
-                                ]),
+                                    ButtonComponent::make('button'),
+                                ])
+                                ->minItems(1)
+                                ->maxItems(3)
+                                ->grid(3),
                         ]),
                 ]),
         ];
