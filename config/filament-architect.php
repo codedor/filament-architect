@@ -5,6 +5,7 @@ return [
         \Codedor\FilamentArchitect\Filament\Architect\ButtonBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\CardBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\CtaBlock::class,
+        \Codedor\FilamentArchitect\Filament\Architect\EmbedBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\MediaBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\MediaTextBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\SliderBlock::class,

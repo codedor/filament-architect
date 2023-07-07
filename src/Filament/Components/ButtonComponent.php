@@ -23,9 +23,10 @@ class ButtonComponent
                 DropInAction::make('button')
                     ->disableLabel()
                     ->execute(function (Closure $get, Closure $set) use ($statePath) {
+                        $currentText = $get("{$statePath}.text");
                         return Action::make($statePath)
                             ->icon('heroicon-o-pencil-alt')
-                            ->label($get("{$statePath}.text") ?? 'Add button')
+                            ->label($currentText ? "Edit {$currentText}" : 'Add button')
                             ->mountUsing(fn (ComponentContainer $form) => $form->fill($get($statePath)))
                             ->form([
                                 TextInput::make('text'),
