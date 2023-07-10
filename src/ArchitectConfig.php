@@ -2,8 +2,6 @@
 
 namespace Codedor\FilamentArchitect;
 
-use Codedor\FilamentArchitect\Enums\WidthOptionsInterface;
-
 class ArchitectConfig
 {
     public function fromConfig(): self

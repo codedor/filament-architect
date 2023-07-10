@@ -2,7 +2,6 @@
 
 namespace Codedor\FilamentArchitect\Facades;
 
-use Codedor\FilamentArchitect\BlockCollection as Blocks;
 use Illuminate\Support\Facades\Facade;
 
 /**

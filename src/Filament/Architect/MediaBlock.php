@@ -21,7 +21,7 @@ class MediaBlock extends BaseBlock
                     Tab::make('Settings')
                         ->schema([
                             Radio::make('width')
-                                ->visible(!! ArchitectConfig::getWidthOptionsEnum())
+                                ->visible((bool) ArchitectConfig::getWidthOptionsEnum())
                                 ->options(function (Closure $get) {
                                     $enum = ArchitectConfig::getWidthOptionsEnum();
 
