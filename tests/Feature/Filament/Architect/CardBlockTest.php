@@ -2,7 +2,6 @@
 
 use Codedor\FilamentArchitect\Filament\Architect\CardBlock;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\TextInput;
 
 beforeEach(function () {
     $this->cardBlock = new CardBlock();
