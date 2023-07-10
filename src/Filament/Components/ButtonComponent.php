@@ -4,6 +4,7 @@ namespace Codedor\FilamentArchitect\Filament\Components;
 
 use Awcodes\DropInAction\Forms\Components\DropInAction;
 use Closure;
+use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Codedor\LinkPicker\Forms\Components\LinkPickerInput;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Actions\Action;
@@ -32,25 +33,14 @@ class ButtonComponent
                             ->form([
                                 TextInput::make('text'),
                                 Select::make('type')
-                                    ->options([
-                                        'primary-button' => 'Primary button',
-                                        'text-button' => 'Text button',
-                                    ]),
+                                    ->options(ArchitectConfig::getButtonClasses()),
                                 LinkPickerInput::make('link'),
                                 TextInput::make('title'),
                                 Fieldset::make('Tracking')
                                     ->schema([
                                         TextInput::make('category'),
                                         Select::make('action')
-                                            ->options([
-                                                'hit' => 'Hit',
-                                                'play' => 'Play',
-                                                'pause' => 'Pause',
-                                                'download' => 'Download',
-                                                'view' => 'View',
-                                                'open' => 'Open',
-                                                'close' => 'Close',
-                                            ]),
+                                            ->options(ArchitectConfig::getTrackingActions()),
                                         TextInput::make('label'),
                                         Checkbox::make('non_interaction'),
                                     ])

@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Providers;
 
+use Codedor\FilamentArchitect\ArchitectConfig;
 use Codedor\FilamentArchitect\BlockCollection;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -15,6 +16,7 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
             ->setBasePath(__DIR__ . '/../')
             ->hasConfigFile()
             ->hasMigration('create_package_table')
+            ->hasTranslations()
             ->hasViews();
     }
 
@@ -22,6 +24,10 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
     {
         $this->app->bind(BlockCollection::class, function () {
             return (new BlockCollection())->fromConfig();
+        });
+
+        $this->app->bind(ArchitectConfig::class, function () {
+            return (new ArchitectConfig())->fromConfig();
         });
     }
 }

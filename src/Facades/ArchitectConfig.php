@@ -1,0 +1,30 @@
+<?php
+
+namespace Codedor\FilamentArchitect\Facades;
+
+use Codedor\FilamentArchitect\BlockCollection as Blocks;
+use Illuminate\Support\Facades\Facade;
+
+/**
+ * @method static \self fromConfig()
+ * @method static \self widthOptionsEnum(string|null $enumClass)
+ * @method static string|null getWidthOptionsEnum()
+ * @method static \self buttonClasses(array $buttonClasses)
+ * @method static array getButtonClasses()
+ * @method static \self trackingActions(array $trackingActions)
+ * @method static array getTrackingActions()
+ *
+ * @see \Codedor\FilamentArchitect\ArchitectConfig
+ */
+class ArchitectConfig extends Facade
+{
+    /**
+     * Get the registered name of the component.
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor()
+    {
+        return \Codedor\FilamentArchitect\ArchitectConfig::class;
+    }
+}

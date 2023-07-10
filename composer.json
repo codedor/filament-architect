@@ -17,6 +17,7 @@
         "spatie/laravel-package-tools": "^1.12"
     },
     "require-dev": {
+        "codedor/facade-docblock-generator": "^0.0.1",
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.0",

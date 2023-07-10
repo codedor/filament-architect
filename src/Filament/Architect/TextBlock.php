@@ -3,6 +3,7 @@
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Closure;
+use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
@@ -47,11 +48,15 @@ class TextBlock extends BaseBlock
                                 ->reactive()
                                 ->afterStateUpdated($closure),
                             Radio::make('width')
-                                ->options([
-                                    'full-width' => 'Full Width',
-                                    'container' => 'Container',
-                                    'text-container' => 'Text Container',
-                                ]),
+                                ->visible(ArchitectConfig::getWidthOptionsEnum())
+                                ->options(function () {
+                                    $enum = ArchitectConfig::getWidthOptionsEnum();
+                                    if (! $enum) {
+                                        return [];
+                                    }
+
+                                    return $enum::toSelect();
+                                }),
                         ]),
                     Tab::make('General')
                         ->schema([

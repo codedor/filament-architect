@@ -15,4 +15,10 @@ return [
         \Codedor\FilamentArchitect\Filament\Architect\VideoBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
     ],
+    'widthOptions' => \Codedor\FilamentArchitect\Enums\WidthOptions::class,
+    'buttonClasses' => [
+        'btn btn-primary' => 'Primary button',
+        'btn btn-link' => 'Text'
+    ],
+    'trackingActions' => ['hit', 'play', 'pause', 'download', 'view', 'open', 'close'],
 ];

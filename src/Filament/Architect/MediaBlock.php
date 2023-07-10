@@ -3,6 +3,7 @@
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Closure;
+use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Codedor\MediaLibrary\Components\Fields\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Radio;
@@ -20,19 +21,15 @@ class MediaBlock extends BaseBlock
                     Tab::make('Settings')
                         ->schema([
                             Radio::make('width')
+                                ->visible(!! ArchitectConfig::getWidthOptionsEnum())
                                 ->options(function (Closure $get) {
+                                    $enum = ArchitectConfig::getWidthOptionsEnum();
+
                                     if (is_array($get('images')) && count($get('images')) > 2) {
-                                        return [
-                                            'full-width' => 'Full width',
-                                            'container' => 'Container',
-                                        ];
+                                        return $enum::toSelectForMaxImages();
                                     }
 
-                                    return [
-                                        'full-width' => 'Full width',
-                                        'container' => 'Container',
-                                        'text-container' => 'Text container',
-                                    ];
+                                    return $enum::toSelect();
                                 }),
                         ]),
                     Tab::make('General')
