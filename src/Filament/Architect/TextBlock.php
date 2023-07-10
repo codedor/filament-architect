@@ -16,6 +16,22 @@ class TextBlock extends BaseBlock
 {
     public function schema(): array
     {
+        $closure = function ($component, Closure $get, Closure $set) {
+            $editors = $get('editors');
+
+            if ($get('separate_editors')) {
+                if (count($editors) < $get('columns')) {
+                    for ($i = count($editors); $i < $get('columns'); $i++) {
+                        $editors[(string) Str::uuid()] = [];
+                    }
+                } elseif (count($editors) > $get('columns')) {
+                    $editors = array_slice($editors, 0, $get('columns'));
+                }
+
+                $set('editors', $editors);
+            }
+        };
+        
         return [
             Tabs::make('text')
                 ->tabs([
@@ -24,39 +40,12 @@ class TextBlock extends BaseBlock
                             TextInput::make('columns')
                                 ->numeric()
                                 ->reactive()
-                                ->afterStateUpdated(function ($component, Closure $get, Closure $set) {
-                                    $editors = $get('editors');
-
-                                    if ($get('separate_editors')) {
-                                        if (count($editors) < $get('columns')) {
-                                            for ($i = count($editors); $i < $get('columns'); $i++) {
-                                                $editors[(string) Str::uuid()] = [];
-                                            }
-                                        } elseif (count($editors) > $get('columns')) {
-                                            $editors = array_slice($editors, 0, $get('columns'));
-                                        }
-
-                                        $set('editors', $editors);
-                                    }
-                                }),
+                                ->maxValue(10)
+                                ->afterStateUpdated($closure),
                             Checkbox::make('separate_editors')
                                 ->label('Use Separate Text Editors')
                                 ->reactive()
-                                ->afterStateUpdated(function ($component, Closure $get, Closure $set) {
-                                    $editors = $get('editors');
-
-                                    if ($get('separate_editors')) {
-                                        if (count($editors) < $get('columns')) {
-                                            for ($i = count($editors); $i < $get('columns'); $i++) {
-                                                $editors[(string) Str::uuid()] = [];
-                                            }
-                                        } elseif (count($editors) > $get('columns')) {
-                                            $editors = array_slice($editors, 0, $get('columns'));
-                                        }
-
-                                        $set('editors', $editors);
-                                    }
-                                }),
+                                ->afterStateUpdated($closure),
                             Radio::make('width')
                                 ->options([
                                     'full-width' => 'Full Width',
@@ -77,25 +66,6 @@ class TextBlock extends BaseBlock
                                 ->disableItemMovement()
                                 ->defaultItems(1),
                         ]),
-                    //                            $fields = [
-                    //                                TiptapEditor::make('text.0')
-                    //                                    ->label('')
-                    //                                    ->default('')
-                    //                                    ->reactive(),
-                    //                            ];
-                    //
-                    //                            if ($get('separate_editors')) {
-                    //                                for ($i = 1; $i < $get('columns'); $i++) {
-                    //                                    $fields[] = TiptapEditor::make("text.{$i}")
-                    //                                        ->default('')
-                    //                                        ->label('')
-                    //                                        ->reactive();
-                    //                                }
-                    //                            }
-                    //
-                    //                            return $fields;
-                    //                        })
-                    //                        ->reactive(),
                 ]),
         ];
     }

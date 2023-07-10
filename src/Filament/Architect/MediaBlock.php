@@ -4,6 +4,7 @@ namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Closure;
 use Codedor\MediaLibrary\Components\Fields\AttachmentInput;
+use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;
@@ -47,5 +48,14 @@ class MediaBlock extends BaseBlock
                         ]),
                 ]),
         ];
+    }
+
+    public function getData(): array
+    {
+        $this->data['data']['images'] = collect($this->data['data']['images'])->map(function ($image) {
+            return Attachment::find($image['image']);
+        });
+
+        return $this->data;
     }
 }

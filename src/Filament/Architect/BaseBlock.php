@@ -9,9 +9,9 @@ abstract class BaseBlock
 {
     protected ?string $view = null;
 
-    private ?string $name = null;
+    protected ?string $name = null;
 
-    private array $data = [];
+    protected array $data = [];
 
     abstract public function schema(): array;
 
