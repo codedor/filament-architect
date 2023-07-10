@@ -12,6 +12,8 @@
         "php": "^8.2",
         "awcodes/drop-in-action": "^0.2.2",
         "awcodes/filament-oembed": "^1.1",
+        "awcodes/filament-tiptap-editor": "^2.6",
+        "codedor/filament-media-library": "dev-master",
         "filament/filament": "^2.17",
         "illuminate/contracts": "^10.0",
         "spatie/laravel-package-tools": "^1.12"
@@ -55,5 +57,11 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://codedor.repo.repman.codedor.online"
+        }
+    ]
 }

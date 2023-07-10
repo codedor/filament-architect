@@ -12,10 +12,8 @@ it('has a schema', function () {
     expect($this->ctaBlock)
         ->schema()->sequence(
             fn ($component) => $component
-                ->toBeInstanceOf(Tabs::class)
-                ->getChildComponents()->sequence(
-                    fn ($tab) => $tab
-                        ->toBeInstanceOf(Tab::class)
-                ),
+                ->toBeInstanceOf(\Filament\Forms\Components\TextInput::class),
+            fn ($component) => $component
+                ->toBeInstanceOf(\Filament\Forms\Components\Grid::class)
         );
 });

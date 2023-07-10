@@ -5,6 +5,7 @@ use Codedor\FilamentArchitect\Facades\BlockCollection as FacadesBlockCollection;
 use Codedor\FilamentArchitect\Filament\Architect\ButtonBlock;
 use Codedor\FilamentArchitect\Filament\Architect\CardBlock;
 use Codedor\FilamentArchitect\Filament\Architect\CtaBlock;
+use Codedor\FilamentArchitect\Filament\Architect\EmbedBlock;
 use Codedor\FilamentArchitect\Filament\Architect\MediaBlock;
 use Codedor\FilamentArchitect\Filament\Architect\MediaTextBlock;
 use Codedor\FilamentArchitect\Filament\Architect\SliderBlock;
@@ -20,7 +21,7 @@ it('can fill collection from original config', function () {
     $collection = FacadesBlockCollection::all();
 
     expect($collection)
-        ->toHaveCount(11)
+        ->toHaveCount(12)
         ->sequence(
             function ($block, $key) {
                 $block->toBeInstanceOf(ButtonBlock::class);
@@ -33,6 +34,10 @@ it('can fill collection from original config', function () {
             function ($block, $key) {
                 $block->toBeInstanceOf(CtaBlock::class);
                 $key->toBe('CtaBlock');
+            },
+            function ($block, $key) {
+                $block->toBeInstanceOf(EmbedBlock::class);
+                $key->toBe('EmbedBlock');
             },
             function ($block, $key) {
                 $block->toBeInstanceOf(MediaBlock::class);

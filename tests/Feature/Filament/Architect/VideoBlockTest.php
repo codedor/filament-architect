@@ -12,10 +12,6 @@ it('has a schema', function () {
     expect($this->videoBlock)
         ->schema()->sequence(
             fn ($component) => $component
-                ->toBeInstanceOf(Tabs::class)
-                ->getChildComponents()->sequence(
-                    fn ($tab) => $tab
-                        ->toBeInstanceOf(Tab::class)
-                ),
+                ->toBeInstanceOf(\Filament\Forms\Components\Fieldset::class),
         );
 });

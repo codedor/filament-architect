@@ -12,8 +12,6 @@ it('has a schema', function () {
     expect($this->cardBlock)
         ->schema()->sequence(
             fn ($component) => $component
-                ->toBeInstanceOf(TextInput::class),
-            fn ($component) => $component
                 ->toBeInstanceOf(Repeater::class),
         );
 });
