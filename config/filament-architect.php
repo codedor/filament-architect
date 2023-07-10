@@ -18,7 +18,7 @@ return [
     'widthOptions' => \Codedor\FilamentArchitect\Enums\WidthOptions::class,
     'buttonClasses' => [
         'btn btn-primary' => 'Primary button',
-        'btn btn-link' => 'Text'
+        'btn btn-link' => 'Text',
     ],
     'trackingActions' => ['hit', 'play', 'pause', 'download', 'view', 'open', 'close'],
 ];
