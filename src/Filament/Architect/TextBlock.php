@@ -31,7 +31,7 @@ class TextBlock extends BaseBlock
                 $set('editors', $editors);
             }
         };
-        
+
         return [
             Tabs::make('text')
                 ->tabs([
