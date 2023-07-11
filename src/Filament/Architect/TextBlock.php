@@ -48,7 +48,7 @@ class TextBlock extends BaseBlock
                                 ->reactive()
                                 ->afterStateUpdated($closure),
                             Radio::make('width')
-                                ->visible(!! ArchitectConfig::getWidthOptionsEnum())
+                                ->visible((bool) ArchitectConfig::getWidthOptionsEnum())
                                 ->options(function () {
                                     $enum = ArchitectConfig::getWidthOptionsEnum();
                                     if (! $enum) {

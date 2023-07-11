@@ -14,15 +14,16 @@ abstract class BaseBlock
 
     protected array $data = [];
 
-    abstract public function schema(): array;
-
     final public function __construct()
-    {}
+    {
+    }
 
     public static function make(): self
     {
         return new static();
     }
+
+    abstract public function schema(): array;
 
     public function name(string $name): void
     {
