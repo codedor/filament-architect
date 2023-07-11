@@ -74,7 +74,7 @@ class BlockMakeCommand extends GeneratorCommand
     {
         return str_replace(
             ['DummyView', '{{ view }}'],
-            'view(\'components.'.$this->getView().'\')',
+            'view(\'components.' . $this->getView() . '\')',
             parent::buildClass($name)
         );
     }
