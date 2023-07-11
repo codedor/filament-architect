@@ -4,6 +4,7 @@ namespace Codedor\FilamentArchitect\Providers;
 
 use Codedor\FilamentArchitect\ArchitectConfig;
 use Codedor\FilamentArchitect\BlockCollection;
+use Codedor\FilamentArchitect\Commands\BlockMakeCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,6 +18,7 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasMigration('create_package_table')
             ->hasTranslations()
+            ->hasCommand(BlockMakeCommand::class)
             ->hasViews();
     }
 
