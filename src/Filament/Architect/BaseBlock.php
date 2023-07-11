@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Filament\Forms\Components\Builder\Block;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 
@@ -14,6 +15,11 @@ abstract class BaseBlock
     protected array $data = [];
 
     abstract public function schema(): array;
+
+    public static function make(): self
+    {
+        return new static();
+    }
 
     public function name(string $name): void
     {
@@ -66,5 +72,11 @@ abstract class BaseBlock
     {
         return view($this->getViewName())
             ->with('data', $this->getData());
+    }
+
+    public function toFilament(): Block
+    {
+        return Block::make($this->getName())
+            ->schema($this->schema());
     }
 }

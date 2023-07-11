@@ -25,7 +25,7 @@ class BlockCollection extends Collection
         collect((array) config('filament-architect.default-blocks', []))
             ->each(function ($blockClass): void {
                 /** @var TBlock $class */
-                $class = new $blockClass();
+                $class = $blockClass::make();
 
                 $this->put($class->getName(), $class);
             });
@@ -38,10 +38,7 @@ class BlockCollection extends Collection
      */
     public function filamentBlocks(): array
     {
-        return $this->map(function (BaseBlock $block): Block {
-            return Block::make($block->getName())
-                ->schema($block->schema());
-        })
+        return $this->map->toFilament()
             ->toArray();
     }
 
