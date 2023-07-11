@@ -1,8 +1,6 @@
 <?php
 
 use Codedor\FilamentArchitect\Filament\Architect\CtaBlock;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\Tabs\Tab;
 
 beforeEach(function () {
     $this->ctaBlock = new CtaBlock();
