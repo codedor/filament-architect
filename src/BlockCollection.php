@@ -2,8 +2,6 @@
 
 namespace Codedor\FilamentArchitect;
 
-use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
-use Filament\Forms\Components\Builder\Block;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 

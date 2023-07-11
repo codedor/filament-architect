@@ -2,19 +2,11 @@
 
 namespace Codedor\FilamentArchitect\Filament\Fields;
 
-use Closure;
 use Codedor\FilamentArchitect\Facades\BlockCollection;
 use Filament\Forms\Components\Builder;
 
 class Architect extends Builder
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->blocks(BlockCollection::filamentBlocks());
-    }
-
     public function excludeBlocks(array $blocksToExclude): self
     {
         $blocksToExclude = collect($blocksToExclude)->map(fn ($block) => class_basename($block));
@@ -45,5 +37,12 @@ class Architect extends Builder
         $this->blocks($blocks);
 
         return $this;
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->blocks(BlockCollection::filamentBlocks());
     }
 }
