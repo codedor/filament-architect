@@ -17,7 +17,7 @@ use Filament\Forms\Components\TextInput;
 
 class ButtonComponent
 {
-    public static function make(string $statePath)
+    public static function make(string $statePath): Grid
     {
         return Grid::make()
             ->schema([

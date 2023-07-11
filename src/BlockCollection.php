@@ -9,22 +9,22 @@ use Illuminate\Support\Collection;
 
 /**
  * @template TKey of array-key
- * @template TBlock of \Codedor\FilamentArchitect\Filament\Architect\BaseBlock
+ * @template TValue of \Codedor\FilamentArchitect\Filament\Architect\BaseBlock
  *
- * @extends Collection<TKey, TBlock>
+ * @extends Collection<TKey, TValue>
  */
 class BlockCollection extends Collection
 {
     /**
      * Run a map over each of the items.
      *
-     * @return static<TKey, TBlock>
+     * @return static<TKey, TValue>
      */
     public function fromConfig(): self
     {
         collect((array) config('filament-architect.default-blocks', []))
             ->each(function ($blockClass): void {
-                /** @var TBlock $class */
+                /** @var TValue $class */
                 $class = $blockClass::make();
 
                 $this->put($class->getName(), $class);
@@ -50,7 +50,7 @@ class BlockCollection extends Collection
                 collect($blocks)
                     ->filter(fn (array $blockData) => $this->has($blockData['type']))
                     ->map(function (array $blockData) {
-                        /** @var TBlock $block */
+                        /** @var TValue $block */
                         $block = $this->get($blockData['type']);
                         $block = clone $block;
 

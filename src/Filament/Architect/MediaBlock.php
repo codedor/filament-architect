@@ -25,6 +25,10 @@ class MediaBlock extends BaseBlock
                                 ->options(function (Closure $get) {
                                     $enum = ArchitectConfig::getWidthOptionsEnum();
 
+                                    if (! $enum) {
+                                        return [];
+                                    }
+
                                     if (is_array($get('images')) && count($get('images')) > 2) {
                                         return $enum::toSelectForMaxImages();
                                     }

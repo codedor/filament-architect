@@ -16,6 +16,9 @@ abstract class BaseBlock
 
     abstract public function schema(): array;
 
+    final public function __construct()
+    {}
+
     public static function make(): self
     {
         return new static();

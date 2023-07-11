@@ -4,14 +4,18 @@ namespace Codedor\FilamentArchitect;
 
 class ArchitectConfig
 {
+    protected string|null $widthOptionsEnum = null;
+
+    protected array $buttonClasses = [];
+
+    protected array $trackingActions = [];
+
     public function fromConfig(): self
     {
         return $this
             ->widthOptionsEnum(config('filament-architect.widthOptions'))
             ->buttonClasses(config('filament-architect.buttonClasses'))
             ->trackingActions(config('filament-architect.trackingActions'));
-
-        return $this;
     }
 
     public function widthOptionsEnum(string|null $enumClass): self
