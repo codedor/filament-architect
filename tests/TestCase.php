@@ -59,7 +59,6 @@ class TestCase extends Orchestra
         return resource_path('views') . '/architect' . ($path ? '/' . $path : '');
     }
 
-
     protected function getPackageProviders($app)
     {
         return [

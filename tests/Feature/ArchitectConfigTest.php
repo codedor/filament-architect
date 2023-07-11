@@ -16,7 +16,7 @@ it('can fill from config', function () {
         ],
     ]);
 
-   ArchitectConfig::fromConfig();
+    ArchitectConfig::fromConfig();
 
     expect(ArchitectConfig::getWidthOptionsEnum())->toBe(WidthOptions::class);
 
