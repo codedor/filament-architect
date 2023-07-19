@@ -5,6 +5,7 @@ namespace Codedor\FilamentArchitect;
 use Codedor\FilamentArchitect\Facades\BlockCollection;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Htmlable;
+use Stringable;
 
 /**
  * @template TKey of array-key
@@ -12,7 +13,7 @@ use Illuminate\Contracts\Support\Htmlable;
  *
  * @implements \Illuminate\Contracts\Support\Arrayable<TKey, TValue>
  */
-class Architect implements Htmlable, Arrayable
+class Architect implements Htmlable, Arrayable, Stringable
 {
     public function __construct(
         private array $blocks
@@ -39,5 +40,10 @@ class Architect implements Htmlable, Arrayable
     public function toArray()
     {
         return $this->blocks;
+    }
+
+    public function __toString()
+    {
+        return $this->toHtml();
     }
 }
