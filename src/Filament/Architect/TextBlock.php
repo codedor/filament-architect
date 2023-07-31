@@ -10,6 +10,8 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Support\Str;
 
@@ -17,7 +19,7 @@ class TextBlock extends BaseBlock
 {
     public function schema(): array
     {
-        $closure = function ($component, Closure $get, Closure $set) {
+        $closure = function ($component, Get $get, Set $set) {
             $editors = $get('editors');
 
             if ($get('separate_editors')) {

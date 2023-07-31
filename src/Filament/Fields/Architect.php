@@ -44,5 +44,7 @@ class Architect extends Builder
         parent::setUp();
 
         $this->blocks(BlockCollection::filamentBlocks());
+
+        $this->cloneable(true);
     }
 }
