@@ -21,35 +21,35 @@ class ButtonComponent
     {
         return Grid::make()
             ->schema([
-                DropInAction::make('button')
-                    ->disableLabel()
-                    ->execute(function (Closure $get, Closure $set) use ($statePath) {
-                        $currentText = $get("{$statePath}.text");
-
-                        return Action::make($statePath)
-                            ->icon('heroicon-o-pencil-alt')
-                            ->label($currentText ? "Edit {$currentText}" : 'Add button')
-                            ->mountUsing(fn (ComponentContainer $form) => $form->fill($get($statePath)))
-                            ->form([
-                                TextInput::make('text'),
-                                Select::make('type')
-                                    ->options(ArchitectConfig::getButtonClasses()),
-                                LinkPickerInput::make('link'),
-                                TextInput::make('title'),
-                                Fieldset::make('Tracking')
-                                    ->schema([
-                                        TextInput::make('category'),
-                                        Select::make('action')
-                                            ->options(ArchitectConfig::getTrackingActions()),
-                                        TextInput::make('label'),
-                                        Checkbox::make('non_interaction'),
-                                    ])
-                                    ->statePath('tracking'),
-                            ])
-                            ->action(function ($data) use ($set, $statePath) {
-                                $set($statePath, $data);
-                            });
-                    }),
+//                DropInAction::make('button')
+//                    ->disableLabel()
+//                    ->execute(function (Closure $get, Closure $set) use ($statePath) {
+//                        $currentText = $get("{$statePath}.text");
+//
+//                        return Action::make($statePath)
+//                            ->icon('heroicon-o-pencil-alt')
+//                            ->label($currentText ? "Edit {$currentText}" : 'Add button')
+//                            ->mountUsing(fn (ComponentContainer $form) => $form->fill($get($statePath)))
+//                            ->form([
+//                                TextInput::make('text'),
+//                                Select::make('type')
+//                                    ->options(ArchitectConfig::getButtonClasses()),
+//                                LinkPickerInput::make('link'),
+//                                TextInput::make('title'),
+//                                Fieldset::make('Tracking')
+//                                    ->schema([
+//                                        TextInput::make('category'),
+//                                        Select::make('action')
+//                                            ->options(ArchitectConfig::getTrackingActions()),
+//                                        TextInput::make('label'),
+//                                        Checkbox::make('non_interaction'),
+//                                    ])
+//                                    ->statePath('tracking'),
+//                            ])
+//                            ->action(function ($data) use ($set, $statePath) {
+//                                $set($statePath, $data);
+//                            });
+//                    }),
                 Hidden::make($statePath),
             ]);
     }

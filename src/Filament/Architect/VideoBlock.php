@@ -9,7 +9,7 @@ class VideoBlock extends BaseBlock
     public function schema(): array
     {
         return [
-            OEmbed::make('video'),
+//            OEmbed::make('video'),
         ];
     }
 }
