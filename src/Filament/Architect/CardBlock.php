@@ -3,7 +3,7 @@
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Codedor\FilamentArchitect\Filament\Components\ButtonComponent;
-use Codedor\MediaLibrary\Components\Fields\AttachmentInput;
+use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use FilamentTiptapEditor\TiptapEditor;

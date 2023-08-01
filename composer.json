@@ -8,9 +8,9 @@
     ],
     "homepage": "https://github.com/codedor/filament-architect",
     "license": "MIT",
-    "awcodes/filament-oembed": "^1.1",
     "require": {
         "php": "^8.2",
+        "awcodes/filament-oembed": "dev-filament-v3 as 2.0.0",
         "awcodes/filament-tiptap-editor": "^3.0",
         "codedor/filament-link-picker": "dev-filament-v3",
         "codedor/filament-media-library": "dev-filament-v3",
@@ -60,6 +60,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:jyrkidn/filament-oembed.git"
+        },
         {
             "type": "composer",
             "url": "https://codedor.repo.repman.codedor.online"
