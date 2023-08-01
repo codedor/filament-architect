@@ -5,7 +5,6 @@ namespace Codedor\FilamentArchitect\Tests;
 use Codedor\FilamentArchitect\Providers\FilamentArchitectServiceProvider;
 use FilamentTiptapEditor\Actions\LinkAction;
 use FilamentTiptapEditor\Enums\TiptapOutput;
-use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\File;
 use Orchestra\Testbench\TestCase as Orchestra;

@@ -24,6 +24,7 @@ class ButtonComponent
                 Action::make('add-button')
                     ->label(function (Get $get) use ($statePath) {
                         $currentText = $get("{$statePath}.text");
+
                         return $currentText ? "Edit {$currentText}" : 'Add button';
                     })
                     ->icon('heroicon-o-pencil')
@@ -46,7 +47,7 @@ class ButtonComponent
                     ])
                     ->action(function ($data, Set $set) use ($statePath) {
                         $set($statePath, $data);
-                    })
+                    }),
             ]);
     }
 }

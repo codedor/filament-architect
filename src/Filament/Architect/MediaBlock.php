@@ -2,7 +2,6 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
-use Closure;
 use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;

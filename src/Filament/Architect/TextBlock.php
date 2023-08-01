@@ -2,7 +2,6 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
-use Closure;
 use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Radio;
