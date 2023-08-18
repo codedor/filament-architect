@@ -62,7 +62,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "git@github.com:jyrkidn/filament-oembed.git"
+            "url": "https://github.com/jyrkidn/filament-oembed.git"
         }
     ]
 }
