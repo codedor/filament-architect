@@ -67,9 +67,9 @@ class TextBlock extends BaseBlock
                                         ->label('')
                                         ->default(''),
                                 ])
-                                ->disableItemCreation()
-                                ->disableItemDeletion()
-                                ->disableItemMovement()
+                                ->addable()
+                                ->deletable()
+                                ->reorderable()
                                 ->defaultItems(1),
                         ]),
                 ]),
