@@ -10,13 +10,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "awcodes/drop-in-action": "^0.2.2",
-        "awcodes/filament-oembed": "^1.1",
-        "awcodes/filament-tiptap-editor": "^2.6",
-        "codedor/filament-link-picker": "dev-master",
-        "codedor/filament-media-library": "dev-master",
-        "filament/filament": "^2.17",
-        "illuminate/contracts": "^10.0",
+        "awcodes/filament-oembed": "dev-filament-v3 as 2.0.0",
+        "awcodes/filament-tiptap-editor": "^3.0",
+        "codedor/filament-link-picker": "^0.1",
+        "codedor/filament-media-library": "^0.1",
+        "filament/filament": "^3.0",
+        "illuminate/contracts": "^10.15",
         "spatie/laravel-package-tools": "^1.12"
     },
     "require-dev": {
@@ -62,8 +61,8 @@
     "prefer-stable": true,
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://codedor.repo.repman.codedor.online"
+            "type": "git",
+            "url": "https://github.com/jyrkidn/filament-oembed.git"
         }
     ]
 }

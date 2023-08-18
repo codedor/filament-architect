@@ -2,14 +2,14 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
-use Closure;
 use Codedor\FilamentArchitect\Facades\ArchitectConfig;
-use Codedor\MediaLibrary\Components\Fields\AttachmentInput;
+use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Get;
 
 class MediaBlock extends BaseBlock
 {
@@ -22,7 +22,7 @@ class MediaBlock extends BaseBlock
                         ->schema([
                             Radio::make('width')
                                 ->visible((bool) ArchitectConfig::getWidthOptionsEnum())
-                                ->options(function (Closure $get) {
+                                ->options(function (Get $get) {
                                     $enum = ArchitectConfig::getWidthOptionsEnum();
 
                                     if (! $enum) {

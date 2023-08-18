@@ -12,6 +12,6 @@ it('has a schema', function () {
             fn ($component) => $component
                 ->toBeInstanceOf(\Filament\Forms\Components\TextInput::class),
             fn ($component) => $component
-                ->toBeInstanceOf(\Filament\Forms\Components\Grid::class)
+                ->toBeInstanceOf(\Filament\Forms\Components\ViewField::class)
         );
 });
