@@ -233,3 +233,131 @@ return [
 ```
 
 Here you don't pass the class name, but the block itself. You can use the `toFilament` method to convert it to a Filament schema.
+
+## Overview all PA blocks
+
+### Filament
+
+Make a page `ArchitectTest` that's not related to a resource
+
+```php
+<?php
+
+namespace App\Filament\Pages;
+
+use Codedor\FilamentArchitect\Facades\BlockCollection;
+use Codedor\FilamentArchitect\Filament\Fields\Architect;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use Filament\Pages\Page;
+use Illuminate\Support\Str;
+
+class ArchitectTest extends Page implements HasForms
+{
+    use InteractsWithForms;
+
+    public ?array $data = [];
+
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static string $view = 'filament.pages.architect-test';
+
+    public function mount(): void
+    {
+        $this->form->fill();
+    }
+
+    public function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Architect::make('body')
+                    ->required()
+                    ->collapsed(true)
+                    ->afterStateHydrated(static function (Architect $component, ?array $state): void {
+                        $items = [];
+
+                        foreach (BlockCollection::all() ?? [] as $name => $itemData) {
+                            $newUuid = (string) Str::uuid();
+
+                            $items[$newUuid] = [
+                                'type' => $name,
+                                'data' => [],
+                            ];
+
+                            $component->state($items);
+                            $component->getChildComponentContainers()[$newUuid]->fill();
+                        }
+                    }),
+            ])
+            ->statePath('data');
+    }
+
+    public function create(): void
+    {
+        dd($this->form->getState());
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return app()->environment('local');
+    }
+}
+```
+
+This will give you an overview of all blocks and their Filament form schema.
+
+### Front-end
+
+To get an overview of all blocks and how they will be displayed in your front-end you can add this to your routes file.
+
+```php
+if (app()->environment('local')) {
+    Route::get('architect-test', function () {
+        $blocks = 
+
+        return view('architect.preview', [
+            'blocks' => BlockCollection::map(fn ($block, $name) => [
+                'type' => $name,
+                'data' => $block->fake(),
+            ])->toArray()
+        ]);
+    })->name('architect-test');
+}
+```
+
+And this is the content of the `architect.preview` view:
+
+```blade
+<x-app-layout titleForLayout="Preview Architect">
+    {!! \Codedor\FilamentArchitect\Architect::make($blocks->toArray())->toHtml()  !!}
+</x-app-layout>
+```
+
+Every block will call a `fake()` method, so provide that to generate some fake data, e.g.:
+
+```php
+class YourBlock extends \Codedor\FilamentArchitect\Filament\Architect\BaseBlock
+{
+    public function fake(): array
+    {
+        return [
+            'background_color' => 'white',
+            'has_keys' => true,
+            'columns' => [
+                [
+                    'title' => fake()->randomHtml(1, 1),
+                    'description' => fake()->randomHtml(1, 1),
+                    'button' => [],
+                ],
+                [
+                    'title' => fake()->randomHtml(1, 1),
+                    'description' => fake()->randomHtml(1, 1),
+                    'button' => [],
+                ]
+            ],
+        ];
+    }
+}
+```

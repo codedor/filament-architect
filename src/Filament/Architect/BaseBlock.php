@@ -83,4 +83,9 @@ abstract class BaseBlock
         return Block::make($this->getName())
             ->schema($this->schema());
     }
+
+    public function fake(): array
+    {
+        return [];
+    }
 }
