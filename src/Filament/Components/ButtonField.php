@@ -11,8 +11,8 @@ use Filament\Support\Concerns\HasExtraAlpineAttributes;
 class ButtonField extends Field implements HasAffixActions
 {
     use HasAffixes;
-    use HasExtraInputAttributes;
     use HasExtraAlpineAttributes;
+    use HasExtraInputAttributes;
 
     /**
      * @var view-string
