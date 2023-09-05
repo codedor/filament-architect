@@ -13,7 +13,7 @@ use Stringable;
  *
  * @implements \Illuminate\Contracts\Support\Arrayable<TKey, TValue>
  */
-class Architect implements Htmlable, Arrayable, Stringable
+class Architect implements Arrayable, Htmlable, Stringable
 {
     public function __construct(
         private array $blocks
