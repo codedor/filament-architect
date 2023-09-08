@@ -53,7 +53,7 @@ class MediaBlock extends BaseBlock
 
     public function getData(): array
     {
-        $this->data['data']['images'] = collect($this->data['data']['images'])->map(function ($image) {
+        $this->data['data']['images'] = collect($this->data['data']['images'] ?? [])->map(function ($image) {
             return Attachment::find($image['image']);
         });
 
