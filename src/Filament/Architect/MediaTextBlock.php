@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Codedor\FilamentArchitect\ArchitectFormats;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Tabs;
@@ -26,7 +27,8 @@ class MediaTextBlock extends BaseBlock
                         ]),
                     Tab::make('General')
                         ->schema([
-                            AttachmentInput::make('image'),
+                            AttachmentInput::make('image')
+                                ->allowedFormats(ArchitectFormats::get()),
                             TiptapEditor::make('description'),
                         ]),
                 ]),

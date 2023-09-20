@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Codedor\FilamentArchitect\ArchitectFormats;
 use Codedor\FilamentArchitect\Filament\Components\ButtonComponent;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Filament\Forms\Components\Repeater;
@@ -15,7 +16,8 @@ class CardBlock extends BaseBlock
         return [
             Repeater::make('cards')
                 ->schema([
-                    AttachmentInput::make('image'),
+                    AttachmentInput::make('image')
+                        ->allowedFormats(ArchitectFormats::get()),
                     TextInput::make('title'),
                     TiptapEditor::make('description'),
                     ButtonComponent::make('button'),
