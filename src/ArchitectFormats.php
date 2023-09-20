@@ -2,8 +2,6 @@
 
 namespace Codedor\FilamentArchitect;
 
-use App\Formats\Card;
-
 class ArchitectFormats
 {
     public static function get(): array
