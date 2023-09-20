@@ -20,4 +20,13 @@ class SliderBlock extends BaseBlock
                 ->grid(3),
         ];
     }
+
+    public function getData(): array
+    {
+        $this->data['data']['slider'] = collect($this->data['data']['slider'] ?? [])->map(function ($image) {
+            return Attachment::find($image['image']);
+        });
+
+        return $this->data;
+    }
 }
