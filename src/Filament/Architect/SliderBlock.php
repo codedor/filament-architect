@@ -4,6 +4,7 @@ namespace Codedor\FilamentArchitect\Filament\Architect;
 
 use Codedor\FilamentArchitect\ArchitectFormats;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
+use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Repeater;
 
 class SliderBlock extends BaseBlock
