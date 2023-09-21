@@ -16,13 +16,12 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
             ->name('filament-architect')
             ->setBasePath(__DIR__ . '/../')
             ->hasConfigFile()
-            ->hasMigration('create_package_table')
+            ->hasMigration('create_architect_templates_table')
+            ->runsMigrations()
             ->hasTranslations()
             ->hasCommand(BlockMakeCommand::class)
             ->hasViews()
             ->hasRoute('web');
-
-
     }
 
     public function registeringPackage(): void

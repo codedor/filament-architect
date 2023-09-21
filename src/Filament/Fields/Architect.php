@@ -2,51 +2,40 @@
 
 namespace Codedor\FilamentArchitect\Filament\Fields;
 
-use Codedor\FilamentArchitect\Facades\BlockCollection;
-use Filament\Forms\Components\Builder;
+use Codedor\FilamentArchitect\Models\ArchitectTemplate;
+use Codedor\MediaLibrary\Views\Placeholder;
+use Filament\Forms\Components\Actions;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 
-class Architect extends Builder
+class Architect
 {
-    public function excludeBlocks(array $blocksToExclude): self
+    public static function make(string $statePath)
     {
-        $blocksToExclude = collect($blocksToExclude)->map(fn ($block) => class_basename($block));
-
-        $blocks = collect($this->getChildComponents())
-            ->filter(function ($block, $name) use ($blocksToExclude) {
-                return $blocksToExclude->has($name);
-            })
-            ->toArray();
-
-        $this->blocks($blocks);
-
-        return $this;
-    }
-
-    public function addBlocks(array $blocksToAdd): self
-    {
-        $blocks = $this->getChildComponents();
-
-        foreach ($blocksToAdd as $block) {
-            if (is_string($block)) {
-                $block = $block::make()->toFilament();
-            }
-
-            $blocks[] = $block;
-        }
-
-        $this->blocks($blocks);
-
-        return $this;
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->blocks(BlockCollection::filamentBlocks());
-
-        $this->cloneable();
-
-        $this->collapsed();
+        return Group::make()
+            ->schema([
+                \Filament\Forms\Components\Placeholder::make($statePath),
+                Actions::make([
+                    Action::make('template')
+                        ->label('Add from template')
+                        ->form([
+                            Select::make('template')
+                                ->options(ArchitectTemplate::all()->pluck('name', 'id')->toArray())
+                                ->required(),
+                        ])
+                        ->action(function (array $data, Set $set) use ($statePath): void {
+                            $template = ArchitectTemplate::find($data['template']);
+                            $set($statePath, $template->body);
+                        }),
+                ])->hidden(fn (Get $get) => ! blank($get($statePath))),
+                ArchitectInput::make($statePath)
+                    ->hiddenLabel(),
+            ]);
+//        return [
+//            Architect::make($statePath),
+//        ];
     }
 }
