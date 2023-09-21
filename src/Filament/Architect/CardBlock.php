@@ -30,8 +30,8 @@ class CardBlock extends BaseBlock
 
     public function getData(): array
     {
-        if ($this->data['data']['image']) {
-            $this->data['data']['image'] = Attachment::find($this->data['data']['image']);
+        foreach ($this->data['data']['cards'] as $key => $cardData) {
+            $this->data['data']['cards'][$key]['image'] = Attachment::find($cardData['image']);
         }
 
         return $this->data;
