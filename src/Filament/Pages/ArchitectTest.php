@@ -3,13 +3,16 @@
 namespace Codedor\FilamentArchitect\Filament\Pages;
 
 use Codedor\FilamentArchitect\Facades\BlockCollection;
-use Codedor\FilamentArchitect\Filament\Fields\Architect;
+use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
 
+/**
+ * @property Form $form
+ */
 class ArchitectTest extends Page implements HasForms
 {
     use InteractsWithForms;
@@ -36,12 +39,12 @@ class ArchitectTest extends Page implements HasForms
     {
         return $form
             ->schema([
-                Architect::make('body')
+                ArchitectInput::make('body')
                     ->required()
-                    ->afterStateHydrated(static function (Architect $component, ?array $state): void {
+                    ->afterStateHydrated(static function (ArchitectInput $component, ?array $state): void {
                         $items = [];
 
-                        foreach (BlockCollection::all() ?? [] as $name => $itemData) {
+                        foreach (BlockCollection::all() as $name => $itemData) {
                             $newUuid = (string) Str::uuid();
 
                             $items[$newUuid] = [
