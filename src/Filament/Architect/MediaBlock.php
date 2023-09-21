@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Codedor\FilamentArchitect\ArchitectFormats;
 use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
@@ -40,7 +41,8 @@ class MediaBlock extends BaseBlock
                         ->schema([
                             Repeater::make('images')
                                 ->schema([
-                                    AttachmentInput::make('image'),
+                                    AttachmentInput::make('image')
+                                        ->allowedFormats(ArchitectFormats::get()),
                                 ])
                                 ->minItems(1)
                                 ->maxItems(3)
@@ -53,7 +55,7 @@ class MediaBlock extends BaseBlock
 
     public function getData(): array
     {
-        $this->data['data']['images'] = collect($this->data['data']['images'])->map(function ($image) {
+        $this->data['data']['images'] = collect($this->data['data']['images'] ?? [])->map(function ($image) {
             return Attachment::find($image['image']);
         });
 

@@ -21,4 +21,7 @@ return [
         'btn btn-link' => 'Text',
     ],
     'trackingActions' => ['hit', 'play', 'pause', 'download', 'view', 'open', 'close'],
+    'attachmentFormats' => [
+        \Codedor\MediaLibrary\Formats\Thumbnail::class,
+    ],
 ];

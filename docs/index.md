@@ -48,6 +48,9 @@ return [
         'btn btn-link' => 'Text',
     ],
     'trackingActions' => ['hit', 'play', 'pause', 'download', 'view', 'open', 'close'],
+    'attachmentFormats' => [
+        \Codedor\MediaLibrary\Formats\Thumbnail::class,
+    ],
 ];
 ```
 
@@ -173,6 +176,18 @@ Default value:
     'open', 
     'close'
 ]
+```
+
+### attachmentFormats
+
+Since AttachmentInput fields are not immediately related to a model, we have to define the formats for each AttachmentInput field manually.
+This can be done via this config.
+
+If you add your own block, don't forget to add the `allowedFormats` method to the AttachmentInput field with our helper.
+
+```php
+AttachmentInput::make('image')
+    ->allowedFormats(ArchitectFormats::get())
 ```
 
 ## Filament

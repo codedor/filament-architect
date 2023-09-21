@@ -26,7 +26,7 @@ class VideoTextBlock extends BaseBlock
                         ]),
                     Tab::make('General')
                         ->schema([
-                            //                            OEmbed::make('video'),
+                            OEmbed::make('video'),
                             TiptapEditor::make('description')
                                 ->required(),
                         ]),
