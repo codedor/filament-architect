@@ -33,8 +33,5 @@ class Architect
                 ArchitectInput::make($statePath)
                     ->hiddenLabel(),
             ]);
-        //        return [
-        //            Architect::make($statePath),
-        //        ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Resources;
 
-use Codedor\FilamentArchitect\Filament\Fields\Architect;
+use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
 use Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Filament\Forms;
@@ -27,7 +27,7 @@ class ArchitectTemplateResource extends Resource
                     ->required()
                     ->unique(ignoreRecord: true),
 
-                Architect::make('body'),
+                ArchitectInput::make('body'),
             ])
             ->columns(1);
     }
