@@ -1,13 +1,13 @@
 <?php
 
 use Codedor\FilamentArchitect\Filament\Architect\ButtonBlock;
-use Codedor\FilamentArchitect\Filament\Fields\Architect;
+use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
 use Codedor\FilamentArchitect\Tests\Fixtures\Blocks\TestBlock;
 use Filament\Forms\Components\Builder\Block;
 
 beforeEach(function () {
     config(['filament-architect.default-blocks' => [TestBlock::class]]);
-    $this->field = Architect::make('body');
+    $this->field = ArchitectInput::make('body');
 });
 
 it('can create the field with default blocks', function () {
