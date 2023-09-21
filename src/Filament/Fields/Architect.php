@@ -3,7 +3,6 @@
 namespace Codedor\FilamentArchitect\Filament\Fields;
 
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
-use Codedor\MediaLibrary\Views\Placeholder;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Group;
@@ -34,8 +33,8 @@ class Architect
                 ArchitectInput::make($statePath)
                     ->hiddenLabel(),
             ]);
-//        return [
-//            Architect::make($statePath),
-//        ];
+        //        return [
+        //            Architect::make($statePath),
+        //        ];
     }
 }

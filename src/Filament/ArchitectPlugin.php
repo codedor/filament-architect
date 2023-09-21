@@ -4,16 +4,13 @@ namespace Codedor\FilamentArchitect\Filament;
 
 use Codedor\FilamentArchitect\Filament\Pages\ArchitectTest;
 use Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource;
-use Codedor\FilamentMenu\Filament\Pages\MenuBuilder;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
-use Filament\Support\Facades\FilamentAsset;
 
 class ArchitectPlugin implements Plugin
 {
     private bool $hasArchitectTestPage = true;
+
     private bool $architectTemplateResource = true;
 
     public static function make(): static
@@ -70,4 +67,3 @@ class ArchitectPlugin implements Plugin
         return $this->architectTemplateResource;
     }
 }
-

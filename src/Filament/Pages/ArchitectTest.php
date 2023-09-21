@@ -14,13 +14,18 @@ class ArchitectTest extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    public ?array $data = [];
-
     protected static ?string $navigationGroup = 'Architect';
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament-architect::filament.architect-test';
+
+    public ?array $data = [];
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return app()->environment('local');
+    }
 
     public function mount(): void
     {
@@ -55,10 +60,5 @@ class ArchitectTest extends Page implements HasForms
     public function create(): void
     {
         dd($this->form->getState());
-    }
-
-    public static function shouldRegisterNavigation(): bool
-    {
-        return app()->environment('local');
     }
 }
