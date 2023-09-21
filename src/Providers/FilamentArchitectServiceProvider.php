@@ -19,7 +19,10 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
             ->hasMigration('create_package_table')
             ->hasTranslations()
             ->hasCommand(BlockMakeCommand::class)
-            ->hasViews();
+            ->hasViews()
+            ->hasRoute('web');
+
+
     }
 
     public function registeringPackage(): void
