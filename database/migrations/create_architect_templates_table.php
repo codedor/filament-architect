@@ -8,11 +8,11 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('package_table', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('architect_templates', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->unique();
+            $table->longText('body')->nullable();
             $table->timestamps();
-
-            // add fields
         });
     }
 };

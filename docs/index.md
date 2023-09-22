@@ -8,12 +8,26 @@ These blocks are also reusable, so the schema for these blocks don't have to be 
 
 ![architect screenshot](./architect.png)
 
+Next to that it's also possible to add templates and re-use them in your records.
+
 ## Installation
 
 First, install this package via the Composer package manager:
 
 ```bash
 composer require codedor/filament-architect
+```
+
+Register the plugin in your Panel provider:
+
+```php
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            \Codedor\FilamentArchitect\Filament\ArchitectPlugin::make(),
+        ]);
+    }
 ```
 
 ### Publish the config file
