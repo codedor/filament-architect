@@ -39,7 +39,7 @@ class MediaTextBlock extends BaseBlock
 
     public function getData(): array
     {
-        if ($this->data['data']['image']) {
+        if (isset($this->data['data']['image'])) {
             $this->data['data']['image'] = Attachment::find($this->data['data']['image']);
         }
 
