@@ -42,7 +42,9 @@ class TextBlock extends BaseBlock
                             TextInput::make('columns')
                                 ->numeric()
                                 ->reactive()
-                                ->maxValue(10)
+                                ->minValue(1)
+                                ->maxValue(3)
+                                ->extraInputAttributes(['min' => 1, 'max' => 3])
                                 ->afterStateUpdated($closure),
                             Checkbox::make('separate_editors')
                                 ->label('Use Separate Text Editors')
