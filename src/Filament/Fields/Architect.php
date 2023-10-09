@@ -6,6 +6,7 @@ use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -16,13 +17,14 @@ class Architect
     {
         return Group::make()
             ->schema([
-                \Filament\Forms\Components\Placeholder::make($statePath),
+                Placeholder::make($statePath),
                 Actions::make([
                     Action::make('template')
                         ->label('Add from template')
-                        ->form([
+                        ->form(fn () => [
                             Select::make('template')
-                                ->options(ArchitectTemplate::all()->pluck('name', 'id')->toArray())
+                                ->hiddenLabel()
+                                ->options(fn () => ArchitectTemplate::pluck('name', 'id'))
                                 ->required(),
                         ])
                         ->action(function (array $data, Set $set) use ($statePath): void {
