@@ -81,7 +81,7 @@ abstract class BaseBlock
     public function toFilament(): Block
     {
         return Block::make($this->getName())
-            ->schema($this->schema());
+            ->schema(fn () => $this->schema());
     }
 
     public function fake(): array
