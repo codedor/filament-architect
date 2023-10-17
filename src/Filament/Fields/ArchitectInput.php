@@ -3,7 +3,6 @@
 namespace Codedor\FilamentArchitect\Filament\Fields;
 
 use Closure;
-use Codedor\FormArchitect\Facades\BlockCollection;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Field;
@@ -17,6 +16,8 @@ class ArchitectInput extends Field
     protected string $view = 'filament-architect::architect-input';
 
     public null|Closure|iterable $blocks = null;
+
+    public null|Closure|iterable $locales = null;
 
     public null|int|Closure $maxFieldsPerRow = 1;
 
@@ -225,13 +226,20 @@ class ArchitectInput extends Field
 
     public function getBlocks(): iterable
     {
-        return $this->evaluate($this->blocks)
-            ?? BlockCollection::fromConfig();
+        return $this->evaluate($this->blocks);
+    }
+
+    public function locales(null|Closure|iterable $locales): static
+    {
+        $this->locales = $locales;
+
+        return $this;
     }
 
     public function getLocales(): array
     {
-        return LocaleCollection::map(fn ($locale) => $locale->locale())->toArray();
+        return $this->evaluate($this->locales)
+            ?? LocaleCollection::map(fn ($locale) => $locale->locale())->toArray();
     }
 
     private function newBlock(array $data)

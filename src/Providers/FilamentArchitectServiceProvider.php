@@ -3,7 +3,6 @@
 namespace Codedor\FilamentArchitect\Providers;
 
 use Codedor\FilamentArchitect\ArchitectConfig;
-use Codedor\FilamentArchitect\BlockCollection;
 use Codedor\FilamentArchitect\Commands\BlockMakeCommand;
 use Codedor\FilamentArchitect\Livewire\EditModal;
 use Livewire\Livewire;
@@ -28,10 +27,6 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
 
     public function registeringPackage(): void
     {
-        $this->app->bind(BlockCollection::class, function () {
-            return (new BlockCollection())->fromConfig();
-        });
-
         $this->app->bind(ArchitectConfig::class, function () {
             return (new ArchitectConfig())->fromConfig();
         });

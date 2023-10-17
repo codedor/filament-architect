@@ -50,6 +50,7 @@
                     'uuid' => $uuid,
                     'row' => $rowKey,
                     'block' => $block,
+                    'locales' => $locales,
                 ]"
             />
 

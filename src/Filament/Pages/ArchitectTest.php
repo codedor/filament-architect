@@ -2,7 +2,6 @@
 
 namespace Codedor\FilamentArchitect\Filament\Pages;
 
-use Codedor\FilamentArchitect\Facades\BlockCollection;
 use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -44,7 +43,7 @@ class ArchitectTest extends Page implements HasForms
                     ->afterStateHydrated(static function (ArchitectInput $component, ?array $state): void {
                         $items = [];
 
-                        foreach (BlockCollection::all() as $name => $itemData) {
+                        foreach (config('filament-architect.default-blocks', []) as $name => $itemData) {
                             $newUuid = (string) Str::uuid();
 
                             $items[$newUuid] = [

@@ -2,9 +2,9 @@
 
 namespace Codedor\FilamentArchitect;
 
-use Codedor\FilamentArchitect\Facades\BlockCollection;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\View\View;
 use Stringable;
 
 /**
@@ -32,9 +32,30 @@ class Architect implements Arrayable, Htmlable, Stringable
         return new self($blocks);
     }
 
-    public function toHtml(): string
+    public function toHtml(): View
     {
-        return BlockCollection::render($this->blocks)->render();
+        $blocks = collect($this->blocks)->map(function (array $row) {
+            $blocks = collect($row)
+                ->filter(fn (array $blockData) => $blockData['data'][app()->getLocale()]['online'] ?? false)
+                ->map(function (array $blockData) {
+                    $block = $blockData['type']::make()->render(
+                        data: $blockData['data'],
+                        translations: $blockData['data'][app()->getLocale()] ?? [],
+                    );
+
+                    return $block;
+                });
+
+            if ($blocks->isEmpty()) {
+                return null;
+            }
+
+            return $blocks;
+        })->filter();
+
+        return view('filament-architect::render', [
+            'blocks' => $blocks,
+        ]);
     }
 
     public function toArray()
