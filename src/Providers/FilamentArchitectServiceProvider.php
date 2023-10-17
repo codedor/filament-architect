@@ -5,6 +5,8 @@ namespace Codedor\FilamentArchitect\Providers;
 use Codedor\FilamentArchitect\ArchitectConfig;
 use Codedor\FilamentArchitect\BlockCollection;
 use Codedor\FilamentArchitect\Commands\BlockMakeCommand;
+use Codedor\FilamentArchitect\Livewire\EditModal;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -33,5 +35,10 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
         $this->app->bind(ArchitectConfig::class, function () {
             return (new ArchitectConfig())->fromConfig();
         });
+    }
+
+    public function bootingPackage()
+    {
+        Livewire::component('filament-architect-edit-modal', EditModal::class);
     }
 }
