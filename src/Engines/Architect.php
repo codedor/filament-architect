@@ -10,7 +10,9 @@ class Architect extends RenderEngine
     {
         $blocks = collect($this->blocks)->map(function (array $row) {
             $blocks = collect($row)->map(function (array $blockData) {
-                return $blockData['type']::make()->render(data: $blockData['data']);
+                return get_architect_block($blockData['type'])::make()->render(
+                    data: $blockData['data'],
+                );
             });
 
             if ($blocks->isEmpty()) {

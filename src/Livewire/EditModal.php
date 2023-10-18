@@ -35,7 +35,7 @@ class EditModal extends Component implements HasForms
                     TextInput::make('working_title')
                         ->helperText('This is purely to help you identify the block in the list of blocks.'),
 
-                    ...(new $this->arguments['block']['type'])
+                    ...(new (get_architect_block($this->arguments['block']['type'])))
                         ->locales($this->arguments['locales'])
                         ->schema(),
                 ]),

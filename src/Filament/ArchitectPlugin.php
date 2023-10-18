@@ -26,9 +26,9 @@ class ArchitectPlugin implements Plugin
     public function register(Panel $panel): void
     {
         if ($this->hasArchitectTestPage()) {
-            $panel->pages([
-                ArchitectTest::class,
-            ]);
+            // $panel->pages([
+            //     ArchitectTest::class,
+            // ]);
         }
 
         if ($this->hasArchitectTemplateResource()) {

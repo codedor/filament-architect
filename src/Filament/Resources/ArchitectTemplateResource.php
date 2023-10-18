@@ -3,6 +3,7 @@
 namespace Codedor\FilamentArchitect\Filament\Resources;
 
 use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
+use Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput;
 use Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Filament\Forms;
@@ -21,15 +22,15 @@ class ArchitectTemplateResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
+        return $form->schema([
+            Forms\Components\Section::make()->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->unique(ignoreRecord: true),
 
-                ArchitectInput::make('body'),
+                PageArchitectInput::make('body'),
             ])
-            ->columns(1);
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -37,9 +38,6 @@ class ArchitectTemplateResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-            ])
-            ->filters([
-                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -49,13 +47,6 @@ class ArchitectTemplateResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

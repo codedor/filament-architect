@@ -4,10 +4,12 @@ namespace Codedor\FilamentArchitect\Filament\Fields;
 
 use Closure;
 use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
+use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
+use Filament\Notifications\Notification;
 use Filament\Support\Enums\ActionSize;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -25,6 +27,8 @@ class ArchitectInput extends Field
 
     public null|int|Closure $maxFieldsPerRow = 1;
 
+    public Closure|bool $hasTemplates = true;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -32,6 +36,7 @@ class ArchitectInput extends Field
         $this->default([]);
 
         $this->registerActions([
+            fn (self $component): Action => $component->getStartFromTemplateAction(),
             fn (self $component): Action => $component->getAddBlockAction(),
             fn (self $component): Action => $component->getAddBlockBetweenAction(),
             fn (self $component): Action => $component->getEditBlockAction(),
@@ -82,6 +87,32 @@ class ArchitectInput extends Field
                 },
             ],
         ]);
+    }
+
+    public function getStartFromTemplateAction(): Action
+    {
+        return Action::make('startFromTemplate')
+            ->icon('heroicon-o-document-duplicate')
+            ->label('Start from template')
+            ->color('gray')
+            ->size(ActionSize::Small)
+            ->closeModalByClickingAway(false)
+            ->form(fn () => [
+                Select::make('block')
+                    ->options(fn () => ArchitectTemplate::orderBy('name')->pluck('name', 'id'))
+                    ->hiddenLabel()
+                    ->required(),
+            ])
+            ->action(function (self $component, array $data) {
+                $template = ArchitectTemplate::find($data['block']);
+
+                $component->state($template->body ?? []);
+
+                Notification::make()
+                    ->title('The template has been loaded')
+                    ->success()
+                    ->send();
+            });
     }
 
     public function getDeleteBlockAction(): Action
@@ -251,6 +282,7 @@ class ArchitectInput extends Field
         return Collection::wrap($this->evaluate($this->blocks))
             ->merge($this->evaluate($this->extraBlocks))
             ->reject(fn (BaseBlock $block) => in_array(get_class($block), $excludedBlocks))
+            ->sortBy(fn (BaseBlock $block) => $block->getName())
             ->values();
     }
 
@@ -265,6 +297,18 @@ class ArchitectInput extends Field
     {
         return $this->evaluate($this->locales)
             ?? LocaleCollection::map(fn ($locale) => $locale->locale())->toArray();
+    }
+
+    public function hasTemplates(Closure|bool $hasTemplates): static
+    {
+        $this->hasTemplates = $hasTemplates;
+
+        return $this;
+    }
+
+    public function getHasTemplates(): bool
+    {
+        return $this->evaluate($this->hasTemplates);
     }
 
     private function newBlock(array $data)

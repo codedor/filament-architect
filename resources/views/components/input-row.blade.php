@@ -24,7 +24,7 @@
             </div>
 
             <span class="text-xs">
-                {{ $block['type']::make()->getName() }}
+                {{ get_architect_block($block['type'])::make()->getName() }}
             </span>
         </div>
 

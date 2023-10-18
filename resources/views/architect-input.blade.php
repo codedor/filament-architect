@@ -5,13 +5,21 @@
 @endphp
 
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
-    <div class="flex flex-col">
-        <x-filament-architect::add-row-button
-            :action="$getAction('addBlock')"
-            :state-path="$getStatePath()"
-            :arguments="['row' => -1]"
-            :shown="count($state) === 0"
-        />
+    <div class="flex flex-col mb-4">
+        <div class="flex flex-col gap-6">
+            <x-filament-architect::add-row-button
+                :action="$getAction('addBlock')"
+                :state-path="$getStatePath()"
+                :arguments="['row' => -1]"
+                :shown="count($state) === 0"
+                :label="count($state) === 0 ? 'Start from scratch' : 'Insert block'"
+                :aligned="count($state) === 0 ? 'left' : 'center'"
+            >
+                @if (count($state) === 0 && $getHasTemplates())
+                    {{ $getAction('startFromTemplate') }}
+                @endif
+            </x-filament-architect::add-row-button>
+        </div>
 
         <div
             class="w-full flex flex-col gap-2"
