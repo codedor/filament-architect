@@ -20,7 +20,7 @@ class TextBlock extends BaseBlock
             'columns' => $data['columns'] ?? 1,
             'textColumns' => collect()->pad($data['columns'] ?? 1, null)->keys()->map(
                 fn ($key) => new HtmlString($data['text'][$key] ?? '')
-            ),
+            )->filter(),
         ]);
     }
 
