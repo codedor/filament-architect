@@ -1,1 +1,2 @@
-@dump($data)
+@dump($buttons)
+@dump($alignment)

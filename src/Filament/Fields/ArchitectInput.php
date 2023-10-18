@@ -3,12 +3,14 @@
 namespace Codedor\FilamentArchitect\Filament\Fields;
 
 use Closure;
+use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
 use Filament\Support\Enums\ActionSize;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class ArchitectInput extends Field
@@ -16,6 +18,8 @@ class ArchitectInput extends Field
     protected string $view = 'filament-architect::architect-input';
 
     public null|Closure|iterable $blocks = null;
+    public Closure|iterable $excludedBlocks = [];
+    public Closure|iterable $extraBlocks = [];
 
     public null|Closure|iterable $locales = null;
 
@@ -224,9 +228,30 @@ class ArchitectInput extends Field
         return $this;
     }
 
-    public function getBlocks(): iterable
+    public function excludedBlocks(Closure|iterable $excludedBlocks): static
     {
-        return $this->evaluate($this->blocks);
+        $this->excludedBlocks = $excludedBlocks;
+
+        return $this;
+    }
+
+    public function extraBlocks(Closure|iterable $extraBlocks): static
+    {
+        $this->extraBlocks = $extraBlocks;
+
+        return $this;
+    }
+
+    public function getBlocks(): Collection
+    {
+        $excludedBlocks = Collection::wrap($this->evaluate($this->excludedBlocks))
+            ->map(fn ($b) => get_class($b))
+            ->toArray();
+
+        return Collection::wrap($this->evaluate($this->blocks))
+            ->merge($this->evaluate($this->extraBlocks))
+            ->reject(fn (BaseBlock $block) => in_array(get_class($block), $excludedBlocks))
+            ->values();
     }
 
     public function locales(null|Closure|iterable $locales): static

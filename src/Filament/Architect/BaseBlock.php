@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 abstract class BaseBlock
@@ -19,7 +20,7 @@ abstract class BaseBlock
 
     public function getName()
     {
-        return $this->name ?? class_basename(static::class);
+        return $this->name ?? Str::headline(class_basename(static::class));
     }
 
     public function locales(array $locales): self
@@ -34,7 +35,7 @@ abstract class BaseBlock
         return $this->locales;
     }
 
-    public function render(array $data, array $translations): ?View
+    public function render(array $data): ?View
     {
         return null;
     }

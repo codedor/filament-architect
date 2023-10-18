@@ -17,11 +17,6 @@ use Illuminate\Support\Facades\Facade;
  */
 class ArchitectConfig extends Facade
 {
-    /**
-     * Get the registered name of the component.
-     *
-     * @return string
-     */
     protected static function getFacadeAccessor()
     {
         return \Codedor\FilamentArchitect\ArchitectConfig::class;

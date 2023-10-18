@@ -1,1 +1,2 @@
-@dump($data)
+@dump($title)
+@dump($button)

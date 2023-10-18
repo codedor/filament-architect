@@ -8,6 +8,8 @@ class PageArchitectInput extends ArchitectInput
     {
         parent::setUp();
 
+        $this->locales([]);
+
         $this->blocks(
             collect(config('filament-architect.default-blocks', []))
                 ->map(fn (string $class) => $class::make())

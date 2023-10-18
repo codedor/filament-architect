@@ -1,1 +1,3 @@
-@dump($data)
+@dump($alignment)
+@dump($image)
+@dump($description)
