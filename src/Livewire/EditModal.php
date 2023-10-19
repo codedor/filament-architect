@@ -15,7 +15,6 @@ class EditModal extends Component implements HasForms, HasActions
 {
     use InteractsWithActions;
     use InteractsWithForms;
-    use InteractsWithActions;
 
     public string $statePath;
 
@@ -39,7 +38,7 @@ class EditModal extends Component implements HasForms, HasActions
                     TextInput::make('working_title')
                         ->helperText('This is purely to help you identify the block in the list of blocks.'),
 
-                    ...(new (get_architect_block($this->arguments['block']['type'])))
+                    ...$this->arguments['blockClassName']::make()
                         ->locales($this->arguments['locales'])
                         ->schema(),
                 ]),

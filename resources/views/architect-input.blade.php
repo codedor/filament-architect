@@ -70,6 +70,7 @@
                                         :row="$row"
                                         :row-key="$rowKey"
                                         :block="$block"
+                                        :blocks="$getBlocks()"
                                         :locales="$locales"
                                         :state-path="$statePath"
                                         :get-action="$getAction"
