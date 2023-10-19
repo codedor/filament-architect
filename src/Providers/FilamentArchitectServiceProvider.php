@@ -4,6 +4,7 @@ namespace Codedor\FilamentArchitect\Providers;
 
 use Codedor\FilamentArchitect\ArchitectConfig;
 use Codedor\FilamentArchitect\Commands\BlockMakeCommand;
+use Codedor\FilamentArchitect\Livewire\ArchitectPreview;
 use Codedor\FilamentArchitect\Livewire\EditModal;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
@@ -35,5 +36,6 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         Livewire::component('filament-architect-edit-modal', EditModal::class);
+        Livewire::component('filament-architect-preview', ArchitectPreview::class);
     }
 }

@@ -18,6 +18,20 @@ First, install this package via the Composer package manager:
 composer require codedor/filament-architect
 ```
 
+In an effort to align with Filament's theming methodology you will need to use a custom theme to use this plugin.
+
+> **Note**
+> If you have not set up a custom theme and are using a Panel follow the instructions in the [Filament Docs](https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme) first. The following applies to both the Panels Package and the standalone Forms package.
+
+1. Add the plugin's views to your `tailwind.config.js` file.
+
+```js
+content: [
+    ...
+    './vendor/codedor/filament-architect/resources/**/*.blade.php',
+]
+```
+
 Register the plugin in your Panel provider:
 
 ```php

@@ -87,7 +87,7 @@
                             :arguments="['row' => $rowKey]"
                             :shown="$loop->last"
                         >
-                            @if ($getHasPreview())
+                            @if ($loop->last && $getHasPreview())
                                 {{ $getAction('architectPreview') }}
                             @endif
                         </x-filament-architect::add-row-button>
