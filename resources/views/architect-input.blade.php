@@ -48,7 +48,7 @@
                                     <x-filament::icon-button
                                         color="gray"
                                         icon="heroicon-o-arrows-up-down"
-                                        class="border-2 bg-white"
+                                        class="border-2 bg-white cursor-move"
                                         size="sm"
                                         icon-size="sm"
                                         x-sortable-handle
@@ -87,7 +87,7 @@
                             :arguments="['row' => $rowKey]"
                             :shown="$loop->last"
                         >
-                            @if ($getHasPreview())
+                            @if ($loop->last && $getHasPreview())
                                 {{ $getAction('architectPreview') }}
                             @endif
                         </x-filament-architect::add-row-button>
