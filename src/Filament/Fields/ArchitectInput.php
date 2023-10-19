@@ -331,7 +331,7 @@ class ArchitectInput extends Field
     private function newBlock(array $data)
     {
         return [
-            'type' => get_class($this->getBlocks()[$data['block']]),
+            'type' => class_basename($this->getBlocks()[$data['block']]),
             'width' => 12,
             'data' => [],
         ];

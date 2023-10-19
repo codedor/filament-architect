@@ -1,5 +1,5 @@
 @php
-    $state = $getState();
+    $state = $getState() ?? [];
     $statePath = $getStatePath();
     $locales = $getLocales();
 @endphp
@@ -71,6 +71,7 @@
                                         :row="$row"
                                         :row-key="$rowKey"
                                         :block="$block"
+                                        :blocks="$getBlocks()"
                                         :locales="$locales"
                                         :state-path="$statePath"
                                         :get-action="$getAction"

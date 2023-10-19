@@ -1,3 +1,7 @@
+@php
+    $blockClassName = get_architect_block($blocks, $block['type']);
+@endphp
+
 <div
     :key="$uuid"
     class="w-full flex gap-2 items-center"
@@ -24,7 +28,7 @@
             </div>
 
             <span class="text-xs">
-                {{ get_architect_block($block['type'])::make()->getName() }}
+                {{ $blockClassName::make()->getName() }}
             </span>
         </div>
 
@@ -50,6 +54,7 @@
                     'uuid' => $uuid,
                     'row' => $rowKey,
                     'block' => $block,
+                    'blockClassName' => $blockClassName,
                     'locales' => $locales,
                 ]"
             />
