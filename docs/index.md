@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Architect field extends the default [Builder](https://filamentphp.com/docs/2.x/forms/fields#builder) field from Filament with possibility to add default blocks via the config file.
+The Architect field is an optimised and improved version of the default Builder field. The form is not inline, but in a modal, this way the main form is not bloated anymore if there is a large amount of selected blocks.
 
 These blocks are also reusable, so the schema for these blocks don't have to be rewritten every time.
 
@@ -71,7 +71,9 @@ return [
 ## Adding new blocks
 
 To add new blocks, you can extend `\Codedor\FilamentArchitect\Filament\Architect\BaseBlock`.
-You have to add a `schema` function. In this array you can add [Filament fields](https://filamentphp.com/docs/2.x/admin/resources/getting-started#fields).
+You have to add a `schema` and a `render` function. 
+
+In the schema array you can add [Filament fields](https://filamentphp.com/docs/3.x/forms/fields/getting-started).
 
 ```php
 public function schema(): array
@@ -80,14 +82,22 @@ public function schema(): array
 }
 ```
 
-If you want to extend the default functionality you can look in the BaseBlock file to see what's possible.
+In the render function you can return the view that will be rendered in the front-end.
 
-Next to the PHP file you have to also create a `architect.name-of-block.blade.php` file that will be rendered in front-end.
+```php
+public function render(array $data): ?View
+{
+    return view('architect.button-block', [
+        'buttons' => collect($data['buttons'])->pluck('button'),
+        'alignment' => $data['alignment'] ?? 'left',
+    ]);
+}
+```
 
 Or you can also create both with our artisan command:
 
 ```bash
-php artisan make:architect-block NameOfBlock
+php artisan make:architect-block ButtonBlock
 ```
 
 ## Rendering Architect
@@ -95,13 +105,13 @@ php artisan make:architect-block NameOfBlock
 To render Architect you can add an attribute in your model:
 
 ```php
-public function getBodyAttribute($value): \Codedor\FilamentArchitect\Architect|string
+public function getBodyAttribute($value): \Codedor\FilamentArchitect\Engines\Architect|string
 {
-    return new \Codedor\FilamentArchitect\Architect($value);
+    return \Codedor\FilamentArchitect\Engines\Architect::make($value);
 }
 ```
 
-We return an Architect or string, because Filament needs a string to be able to fill the Builder field with the block data.
+We return an Architect or string, because Filament needs a string to be able to fill the field with the existing data.
 
 In the blade file you can then add:
 
@@ -218,24 +228,22 @@ return [
 
 #### Methods
 
-See the [Builder](https://filamentphp.com/docs/2.x/forms/fields#builder) documentation for all available methods.
-
 To modify the blocks we provide some custom blocks.
 
-##### excludeBlocks(array $blocksToExclude): Architect
+##### excludeBlocks(array $blocksToExclude): ArchitectInput
 
 With this method you can exclude default blocks from the Architect field.
 
 ```php
 return [
-    \Codedor\FilamentArchitect\Filament\Fields\Architect::make('body')
+    \Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput::make('body')
         ->excludeBlocks([
             \Codedor\FilamentArchitect\Filament\Architect\ButtonBlock::class,
         ]),
 ];
 ```
 
-##### addBlocks(array $blocksToAdd): Architect
+##### addBlocks(array $blocksToAdd): ArchitectInput
 
 With this method you can add blocks to the Architect field.
 
@@ -248,7 +256,7 @@ return [
 ];
 ```
 
-##### blocks(array $blocks): Architect
+##### blocks(array $blocks): ArchitectInput
 
 With this method you can overwrite all default blocks on the Architect field.
 
@@ -256,137 +264,40 @@ With this method you can overwrite all default blocks on the Architect field.
 return [
     \Codedor\FilamentArchitect\Filament\Fields\Architect::make('body')
         ->blocks([
-            \App\Architect\CustomBlock::make()->toFilament(),
+            \App\Architect\CustomBlock::class,
         ]),
 ];
 ```
 
-Here you don't pass the class name, but the block itself. You can use the `toFilament` method to convert it to a Filament schema.
+##### maxFieldsPerRow(null|int|Closure $maxFieldsPerRow): ArchitectInput
 
-## Overview all PA blocks
-
-### Filament
-
-Make a page `ArchitectTest` that's not related to a resource
+With this you can set the maximum amount of fields per row.
 
 ```php
-<?php
-
-namespace App\Filament\Pages;
-
-use Codedor\FilamentArchitect\Facades\BlockCollection;
-use Codedor\FilamentArchitect\Filament\Fields\Architect;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
-use Filament\Pages\Page;
-use Illuminate\Support\Str;
-
-class ArchitectTest extends Page implements HasForms
-{
-    use InteractsWithForms;
-
-    public ?array $data = [];
-
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
-    protected static string $view = 'filament.pages.architect-test';
-
-    public function mount(): void
-    {
-        $this->form->fill();
-    }
-
-    public function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Architect::make('body')
-                    ->required()
-                    ->collapsed(true)
-                    ->afterStateHydrated(static function (Architect $component, ?array $state): void {
-                        $items = [];
-
-                        foreach (BlockCollection::all() ?? [] as $name => $itemData) {
-                            $newUuid = (string) Str::uuid();
-
-                            $items[$newUuid] = [
-                                'type' => $name,
-                                'data' => [],
-                            ];
-
-                            $component->state($items);
-                            $component->getChildComponentContainers()[$newUuid]->fill();
-                        }
-                    }),
-            ])
-            ->statePath('data');
-    }
-
-    public function create(): void
-    {
-        dd($this->form->getState());
-    }
-
-    public static function shouldRegisterNavigation(): bool
-    {
-        return app()->environment('local');
-    }
-}
+return [
+    \Codedor\FilamentArchitect\Filament\Fields\Architect::make('body')
+        ->maxFieldsPerRow(1),
+];
 ```
 
-This will give you an overview of all blocks and their Filament form schema.
+##### hasTemplates(Closure|bool $hasTemplates): ArchitectInput
 
-### Front-end
-
-To get an overview of all blocks and how they will be displayed in your front-end you can add this to your routes file.
+With this you can enable or disable the "Start from template" action. Defaults to true.
 
 ```php
-if (app()->environment('local')) {
-    Route::get('architect-test', function () {
-        $blocks = 
-
-        return view('architect.preview', [
-            'blocks' => BlockCollection::map(fn ($block, $name) => [
-                'type' => $name,
-                'data' => $block->fake(),
-            ])->toArray()
-        ]);
-    })->name('architect-test');
-}
+return [
+    \Codedor\FilamentArchitect\Filament\Fields\Architect::make('body')
+        ->hasTemplates(false),
+];
 ```
 
-And this is the content of the `architect.preview` view:
+##### hasPreview(Closure|bool $hasPreview): ArchitectInput
 
-```blade
-<x-app-layout titleForLayout="Preview Architect">
-    {!! \Codedor\FilamentArchitect\Architect::make($blocks->toArray())->toHtml()  !!}
-</x-app-layout>
-```
-
-Every block will call a `fake()` method, so provide that to generate some fake data, e.g.:
+With this you can enable or disable the "Preview" action. Defaults to true.
 
 ```php
-class YourBlock extends \Codedor\FilamentArchitect\Filament\Architect\BaseBlock
-{
-    public function fake(): array
-    {
-        return [
-            'background_color' => 'white',
-            'has_keys' => true,
-            'columns' => [
-                [
-                    'title' => fake()->randomHtml(1, 1),
-                    'description' => fake()->randomHtml(1, 1),
-                    'button' => [],
-                ],
-                [
-                    'title' => fake()->randomHtml(1, 1),
-                    'description' => fake()->randomHtml(1, 1),
-                    'button' => [],
-                ]
-            ],
-        ];
-    }
-}
+return [
+    \Codedor\FilamentArchitect\Filament\Fields\Architect::make('body')
+        ->hasPreview(false),
+];
 ```

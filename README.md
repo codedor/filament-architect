@@ -37,8 +37,7 @@ php artisan vendor:publish --tag="filament-architect-views"
 ## Usage
 
 ```php
-\Codedor\FilamentArchitect\Filament\Fields\Architect::make('body')
-    ->collapsible()
+\Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput::make('body')
     ->required(),
 ```
 

@@ -72,11 +72,9 @@ class BlockMakeCommand extends GeneratorCommand
      */
     protected function buildClass($name)
     {
-        return str_replace(
-            ['DummyView', '{{ view }}'],
-            'view(\'components.' . $this->getView() . '\')',
-            parent::buildClass($name)
-        );
+        return (string) Str::of(parent::buildClass($name))
+            ->replace('{{ viewName }}', 'architect.' . $this->getView())
+            ->replace('{{ blockName }}', Str::headline($name));
     }
 
     /**

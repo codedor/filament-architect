@@ -3,9 +3,19 @@
 namespace {{ namespace }};
 
 use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
+use Illuminate\View\View;
 
 class {{ class }} extends BaseBlock
 {
+    protected ?string $name = '{{ blockName }}';
+
+    public function render(): array
+    {
+        return view('{{ viewName }}', [
+            'data' => $data,
+        ]);
+    }
+
     public function schema(): array
     {
         return [
