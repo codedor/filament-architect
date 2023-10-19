@@ -115,7 +115,7 @@ class ArchitectInput extends Field
             ->color('gray')
             ->size(ActionSize::Small)
             ->closeModalByClickingAway(false)
-            ->extraAttributes(['class' => ArchitectTemplate::count() ? '' : 'hidden'])
+            ->hidden(fn () => ArchitectTemplate::count())
             ->form(fn () => [
                 Select::make('block')
                     ->options(fn () => ArchitectTemplate::orderBy('name')->pluck('name', 'id'))
