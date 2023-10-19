@@ -9,7 +9,7 @@ class {{ class }} extends BaseBlock
 {
     protected ?string $name = '{{ blockName }}';
 
-    public function render(): array
+    public function render(array $data): ?View
     {
         return view('{{ viewName }}', [
             'data' => $data,

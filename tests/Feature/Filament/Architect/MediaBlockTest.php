@@ -1,6 +1,8 @@
 <?php
 
 use Codedor\FilamentArchitect\Filament\Architect\MediaBlock;
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 
@@ -11,11 +13,9 @@ beforeEach(function () {
 it('has a schema', function () {
     expect($this->mediaBlock)
         ->schema()->sequence(
-            fn ($component) => $component
-                ->toBeInstanceOf(Tabs::class)
-                ->getChildComponents()->sequence(
-                    fn ($tab) => $tab
-                        ->toBeInstanceOf(Tab::class)
-                ),
+            fn ($field) => $field
+                ->toBeInstanceOf(Radio::class),
+            fn ($field) => $field
+                ->toBeInstanceOf(Repeater::class),
         );
 });

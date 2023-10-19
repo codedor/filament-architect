@@ -1,66 +1,67 @@
 <?php
 
+use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
 use Codedor\FilamentArchitect\Filament\Architect\ButtonBlock;
-use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
+use Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput;
 use Codedor\FilamentArchitect\Tests\Fixtures\Blocks\TestBlock;
 use Filament\Forms\Components\Builder\Block;
 
 beforeEach(function () {
     config(['filament-architect.default-blocks' => [TestBlock::class]]);
-    $this->field = ArchitectInput::make('body');
+    $this->field = PageArchitectInput::make('body');
 });
 
 it('can create the field with default blocks', function () {
     expect($this->field)
-        ->getChildComponents()->toHaveCount(1)->sequence(
+        ->getBlocks()->toHaveCount(1)->sequence(
             fn ($block) => $block
-                ->toBeInstanceOf(Block::class)
-                ->getName()->toBe('TestBlock')
+                ->toBeInstanceOf(BaseBlock::class)
+                ->getName()->toBe('Test Block')
         );
 });
 
 it('can exclude blocks', function () {
-    $this->field->excludeBlocks([TestBlock::class]);
+    $this->field->excludedBlocks([TestBlock::make()]);
 
     expect($this->field)
-        ->getChildComponents()->toHaveCount(0);
+        ->getBlocks()->toHaveCount(0);
 });
 
 it('can add extra blocks', function () {
-    $this->field->addBlocks([ButtonBlock::class]);
+    $this->field->extraBlocks([ButtonBlock::make()]);
 
     expect($this->field)
-        ->getChildComponents()->toHaveCount(2)
+        ->getBlocks()->toHaveCount(2)
         ->sequence(
             fn ($block) => $block
-                ->toBeInstanceOf(Block::class)
-                ->getName()->toBe('TestBlock'),
+                ->toBeInstanceOf(BaseBlock::class)
+                ->getName()->toBe('Button block'),
             fn ($block) => $block
-                ->toBeInstanceOf(Block::class)
-                ->getName()->toBe('ButtonBlock')
+                ->toBeInstanceOf(BaseBlock::class)
+                ->getName()->toBe('Test Block'),
         );
 });
 
 it('can chain add and exclude blocks methods', function () {
-    $this->field->addBlocks([ButtonBlock::class]);
-    $this->field->excludeBlocks([TestBlock::class]);
+    $this->field->extraBlocks([ButtonBlock::make()]);
+    $this->field->excludedBlocks([TestBlock::make()]);
 
     expect($this->field)
-        ->getChildComponents()->toHaveCount(1)
+        ->getBlocks()->toHaveCount(1)
         ->sequence(
             fn ($block) => $block
-                ->toBeInstanceOf(Block::class)
-                ->getName()->toBe('ButtonBlock')
+                ->toBeInstanceOf(BaseBlock::class)
+                ->getName()->toBe('Button block')
         );
 });
 
 it('can overwrite default blocks', function () {
-    $this->field->blocks([ButtonBlock::make()->toFilament()]);
+    $this->field->blocks([ButtonBlock::make()]);
 
     expect($this->field)
-        ->getChildComponents()->toHaveCount(1)->sequence(
+        ->getBlocks()->toHaveCount(1)->sequence(
             fn ($block) => $block
-                ->toBeInstanceOf(Block::class)
-                ->getName()->toBe('ButtonBlock')
+                ->toBeInstanceOf(BaseBlock::class)
+                ->getName()->toBe('Button block')
         );
 });

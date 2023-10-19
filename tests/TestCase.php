@@ -7,6 +7,7 @@ use FilamentTiptapEditor\Actions\LinkAction;
 use FilamentTiptapEditor\Enums\TiptapOutput;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\File;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -63,6 +64,7 @@ class TestCase extends Orchestra
     {
         return [
             FilamentArchitectServiceProvider::class,
+            LivewireServiceProvider::class,
         ];
     }
 }

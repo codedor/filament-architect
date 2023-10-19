@@ -74,7 +74,7 @@ class BlockMakeCommand extends GeneratorCommand
     {
         return (string) Str::of(parent::buildClass($name))
             ->replace('{{ viewName }}', 'architect.' . $this->getView())
-            ->replace('{{ blockName }}', Str::headline($name));
+            ->replace('{{ blockName }}', Str::headline(str_replace($this->getNamespace($name).'\\', '', $name)));
     }
 
     /**

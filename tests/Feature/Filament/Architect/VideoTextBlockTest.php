@@ -11,11 +11,11 @@ beforeEach(function () {
 it('has a schema', function () {
     expect($this->videoTextBlock)
         ->schema()->sequence(
-            fn ($component) => $component
-                ->toBeInstanceOf(Tabs::class)
-                ->getChildComponents()->sequence(
-                    fn ($tab) => $tab
-                        ->toBeInstanceOf(Tab::class)
-                ),
+            fn ($field) => $field
+                ->toBeInstanceOf(\Filament\Forms\Components\Radio::class),
+            fn ($field) => $field
+                ->toBeInstanceOf(\Filament\Forms\Components\Fieldset::class),
+            fn ($field) => $field
+                ->toBeInstanceOf(\FilamentTiptapEditor\TiptapEditor::class),
         );
 });

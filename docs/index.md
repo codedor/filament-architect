@@ -230,15 +230,15 @@ return [
 
 To modify the blocks we provide some custom blocks.
 
-##### excludeBlocks(array $blocksToExclude): ArchitectInput
+##### excludedBlocks(array $blocksToExclude): ArchitectInput
 
 With this method you can exclude default blocks from the Architect field.
 
 ```php
 return [
     \Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput::make('body')
-        ->excludeBlocks([
-            \Codedor\FilamentArchitect\Filament\Architect\ButtonBlock::class,
+        ->excludedBlocks([
+            \Codedor\FilamentArchitect\Filament\Architect\ButtonBlock::make(),
         ]),
 ];
 ```

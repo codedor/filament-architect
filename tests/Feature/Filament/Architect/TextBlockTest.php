@@ -11,11 +11,9 @@ beforeEach(function () {
 it('has a schema', function () {
     expect($this->textBlock)
         ->schema()->sequence(
-            fn ($component) => $component
-                ->toBeInstanceOf(Tabs::class)
-                ->getChildComponents()->sequence(
-                    fn ($tab) => $tab
-                        ->toBeInstanceOf(Tab::class)
-                ),
+            fn ($field) => $field
+                ->toBeInstanceOf(\Filament\Forms\Components\TextInput::class),
+            fn ($field) => $field
+                ->toBeInstanceOf(\Filament\Forms\Components\Grid::class),
         );
 });

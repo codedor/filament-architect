@@ -46,3 +46,11 @@ it('throws error if enum does not exist', function () {
 
     expect($architectConfig->getWidthOptionsEnum())->toBeNull();
 })->throws(Exception::class);
+
+it('can set preview action', function () {
+    $architectConfig = new \Codedor\FilamentArchitect\ArchitectConfig();
+
+    $architectConfig->previewAction(fn () => 'preview');
+
+    expect($architectConfig->getPreviewAction()())->toBe('preview');
+});
