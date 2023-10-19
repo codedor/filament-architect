@@ -7,7 +7,6 @@
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
     <div class="flex flex-col mb-4">
         <div class="flex flex-col gap-6">
-            {{ $getAction('architectPreview') }}
             <x-filament-architect::add-row-button
                 :action="$getAction('addBlock')"
                 :state-path="$getStatePath()"
@@ -87,7 +86,11 @@
                             :state-path="$getStatePath()"
                             :arguments="['row' => $rowKey]"
                             :shown="$loop->last"
-                        />
+                        >
+                            @if ($getHasPreview())
+                                {{ $getAction('architectPreview') }}
+                            @endif
+                        </x-filament-architect::add-row-button>
                     </div>
                 </div>
             @endforeach

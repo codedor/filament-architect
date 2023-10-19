@@ -30,6 +30,7 @@ class ArchitectInput extends Field
     public null|int|Closure $maxFieldsPerRow = 1;
 
     public Closure|bool $hasTemplates = true;
+    public Closure|bool $hasPreview = true;
 
     protected function setUp(): void
     {
@@ -96,7 +97,7 @@ class ArchitectInput extends Field
     {
         return Action::make('architectPreview')
             ->icon('heroicon-o-eye')
-            ->label('Preview')
+            ->label("Preview {$this->getName()}")
             ->color('gray')
             ->size(ActionSize::Small)
             ->extraAttributes([
@@ -326,6 +327,18 @@ class ArchitectInput extends Field
     public function getHasTemplates(): bool
     {
         return $this->evaluate($this->hasTemplates);
+    }
+
+    public function hasPreview(Closure|bool $hasPreview): static
+    {
+        $this->hasPreview = $hasPreview;
+
+        return $this;
+    }
+
+    public function getHasPreview(): bool
+    {
+        return $this->evaluate($this->hasPreview);
     }
 
     private function newBlock(array $data)
