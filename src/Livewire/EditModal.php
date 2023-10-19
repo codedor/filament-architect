@@ -15,6 +15,7 @@ class EditModal extends Component implements HasForms, HasActions
 {
     use InteractsWithActions;
     use InteractsWithForms;
+    use InteractsWithActions;
 
     public string $statePath;
 
