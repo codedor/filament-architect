@@ -3,12 +3,14 @@
 namespace Codedor\FilamentArchitect\Filament\Fields;
 
 use Closure;
+use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\ActionSize;
 use Illuminate\Support\Arr;
@@ -36,6 +38,7 @@ class ArchitectInput extends Field
         $this->default([]);
 
         $this->registerActions([
+            fn (self $component): Action => $component->getArchitectPreviewAction(),
             fn (self $component): Action => $component->getStartFromTemplateAction(),
             fn (self $component): Action => $component->getAddBlockAction(),
             fn (self $component): Action => $component->getAddBlockBetweenAction(),
@@ -87,6 +90,20 @@ class ArchitectInput extends Field
                 },
             ],
         ]);
+    }
+
+    public function getArchitectPreviewAction(): Action
+    {
+        return Action::make('architectPreview')
+            ->icon('heroicon-o-eye')
+            ->label('Preview')
+            ->color('gray')
+            ->size(ActionSize::Small)
+            ->extraAttributes([
+                'target' => '_blank',
+                'class' => ! ArchitectConfig::getPreviewAction() ? 'hidden' : '',
+            ])
+            ->url(ArchitectConfig::getPreviewAction());
     }
 
     public function getStartFromTemplateAction(): Action

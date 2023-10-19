@@ -2,6 +2,8 @@
 
 namespace Codedor\FilamentArchitect;
 
+use Closure;
+
 class ArchitectConfig
 {
     protected ?string $widthOptionsEnum = null;
@@ -9,6 +11,8 @@ class ArchitectConfig
     protected array $buttonClasses = [];
 
     protected array $trackingActions = [];
+
+    protected ?Closure $previewAction = null;
 
     public function fromConfig(): self
     {
@@ -62,5 +66,17 @@ class ArchitectConfig
     public function getTrackingActions(): array
     {
         return $this->trackingActions;
+    }
+
+    public function previewAction(Closure $callback): self
+    {
+        $this->previewAction = $callback;
+
+        return $this;
+    }
+
+    public function getPreviewAction(): ?Closure
+    {
+        return $this->previewAction;
     }
 }

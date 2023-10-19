@@ -7,6 +7,7 @@
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
     <div class="flex flex-col mb-4">
         <div class="flex flex-col gap-6">
+            {{ $getAction('architectPreview') }}
             <x-filament-architect::add-row-button
                 :action="$getAction('addBlock')"
                 :state-path="$getStatePath()"
