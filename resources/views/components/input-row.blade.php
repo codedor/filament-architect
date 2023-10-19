@@ -40,7 +40,7 @@
                 <x-filament::icon-button
                     color="gray"
                     icon="heroicon-o-arrows-right-left"
-                    class="border-2 bg-white"
+                    class="border-2 bg-white cursor-move"
                     size="sm"
                     icon-size="sm"
                     x-sortable-handle
