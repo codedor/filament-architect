@@ -1,5 +1,5 @@
 @php
-    $state = $getState();
+    $state = $getState() ?? [];
     $statePath = $getStatePath();
     $locales = $getLocales();
 @endphp
