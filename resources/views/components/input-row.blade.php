@@ -1,5 +1,6 @@
 @php
     $blockClassName = get_architect_block($blocks, $block['type']);
+    $blockName = $blockClassName::make()->getName();
 @endphp
 
 <div
@@ -16,7 +17,7 @@
         <div class="flex flex-col text-sm">
             <div class="flex gap-1">
                 <strong>
-                    {{ $block['data']['working_title'] ?? 'New field' }}
+                    {{ $block['data']['working_title'] ?? $blockName }}
                 </strong>
 
                 @foreach ($locales as $locale)
@@ -28,7 +29,7 @@
             </div>
 
             <span class="text-xs">
-                {{ $blockClassName::make()->getName() }}
+                {{ $blockName }}
             </span>
         </div>
 
