@@ -18,7 +18,7 @@
 
 <x-dynamic-component
     :component="$label ? 'filament::button' : 'filament::icon-button'"
-    @class(['border-2 bg-white' => ! $label])
+    @class(['border-2 bg-white m-0' => ! $label])
     :color="$color"
     :wire:click="$wireClickAction"
     :icon="$action->getIcon()"

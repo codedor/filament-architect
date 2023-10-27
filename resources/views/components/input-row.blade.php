@@ -44,7 +44,7 @@
                 <x-filament::icon-button
                     color="gray"
                     icon="heroicon-o-arrows-right-left"
-                    class="border-2 bg-white cursor-move"
+                    class="border-2 bg-white cursor-move m-0"
                     :size="ActionSize::Small"
                     :icon-size="IconSize::Small"
                     x-sortable-handle
@@ -91,14 +91,14 @@
                 <x-filament::icon-button
                     color="gray"
                     icon="heroicon-o-chevron-left"
-                    class="border-2 bg-white"
+                    class="border-2 bg-white m-0"
                     :size="ActionSize::Small"
                     :icon-size="IconSize::Small"
                 />
                 <x-filament::icon-button
                     color="gray"
                     icon="heroicon-o-chevron-right"
-                    class="border-2 bg-white"
+                    class="border-2 bg-white m-0"
                     :size="ActionSize::Small"
                     :icon-size="IconSize::Small"
                 />

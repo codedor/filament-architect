@@ -51,7 +51,7 @@
                                     <x-filament::icon-button
                                         color="gray"
                                         icon="heroicon-o-arrows-up-down"
-                                        class="border-2 bg-white cursor-move"
+                                        class="border-2 bg-white cursor-move m-0"
                                         :size="ActionSize::Small"
                                         :icon-size="IconSize::Small"
                                         x-sortable-handle
