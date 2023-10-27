@@ -1,3 +1,8 @@
+@php
+    use Filament\Support\Enums\ActionSize;
+    use Filament\Support\Enums\IconSize;
+@endphp
+
 @props([
     'action',
     'statePath',
@@ -17,8 +22,8 @@
     :color="$color"
     :wire:click="$wireClickAction"
     :icon="$action->getIcon()"
-    size="sm"
-    icon-size="sm"
+    :size="ActionSize::Small"
+    :icon-size="IconSize::Small"
     :label="$label"
 >
     {{ $label }}

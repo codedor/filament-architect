@@ -1,4 +1,7 @@
 @php
+    use Filament\Support\Enums\ActionSize;
+    use Filament\Support\Enums\IconSize;
+
     $state = $getState() ?? [];
     $statePath = $getStatePath();
     $locales = $getLocales();
@@ -49,8 +52,8 @@
                                         color="gray"
                                         icon="heroicon-o-arrows-up-down"
                                         class="border-2 bg-white cursor-move"
-                                        size="sm"
-                                        icon-size="sm"
+                                        :size="ActionSize::Small"
+                                        :icon-size="IconSize::Small"
                                         x-sortable-handle
                                     />
                                 @endif

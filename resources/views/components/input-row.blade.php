@@ -1,4 +1,7 @@
 @php
+    use Filament\Support\Enums\ActionSize;
+    use Filament\Support\Enums\IconSize;
+
     $blockClassName = get_architect_block($blocks, $block['type']);
     $blockName = $blockClassName::make()->getName();
 @endphp
@@ -42,8 +45,8 @@
                     color="gray"
                     icon="heroicon-o-arrows-right-left"
                     class="border-2 bg-white cursor-move"
-                    size="sm"
-                    icon-size="sm"
+                    :size="ActionSize::Small"
+                    :icon-size="IconSize::Small"
                     x-sortable-handle
                 />
             @endif
@@ -89,15 +92,15 @@
                     color="gray"
                     icon="heroicon-o-chevron-left"
                     class="border-2 bg-white"
-                    size="sm"
-                    icon-size="sm"
+                    :size="ActionSize::Small"
+                    :icon-size="IconSize::Small"
                 />
                 <x-filament::icon-button
                     color="gray"
                     icon="heroicon-o-chevron-right"
                     class="border-2 bg-white"
-                    size="sm"
-                    icon-size="sm"
+                    :size="ActionSize::Small"
+                    :icon-size="IconSize::Small"
                 />
             </div>
         @endif --}}
