@@ -16,8 +16,12 @@ abstract class RenderEngine implements Arrayable, Htmlable, Stringable
         //
     }
 
-    public static function make(array|string $blocks): static|string
+    public static function make(array|string|null $blocks): static|string
     {
+        if (is_null($blocks)) {
+            return '';
+        }
+
         // Return string if we are in Filament
         if (is_string($blocks)) {
             return $blocks;
