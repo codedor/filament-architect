@@ -9,7 +9,7 @@ use Stringable;
 
 abstract class RenderEngine implements Arrayable, Htmlable, Stringable
 {
-    abstract public function toHtml(): View;
+    abstract public function toHtml(): string;
 
     public function __construct(public array $blocks = [])
     {

@@ -6,7 +6,7 @@ use Illuminate\View\View;
 
 class Architect extends RenderEngine
 {
-    public function toHtml(): View
+    public function toHtml(): string
     {
         $blocks = collect($this->blocks)->map(function (array $row) {
             $blocks = collect($row)
@@ -35,6 +35,6 @@ class Architect extends RenderEngine
 
         return view('filament-architect::render', [
             'blocks' => $blocks,
-        ]);
+        ])->toHtml();
     }
 }
