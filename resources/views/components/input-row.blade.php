@@ -13,8 +13,8 @@
     style="grid-column: span {{ $block['width'] ?? 12 }};"
 >
     <div class="
-        relative grow bg-gray-50 p-4 rounded-lg
-        border justify-between flex gap-2
+        relative grow bg-gray-50 dark:bg-gray-800 p-4 rounded-lg
+        border dark:border-gray-700 justify-between flex gap-2
         group
     ">
         <div class="flex flex-col text-sm">
@@ -52,6 +52,7 @@
             @endif
 
             <x-filament-architect::icon-button
+                class="dark:text-gray-100 dark:hover:text-white"
                 :action="$getAction('editBlock')"
                 :state-path="$statePath"
                 :arguments="[
@@ -65,6 +66,7 @@
 
             <x-filament-architect::icon-button
                 color="danger"
+                class="dark:text-custom-500 dark:hover:text-custom-400"
                 :action="$getAction('deleteBlock')"
                 :state-path="$statePath"
                 :arguments="[
