@@ -44,7 +44,7 @@
                 <x-filament::icon-button
                     color="gray"
                     icon="heroicon-o-arrows-right-left"
-                    class="border-2 bg-white cursor-move m-0"
+                    class="border-2 bg-white dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 dark:text-gray-100 dark:hover:text-white cursor-move m-0"
                     :size="ActionSize::Small"
                     :icon-size="IconSize::Small"
                     x-sortable-handle
@@ -52,7 +52,7 @@
             @endif
 
             <x-filament-architect::icon-button
-                class="dark:text-gray-100 dark:hover:text-white"
+                class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
                 :action="$getAction('editBlock')"
                 :state-path="$statePath"
                 :arguments="[
@@ -66,7 +66,7 @@
 
             <x-filament-architect::icon-button
                 color="danger"
-                class="dark:text-custom-500 dark:hover:text-custom-400"
+                class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-custom-500 dark:hover:text-custom-400"
                 :action="$getAction('deleteBlock')"
                 :state-path="$statePath"
                 :arguments="[
