@@ -12,6 +12,6 @@ if (! function_exists('get_architect_block')) {
         return Collection::wrap($blocks)
             ->map(fn (string|BaseBlock $block) => is_string($block) ? $block : $block::class)
             ->first(fn (string $blockClass) => Str::endsWith($blockClass, "\\{$base}"))
-                ?? $type;
+                ?? "App\\Architect\\{$type}";
     }
 }
