@@ -9,8 +9,10 @@ use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Field;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Form;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\ActionSize;
 use Illuminate\Support\Arr;
@@ -41,6 +43,7 @@ class ArchitectInput extends Field
         $this->registerActions([
             fn (self $component): Action => $component->getArchitectPreviewAction(),
             fn (self $component): Action => $component->getStartFromTemplateAction(),
+            fn (self $component): Action => $component->getSaveAsTemplateAction(),
             fn (self $component): Action => $component->getAddBlockAction(),
             fn (self $component): Action => $component->getAddBlockBetweenAction(),
             fn (self $component): Action => $component->getEditBlockAction(),
@@ -129,6 +132,54 @@ class ArchitectInput extends Field
 
                 Notification::make()
                     ->title('The template has been loaded')
+                    ->success()
+                    ->send();
+            });
+    }
+
+    public function getSaveAsTemplateAction(): Action
+    {
+        return Action::make('saveAsTemplate')
+            ->icon('heroicon-o-document-duplicate')
+            ->label("Save as template")
+            ->color('gray')
+            ->size(ActionSize::Small)
+            ->form(fn () => [
+                Radio::make('new_overwrite')
+                    ->hiddenLabel()
+                    ->default('new')
+                    ->reactive()
+                    ->options([
+                        'new' => 'Save as new template',
+                        'overwrite' => 'Overwrite existing template',
+                    ]),
+
+                TextInput::make('name')
+                    ->label('Template name')
+                    ->helperText('Make sure the name is unique and descriptive')
+                    ->hidden(fn (Get $get) => $get('new_overwrite') === 'overwrite')
+                    ->required(),
+
+                Select::make('template')
+                    ->label('Template to overwrite')
+                    ->options(fn () => ArchitectTemplate::orderBy('name')->pluck('name', 'id'))
+                    ->hidden(fn (Get $get) => $get('new_overwrite') === 'new')
+                    ->required(),
+            ])
+            ->action(function (array $data) {
+                if ($data['new_overwrite'] === 'overwrite') {
+                    ArchitectTemplate::find($data['template'])->update([
+                        'body' => $this->getState(),
+                    ]);
+                } else {
+                    ArchitectTemplate::create([
+                        'name' => $data['name'],
+                        'body' => $this->getState(),
+                    ]);
+                }
+
+                Notification::make()
+                    ->title('The template has been saved')
                     ->success()
                     ->send();
             });

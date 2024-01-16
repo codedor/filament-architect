@@ -93,6 +93,10 @@
                             @if ($loop->last && $getHasPreview())
                                 {{ $getAction('architectPreview') }}
                             @endif
+
+                            @if ($loop->last && $getHasTemplates())
+                                {{ $getAction('saveAsTemplate') }}
+                            @endif
                         </x-filament-architect::add-row-button>
                     </div>
                 </div>
