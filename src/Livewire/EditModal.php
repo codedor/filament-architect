@@ -59,4 +59,9 @@ class EditModal extends Component implements HasForms, HasActions
     {
         return view('filament-architect::livewire.edit-modal');
     }
+
+    public function isCachingForms(): bool
+    {
+        return false;
+    }
 }

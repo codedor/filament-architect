@@ -51,6 +51,11 @@ class ButtonComponent
                     ->action(function ($data, Set $set) use ($statePath) {
                         $set($statePath, $data);
                     }),
+                Action::make('removeButton')
+                    ->color('danger')
+                    ->label(__('Remove button'))
+                    ->icon('heroicon-o-trash')
+                    ->action(fn ($data, Set $set) => $set($statePath, [])),
             ]);
     }
 }

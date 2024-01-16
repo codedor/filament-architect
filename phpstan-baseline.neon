@@ -1,0 +1,22 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property Codedor\\\\FilamentArchitect\\\\Livewire\\\\EditModal\\:\\:\\$form.$#"
+			count: 3
+			path: src/Livewire/EditModal.php
+		-
+			message: "#^Access to an undefined property Filament\\\\Forms\\\\Contracts\\\\HasForms\\:\\:\\$mountedFormComponentActionsArguments.$#"
+			count: 1
+			path: src/Filament/Fields/ArchitectInput.php
+		-
+			message: "#^Unsafe usage of new static\\(\\).$#"
+			count: 1
+			path: src/Engines/RenderEngine.php
+		-
+			message: "#^Unsafe usage of new static\\(\\).$#"
+			count: 1
+			path: src/Filament/Architect/BaseBlock.php
+		-
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<int,int\\>\\:\\:map\\(\\) expects callable\\(int, int\\)\\: FilamentTiptapEditor\\\\TiptapEditor, Closure\\(string\\)\\: FilamentTiptapEditor\\\\TiptapEditor given.$#"
+			count: 1
+			path: src/Filament/Architect/TextBlock.php

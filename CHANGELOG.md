@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.0.2 - 2024-01-16
+
+### What's Changed
+
+#### Fixed
+
+- Actually show the start from template button
+
+## v1.0.1 - 2023-12-26
+
+[Check the Architect folder in App if no block type is found](https://github.com/codedor/filament-architect/commit/275e1ed738df209c4f53a5db81f25ac5682b7c59)
+
+## v0.5.6 - 2023-10-27
+
+Update to the latest Filament version
+
 ## v0.5.5 - 2023-10-27
 
 Update for latest Filament version
