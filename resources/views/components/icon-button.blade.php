@@ -9,6 +9,7 @@
     'arguments' => [],
     'color' => 'gray',
     'label' => null,
+    'class' => null,
 ])
 
 @php
@@ -18,7 +19,10 @@
 
 <x-dynamic-component
     :component="$label ? 'filament::button' : 'filament::icon-button'"
-    @class(['border-2 bg-white m-0' => ! $label])
+    @class([
+        'border-2 bg-white dark:bg-white/5 dark:hover:bg-white/10 dark:border-gray-700 m-0' => ! $label,
+        $class
+    ])
     :color="$color"
     :wire:click="$wireClickAction"
     :icon="$action->getIcon()"

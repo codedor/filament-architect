@@ -105,7 +105,7 @@ class ArchitectInput extends Field
             ->size(ActionSize::Small)
             ->extraAttributes([
                 'target' => '_blank',
-                'class' => ! ArchitectConfig::getPreviewAction() ? 'hidden' : '',
+                'class' => 'dark:hover:bg-gray-700/100 dark:bg-gray-800/100' . (! ArchitectConfig::getPreviewAction() ? 'hidden' : ''),
             ])
             ->url(ArchitectConfig::getPreviewAction());
     }
@@ -134,7 +134,10 @@ class ArchitectInput extends Field
                     ->title('The template has been loaded')
                     ->success()
                     ->send();
-            });
+            })
+            ->extraAttributes([
+                'class' => 'dark:hover:bg-gray-700/100 dark:bg-gray-800/100',
+            ]);
     }
 
     public function getSaveAsTemplateAction(): Action
