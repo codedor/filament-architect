@@ -18,6 +18,7 @@ class FilamentArchitectServiceProvider extends PackageServiceProvider
             ->name('filament-architect')
             ->setBasePath(__DIR__ . '/../')
             ->hasConfigFile()
+            ->hasMigration('create_architect_templates_table')
             ->runsMigrations()
             ->hasTranslations()
             ->hasCommand(BlockMakeCommand::class)
