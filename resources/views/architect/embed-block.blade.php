@@ -1,1 +1,3 @@
-@dump($embed)
+<div class="container">
+    {!! $embed !!}
+</div>
