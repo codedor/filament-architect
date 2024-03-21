@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class TextBlock extends BaseBlock
 {
-    protected ?string $name = 'Text columns block';
+    protected ?string $name = 'Text block';
 
     public function render(array $data): ?View
     {
