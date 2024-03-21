@@ -10,7 +10,6 @@ return [
         \Codedor\FilamentArchitect\Filament\Architect\MediaTextBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\SliderBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\SpacerBlock::class,
-        \Codedor\FilamentArchitect\Filament\Architect\TableBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\TextBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\VideoBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
