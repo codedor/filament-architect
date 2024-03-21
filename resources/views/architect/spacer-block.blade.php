@@ -1,1 +1,1 @@
-@dump($height)
+<div style="height: {{ $height }}px;"></div>
