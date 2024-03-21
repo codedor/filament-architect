@@ -28,6 +28,8 @@ class MediaBlock extends BaseBlock
         return [
             Radio::make('width')
                 ->visible((bool) ArchitectConfig::getWidthOptionsEnum())
+                ->inline()
+                ->inlineLabel(false)
                 ->required()
                 ->options(function (Get $get) {
                     $enum = ArchitectConfig::getWidthOptionsEnum();
