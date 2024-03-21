@@ -16,7 +16,7 @@
         'opacity-0 hover:opacity-100 transition-all' => ! $shown,
     ])>
         <x-filament-architect::icon-button
-            class="dark:hover:bg-gray-700/100 dark:bg-gray-800/100"
+            class="dark:hover:!bg-gray-700/100 dark:!bg-gray-800"
             :action="$action"
             :state-path="$statePath"
             :arguments="$arguments"

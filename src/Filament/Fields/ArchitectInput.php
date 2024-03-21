@@ -105,7 +105,7 @@ class ArchitectInput extends Field
             ->size(ActionSize::Small)
             ->extraAttributes([
                 'target' => '_blank',
-                'class' => 'dark:hover:bg-gray-700/100 dark:bg-gray-800/100' . (! ArchitectConfig::getPreviewAction() ? 'hidden' : ''),
+                'class' => 'dark:hover:!bg-gray-700/100 dark:!bg-gray-800' . (! ArchitectConfig::getPreviewAction() ? 'hidden' : ''),
             ])
             ->url(ArchitectConfig::getPreviewAction());
     }
@@ -136,7 +136,7 @@ class ArchitectInput extends Field
                     ->send();
             })
             ->extraAttributes([
-                'class' => 'dark:hover:bg-gray-700/100 dark:bg-gray-800/100',
+                'class' => 'dark:hover:!bg-gray-700/100 dark:!bg-gray-800',
             ]);
     }
 
@@ -147,6 +147,9 @@ class ArchitectInput extends Field
             ->label("Save as template")
             ->color('gray')
             ->size(ActionSize::Small)
+            ->extraAttributes([
+                'class' => 'dark:hover:!bg-gray-700/100 dark:!bg-gray-800'
+            ])
             ->form(fn () => [
                 Radio::make('new_overwrite')
                     ->hiddenLabel()
