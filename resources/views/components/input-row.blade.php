@@ -4,6 +4,7 @@
 
     $blockClassName = get_architect_block($blocks, $block['type']);
     $blockName = $blockClassName::make()->getName();
+    $shown = $block['shown'] ?? true;
 @endphp
 
 <div
@@ -19,7 +20,7 @@
     ">
         <div class="flex flex-col text-sm">
             <div class="flex gap-1">
-                <strong>
+                <strong @style(['text-decoration-line: line-through;' => ! $shown])>
                     {{ $block['data']['working_title'] ?? $blockName }}
                 </strong>
 
@@ -50,6 +51,16 @@
                     x-sortable-handle
                 />
             @endif
+
+            <x-filament-architect::icon-button
+                class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
+                :action="$getAction($shown ? 'enableBlock': 'disableBlock')"
+                :state-path="$statePath"
+                :arguments="[
+                    'uuid' => $uuid,
+                    'row' => $rowKey,
+                ]"
+            />
 
             <x-filament-architect::icon-button
                 class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
@@ -85,26 +96,5 @@
                 :arguments="['row' => $rowKey, 'insertAfter' => $uuid]"
             />
         @endif
-
-        {{-- @if (! $loop->last)
-            <div
-
-            >
-                <x-filament::icon-button
-                    color="gray"
-                    icon="heroicon-o-chevron-left"
-                    class="border-2 bg-white m-0"
-                    :size="ActionSize::Small"
-                    :icon-size="IconSize::Small"
-                />
-                <x-filament::icon-button
-                    color="gray"
-                    icon="heroicon-o-chevron-right"
-                    class="border-2 bg-white m-0"
-                    :size="ActionSize::Small"
-                    :icon-size="IconSize::Small"
-                />
-            </div>
-        @endif --}}
     </div>
 </div>

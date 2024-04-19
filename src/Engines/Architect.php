@@ -2,14 +2,13 @@
 
 namespace Codedor\FilamentArchitect\Engines;
 
-use Illuminate\View\View;
-
 class Architect extends RenderEngine
 {
     public function toHtml(): string
     {
         $blocks = collect($this->blocks)->map(function (array $row) {
             $blocks = collect($row)
+                ->filter(fn ($block) => $block['shown'] ?? true)
                 ->map(function (array $blockData) {
                     $block = get_architect_block(
                         config('filament-architect.default-blocks', []),

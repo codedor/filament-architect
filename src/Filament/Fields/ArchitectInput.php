@@ -34,9 +34,13 @@ class ArchitectInput extends Field
     public Closure|bool $hasTemplates = true;
     public Closure|bool $hasPreview = true;
 
+    public Closure|bool $enableShownButton;
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->enableShownButton(config('filament-architect.enableShownButton', false));
 
         $this->default([]);
 
@@ -46,6 +50,8 @@ class ArchitectInput extends Field
             fn (self $component): Action => $component->getSaveAsTemplateAction(),
             fn (self $component): Action => $component->getAddBlockAction(),
             fn (self $component): Action => $component->getAddBlockBetweenAction(),
+            fn (self $component): Action => $component->getDisableBlockAction(),
+            fn (self $component): Action => $component->getEnableBlockAction(),
             fn (self $component): Action => $component->getEditBlockAction(),
             fn (self $component): Action => $component->getDeleteBlockAction(),
         ]);
@@ -213,6 +219,26 @@ class ArchitectInput extends Field
 
                 $component->state(array_values($items));
             });
+    }
+
+    public function getEnableBlockAction(string $name = 'enableBlock'): Action
+    {
+        return Action::make($name)
+            ->icon('heroicon-o-eye-slash')
+            ->hiddenLabel()
+            ->color('gray')
+            ->size(ActionSize::Small)
+            ->action(function (self $component, array $arguments) {
+                $items = $component->getState();
+                $items[$arguments['row']][$arguments['uuid']]['shown'] = ! ($items[$arguments['row']][$arguments['uuid']]['shown'] ?? true);
+                $component->state($items);
+            });
+    }
+
+    public function getDisableBlockAction(): Action
+    {
+        return $this->getEnableBlockAction('disableBlock')
+            ->icon('heroicon-o-eye');
     }
 
     public function getEditBlockAction(): Action
@@ -397,6 +423,18 @@ class ArchitectInput extends Field
     public function getHasPreview(): bool
     {
         return $this->evaluate($this->hasPreview);
+    }
+
+    public function enableShownButton(Closure|bool $enableShownButton): static
+    {
+        $this->enableShownButton = $enableShownButton;
+
+        return $this;
+    }
+
+    public function getHasShownButton(): bool
+    {
+        return $this->evaluate($this->enableShownButton);
     }
 
     private function newBlock(array $data)

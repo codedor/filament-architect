@@ -15,6 +15,7 @@ return [
         \Codedor\FilamentArchitect\Filament\Architect\VideoBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
     ],
+    'enableShownButton' => false,
     'widthOptions' => \Codedor\FilamentArchitect\Enums\WidthOptions::class,
     'buttonClasses' => [
         'btn btn-primary' => 'Primary button',
