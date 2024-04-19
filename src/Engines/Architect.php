@@ -6,9 +6,13 @@ class Architect extends RenderEngine
 {
     public function toHtml(): string
     {
+
         $blocks = collect($this->blocks)->map(function (array $row) {
             $blocks = collect($row)
-                ->filter(fn ($block) => $block['shown'] ?? true)
+                ->when(
+                    config('filament-architect.enableShownButton', false),
+                    fn ($blocks) => $blocks->filter(fn ($block) => $block['shown'] ?? true)
+                )
                 ->map(function (array $blockData) {
                     $block = get_architect_block(
                         config('filament-architect.default-blocks', []),

@@ -70,6 +70,7 @@ return [
         \Codedor\FilamentArchitect\Filament\Architect\VideoBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
     ],
+    'enableShownButton' => false,
     'widthOptions' => \Codedor\FilamentArchitect\Enums\WidthOptions::class,
     'buttonClasses' => [
         'btn btn-primary' => 'Primary button',
@@ -85,7 +86,7 @@ return [
 ## Adding new blocks
 
 To add new blocks, you can extend `\Codedor\FilamentArchitect\Filament\Architect\BaseBlock`.
-You have to add a `schema` and a `render` function. 
+You have to add a `schema` and a `render` function.
 
 In the schema array you can add [Filament fields](https://filamentphp.com/docs/3.x/forms/fields/getting-started).
 
@@ -153,7 +154,7 @@ This integrates with our [codedor/filament-link-picker](https://github.com/coded
 Here you can set the default blocks that will be shown by default in all Architect fields.
 This must be an array.
 
-Default value: 
+Default value:
 
 ```php
 [
@@ -171,6 +172,9 @@ Default value:
     \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
 ]
 ```
+
+### enableShownButton
+When set to `true`, this will enable a new button in the CMS that allows the user to disable a block in the front-end, without having to delete it. The block will still be editable/sortable/etc. even when disabled.
 
 ### widthOptions
 
@@ -206,12 +210,12 @@ Default value:
 
 ```php
 [
-    'hit', 
-    'play', 
-    'pause', 
-    'download', 
-    'view', 
-    'open', 
+    'hit',
+    'play',
+    'pause',
+    'download',
+    'view',
+    'open',
     'close'
 ]
 ```

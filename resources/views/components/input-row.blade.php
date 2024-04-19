@@ -4,7 +4,7 @@
 
     $blockClassName = get_architect_block($blocks, $block['type']);
     $blockName = $blockClassName::make()->getName();
-    $shown = $block['shown'] ?? true;
+    $shown = (! $hasShownButton) || ($block['shown'] ?? true);
 @endphp
 
 <div
@@ -52,15 +52,17 @@
                 />
             @endif
 
-            <x-filament-architect::icon-button
-                class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
-                :action="$getAction($shown ? 'enableBlock': 'disableBlock')"
-                :state-path="$statePath"
-                :arguments="[
-                    'uuid' => $uuid,
-                    'row' => $rowKey,
-                ]"
-            />
+            @if ($hasShownButton)
+                <x-filament-architect::icon-button
+                    class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
+                    :action="$getAction($shown ? 'enableBlock': 'disableBlock')"
+                    :state-path="$statePath"
+                    :arguments="[
+                        'uuid' => $uuid,
+                        'row' => $rowKey,
+                    ]"
+                />
+            @endif
 
             <x-filament-architect::icon-button
                 class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
