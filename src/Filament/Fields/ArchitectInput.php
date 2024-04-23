@@ -5,6 +5,7 @@ namespace Codedor\FilamentArchitect\Filament\Fields;
 use Closure;
 use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
+use Codedor\FilamentArchitect\Filament\Fields\Traits\HasToggleButton;
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Actions\Action;
@@ -21,6 +22,8 @@ use Illuminate\Support\Str;
 
 class ArchitectInput extends Field
 {
+    use HasToggleButton;
+
     protected string $view = 'filament-architect::architect-input';
 
     public null|Closure|iterable $blocks = null;
@@ -33,8 +36,6 @@ class ArchitectInput extends Field
 
     public Closure|bool $hasTemplates = true;
     public Closure|bool $hasPreview = true;
-
-    public Closure|bool $enableShownButton;
 
     protected function setUp(): void
     {
@@ -221,26 +222,6 @@ class ArchitectInput extends Field
             });
     }
 
-    public function getEnableBlockAction(string $name = 'enableBlock'): Action
-    {
-        return Action::make($name)
-            ->icon('heroicon-o-eye-slash')
-            ->hiddenLabel()
-            ->color('gray')
-            ->size(ActionSize::Small)
-            ->action(function (self $component, array $arguments) {
-                $items = $component->getState();
-                $items[$arguments['row']][$arguments['uuid']]['shown'] = ! ($items[$arguments['row']][$arguments['uuid']]['shown'] ?? true);
-                $component->state($items);
-            });
-    }
-
-    public function getDisableBlockAction(): Action
-    {
-        return $this->getEnableBlockAction('disableBlock')
-            ->icon('heroicon-o-eye');
-    }
-
     public function getEditBlockAction(): Action
     {
         return Action::make('editBlock')
@@ -423,18 +404,6 @@ class ArchitectInput extends Field
     public function getHasPreview(): bool
     {
         return $this->evaluate($this->hasPreview);
-    }
-
-    public function enableShownButton(Closure|bool $enableShownButton): static
-    {
-        $this->enableShownButton = $enableShownButton;
-
-        return $this;
-    }
-
-    public function getHasShownButton(): bool
-    {
-        return $this->evaluate($this->enableShownButton);
     }
 
     private function newBlock(array $data)
