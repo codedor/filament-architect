@@ -51,6 +51,18 @@
                 />
             @endif
 
+            @if ($hasDuplicateAction)
+                <x-filament-architect::icon-button
+                    class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
+                    :action="$getAction('duplicateBlock')"
+                    :state-path="$statePath"
+                    :arguments="[
+                        'uuid' => $uuid,
+                        'row' => $rowKey,
+                    ]"
+                />
+            @endif
+
             <x-filament-architect::icon-button
                 class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
                 :action="$getAction('editBlock')"
