@@ -13,16 +13,27 @@
     x-sortable-item="{{ $uuid }}"
     style="grid-column: span {{ $block['width'] ?? 12 }};"
 >
-    <div class="
-        relative grow bg-gray-50 dark:bg-gray-800 p-4 rounded-lg
-        border dark:border-gray-700 justify-between flex gap-2
-        group
-    ">
-        <div class="flex flex-col text-sm">
+    <div @class([
+        'relative grow bg-gray-50 dark:bg-gray-800 p-4 rounded-lg
+            border dark:border-gray-700 justify-between flex gap-2
+            group',
+        'bg-gray-50/50 dark:bg-gray-800/50 border-gray-200/50
+            dark:border-gray-700/50' => ! $shown
+    ])>
+        <div @class([
+            'flex flex-col text-sm',
+            'text-gray-950/50 dark:text-white/40' => ! $shown
+        ])>
             <div class="flex gap-1">
-                <strong @style(['text-decoration-line: line-through;' => ! $shown])>
+                <strong>
                     {{ $block['data']['working_title'] ?? $blockName }}
                 </strong>
+
+                @if (! $shown)
+                    <span>
+                        (hidden)
+                    </span>
+                @endif
 
                 @foreach ($locales as $locale)
                     <x-filament-architect::locale-indicator
@@ -61,6 +72,7 @@
                         'uuid' => $uuid,
                         'row' => $rowKey,
                     ]"
+                    tooltip="{{ $shown ? 'Hide' : 'Show' }}"
                 />
             @endif
 
@@ -75,6 +87,7 @@
                     'blockClassName' => $blockClassName,
                     'locales' => $locales,
                 ]"
+                tooltip="Edit"
             />
 
             <x-filament-architect::icon-button
@@ -86,6 +99,7 @@
                     'uuid' => $uuid,
                     'row' => $rowKey,
                 ]"
+                tooltip="Delete"
             />
         </div>
     </div>
