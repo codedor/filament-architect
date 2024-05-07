@@ -10,6 +10,7 @@
     'color' => 'gray',
     'label' => null,
     'class' => null,
+    'tooltip' => null,
 ])
 
 @php
@@ -29,6 +30,7 @@
     :size="ActionSize::Small"
     :icon-size="IconSize::Small"
     :label="$label"
+    :$tooltip
 >
     {{ $label }}
 </x-dynamic-component>

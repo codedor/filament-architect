@@ -79,6 +79,7 @@
                                         :get-action="$getAction"
                                         :can-add-fields="count($row) < $getMaxFieldsPerRow()"
                                         :loop="$loop"
+                                        :has-shown-button="$getHasShownButton()"
                                     />
                                 @endforeach
                             </div>
