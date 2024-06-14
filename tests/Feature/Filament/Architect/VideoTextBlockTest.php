@@ -14,8 +14,8 @@ it('has a schema', function () {
             fn ($field) => $field
                 ->toBeInstanceOf(\Filament\Forms\Components\Radio::class),
             fn ($field) => $field
-                ->toBeInstanceOf(\Filament\Forms\Components\Fieldset::class),
-            fn ($field) => $field
                 ->toBeInstanceOf(\FilamentTiptapEditor\TiptapEditor::class),
+            fn ($field) => $field
+                ->toBeInstanceOf(\Filament\Forms\Components\Fieldset::class),
         );
 });

@@ -15,7 +15,5 @@ it('has a schema', function () {
                 ->toBeInstanceOf(\Filament\Forms\Components\Radio::class),
             fn ($field) => $field
                 ->toBeInstanceOf(\Codedor\MediaLibrary\Filament\AttachmentInput::class),
-            fn ($field) => $field
-                ->toBeInstanceOf(\FilamentTiptapEditor\TiptapEditor::class),
         );
 });
