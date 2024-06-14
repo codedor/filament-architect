@@ -11,6 +11,8 @@ abstract class BaseBlock
 
     public array $locales = [];
 
+    public bool $shown = true;
+
     abstract public function schema(): array;
 
     public static function make()

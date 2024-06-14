@@ -5,6 +5,8 @@ namespace Codedor\FilamentArchitect\Filament\Fields;
 use Closure;
 use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
+use Codedor\FilamentArchitect\Filament\Fields\Traits\HasDuplicateAction;
+use Codedor\FilamentArchitect\Filament\Fields\Traits\HasToggleButton;
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Actions\Action;
@@ -21,6 +23,9 @@ use Illuminate\Support\Str;
 
 class ArchitectInput extends Field
 {
+    use HasDuplicateAction;
+    use HasToggleButton;
+
     protected string $view = 'filament-architect::architect-input';
 
     public null|Closure|iterable $blocks = null;
@@ -38,6 +43,9 @@ class ArchitectInput extends Field
     {
         parent::setUp();
 
+        $this->hasDuplicateAction(config('filament-architect.enableDuplicateButton', false));
+        $this->enableShownButton(config('filament-architect.enableShownButton', false));
+
         $this->default([]);
 
         $this->registerActions([
@@ -46,6 +54,9 @@ class ArchitectInput extends Field
             fn (self $component): Action => $component->getSaveAsTemplateAction(),
             fn (self $component): Action => $component->getAddBlockAction(),
             fn (self $component): Action => $component->getAddBlockBetweenAction(),
+            fn (self $component): Action => $component->getDuplicateAction(),
+            fn (self $component): Action => $component->getDisableBlockAction(),
+            fn (self $component): Action => $component->getEnableBlockAction(),
             fn (self $component): Action => $component->getEditBlockAction(),
             fn (self $component): Action => $component->getDeleteBlockAction(),
         ]);
