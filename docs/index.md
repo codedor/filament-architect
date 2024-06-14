@@ -70,6 +70,7 @@ return [
         \Codedor\FilamentArchitect\Filament\Architect\VideoBlock::class,
         \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
     ],
+    'enableDuplicateButton' => false,
     'enableShownButton' => false,
     'widthOptions' => \Codedor\FilamentArchitect\Enums\WidthOptions::class,
     'buttonClasses' => [
@@ -171,6 +172,16 @@ Default value:
     \Codedor\FilamentArchitect\Filament\Architect\VideoBlock::class,
     \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
 ]
+```
+
+### enableDuplicateButton
+
+Enables or disables (disabled by default) the "duplicate" action for the Architect, allowing the user to duplicate rows easily.
+You can also enable/disable this feature on the input itself:
+
+```php
+ArchitectInput::make('body')
+    ->hasDuplicateAction(true),
 ```
 
 ### enableShownButton

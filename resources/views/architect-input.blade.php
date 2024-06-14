@@ -78,6 +78,7 @@
                                         :state-path="$statePath"
                                         :get-action="$getAction"
                                         :can-add-fields="count($row) < $getMaxFieldsPerRow()"
+                                        :has-duplicate-action="$getHasDuplicateAction()"
                                         :loop="$loop"
                                         :has-shown-button="$getHasShownButton()"
                                     />
