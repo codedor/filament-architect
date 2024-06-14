@@ -26,7 +26,7 @@ trait HasDuplicateAction
             });
     }
 
-    public function hasDuplicateAction(Closure|bool $hasDuplicateAction): static
+    public function hasDuplicateAction(Closure|bool $hasDuplicateAction = true): static
     {
         $this->hasDuplicateAction = $hasDuplicateAction;
 
