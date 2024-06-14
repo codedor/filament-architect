@@ -4,6 +4,7 @@
 
     $blockClassName = get_architect_block($blocks, $block['type']);
     $blockName = $blockClassName::make()->getName();
+    $shown = (! $hasShownButton) || ($block['shown'] ?? true);
 @endphp
 
 <div
@@ -12,16 +13,27 @@
     x-sortable-item="{{ $uuid }}"
     style="grid-column: span {{ $block['width'] ?? 12 }};"
 >
-    <div class="
-        relative grow bg-gray-50 dark:bg-gray-800 p-4 rounded-lg
-        border dark:border-gray-700 justify-between flex gap-2
-        group
-    ">
-        <div class="flex flex-col text-sm">
+    <div @class([
+        'relative grow bg-gray-50 dark:bg-gray-800 p-4 rounded-lg
+            border dark:border-gray-700 justify-between flex gap-2
+            group',
+        'bg-gray-50/50 dark:bg-gray-800/50 border-gray-200/50
+            dark:border-gray-700/50' => ! $shown
+    ])>
+        <div @class([
+            'flex flex-col text-sm',
+            'text-gray-950/50 dark:text-white/40' => ! $shown
+        ])>
             <div class="flex gap-1">
                 <strong>
                     {{ $block['data']['working_title'] ?? $blockName }}
                 </strong>
+
+                @if (! $shown)
+                    <span>
+                        (hidden)
+                    </span>
+                @endif
 
                 @foreach ($locales as $locale)
                     <x-filament-architect::locale-indicator
@@ -60,6 +72,20 @@
                         'uuid' => $uuid,
                         'row' => $rowKey,
                     ]"
+                    tooltip="{{ $shown ? 'Hide' : 'Show' }}"
+                />
+            @endif
+
+            @if ($hasShownButton)
+                <x-filament-architect::icon-button
+                    class="dark:bg-gray-800/100 dark:hover:bg-gray-700/100 dark:text-gray-100 dark:hover:text-white"
+                    :action="$getAction($shown ? 'enableBlock': 'disableBlock')"
+                    :state-path="$statePath"
+                    :arguments="[
+                        'uuid' => $uuid,
+                        'row' => $rowKey,
+                    ]"
+                    tooltip="{{ $shown ? 'Hide' : 'Show' }}"
                 />
             @endif
 
@@ -74,6 +100,7 @@
                     'blockClassName' => $blockClassName,
                     'locales' => $locales,
                 ]"
+                tooltip="Edit"
             />
 
             <x-filament-architect::icon-button
@@ -85,6 +112,7 @@
                     'uuid' => $uuid,
                     'row' => $rowKey,
                 ]"
+                tooltip="Delete"
             />
         </div>
     </div>
@@ -97,26 +125,5 @@
                 :arguments="['row' => $rowKey, 'insertAfter' => $uuid]"
             />
         @endif
-
-        {{-- @if (! $loop->last)
-            <div
-
-            >
-                <x-filament::icon-button
-                    color="gray"
-                    icon="heroicon-o-chevron-left"
-                    class="border-2 bg-white m-0"
-                    :size="ActionSize::Small"
-                    :icon-size="IconSize::Small"
-                />
-                <x-filament::icon-button
-                    color="gray"
-                    icon="heroicon-o-chevron-right"
-                    class="border-2 bg-white m-0"
-                    :size="ActionSize::Small"
-                    :icon-size="IconSize::Small"
-                />
-            </div>
-        @endif --}}
     </div>
 </div>

@@ -71,6 +71,7 @@ return [
         \Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock::class,
     ],
     'enableDuplicateButton' => false,
+    'enableShownButton' => false,
     'widthOptions' => \Codedor\FilamentArchitect\Enums\WidthOptions::class,
     'buttonClasses' => [
         'btn btn-primary' => 'Primary button',
@@ -182,6 +183,9 @@ You can also enable/disable this feature on the input itself:
 ArchitectInput::make('body')
     ->hasDuplicateAction(true),
 ```
+
+### enableShownButton
+When set to `true`, this will enable a new button in the CMS that allows the user to disable a block in the front-end, without having to delete it. The block will still be editable/sortable/etc. even when disabled.
 
 ### widthOptions
 
