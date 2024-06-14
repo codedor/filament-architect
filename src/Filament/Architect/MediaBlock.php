@@ -31,6 +31,13 @@ class MediaBlock extends BaseBlock
                 ->inline()
                 ->inlineLabel(false)
                 ->required()
+                ->formatStateUsing(function ($state) {
+                    if (! $state) {
+                        return ArchitectConfig::getWidthOptionsEnum()::cases()[0] ?? null;
+                    }
+
+                    return $state;
+                })
                 ->options(function (Get $get) {
                     $enum = ArchitectConfig::getWidthOptionsEnum();
 
