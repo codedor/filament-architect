@@ -28,7 +28,11 @@ class ButtonBlock extends BaseBlock
                     'left' => 'Left',
                     'center' => 'Center',
                     'right' => 'Right',
-                ]),
+                ])
+                ->inline()
+                ->inlineLabel(false)
+                ->default('left')
+                ->formatStateUsing(fn (mixed $state) => $state ?? 'left'),
 
             Repeater::make('buttons')
                 ->schema([ButtonComponent::make('button')])

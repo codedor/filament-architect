@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class TextBlock extends BaseBlock
 {
-    protected ?string $name = 'Text columns block';
+    protected ?string $name = 'Text block';
 
     public function render(array $data): ?View
     {
@@ -30,9 +30,12 @@ class TextBlock extends BaseBlock
             TextInput::make('columns')
                 ->numeric()
                 ->reactive()
+                ->default(1)
                 ->minValue(1)
                 ->maxValue(3)
+                ->formatStateUsing(fn (mixed $state) => $state ?? 1)
                 ->extraInputAttributes(['min' => 1, 'max' => 3]),
+
 
             Grid::make(1)->schema(function (Get $get) {
                 return collect()

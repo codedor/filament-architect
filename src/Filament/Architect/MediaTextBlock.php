@@ -6,6 +6,7 @@ use Codedor\FilamentArchitect\ArchitectFormats;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Section;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\View\View;
 
@@ -30,14 +31,15 @@ class MediaTextBlock extends BaseBlock
                 ->options([
                     'left' => 'Left',
                     'right' => 'Right',
-                ]),
+                ])
+                ->inline()
+                ->inlineLabel(false)
+                ->default('left')
+                ->formatStateUsing(fn (mixed $state) => $state ?? 'left'),
 
             AttachmentInput::make('image')
                 ->allowedFormats(ArchitectFormats::get())
                 ->required(),
-
-            TiptapEditor::make('description')
-                ->label('Text to display'),
         ];
     }
 }

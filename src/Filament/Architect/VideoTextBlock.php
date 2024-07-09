@@ -26,13 +26,15 @@ class VideoTextBlock extends BaseBlock
                 ->options([
                     'left' => 'Left',
                     'right' => 'Right',
-                ]),
-
-            OEmbed::make('video'),
+                ])
+                ->inline()
+                ->inlineLabel(false),
 
             TiptapEditor::make('description')
                 ->label('Text')
                 ->required(),
+
+            OEmbed::make('video'),
         ];
     }
 }
