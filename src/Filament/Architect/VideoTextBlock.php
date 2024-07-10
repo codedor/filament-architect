@@ -2,7 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
-use Awcodes\FilamentOembed\Forms\Components\OEmbed;
+use Codedor\FilamentImageOrVideo\Filament\Components\VideoEmbed;
 use Filament\Forms\Components\Radio;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\View\View;
@@ -28,7 +28,7 @@ class VideoTextBlock extends BaseBlock
                     'right' => 'Right',
                 ]),
 
-            OEmbed::make('video'),
+            VideoEmbed::make('video'),
 
             TiptapEditor::make('description')
                 ->label('Text')
