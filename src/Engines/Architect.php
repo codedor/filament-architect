@@ -2,11 +2,13 @@
 
 namespace Codedor\FilamentArchitect\Engines;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+
 class Architect extends RenderEngine
 {
     public function toHtml(): string
     {
-
         $blocks = collect($this->blocks)->map(function (array $row) {
             $blocks = collect($row)
                 ->when(
@@ -39,5 +41,20 @@ class Architect extends RenderEngine
         return view('filament-architect::render', [
             'blocks' => $blocks,
         ])->toHtml();
+    }
+
+    public function anchorList(): Collection
+    {
+        return collect($this->blocks)
+            ->flatten(1)
+            ->mapWithKeys(fn (array $block) => [
+                self::blockSlug($block['data']) => data_get($block, 'data.working_title'),
+            ])
+            ->filter();
+    }
+
+    public static function blockSlug(array $block): string
+    {
+        return data_get($block, 'slug', Str::slug(data_get($block, 'working_title')));
     }
 }
