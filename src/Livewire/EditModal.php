@@ -41,7 +41,7 @@ class EditModal extends Component implements HasForms, HasActions
                         ->helperText('This is purely to help you identify the block in the list of blocks.'),
 
                     TextInput::make('slug')
-                        ->hidden(config('filament-architect.enable-slug-in-block'))
+                        ->hidden(! config('filament-architect.enable-slug-in-block'))
                         ->helperText('This slug will be used to make anchor links. Modifying this field will break existing anchor links to this block'),
 
                     ...$this->arguments['blockClassName']::make()
