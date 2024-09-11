@@ -9,6 +9,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class EditModal extends Component implements HasForms, HasActions
@@ -37,6 +39,10 @@ class EditModal extends Component implements HasForms, HasActions
                 ->schema([
                     TextInput::make('working_title')
                         ->helperText('This is purely to help you identify the block in the list of blocks.'),
+
+                    TextInput::make('slug')
+                        ->hidden(config('filament-architect.enable-slug-in-block'))
+                        ->helperText('This slug will be used to make anchor links. Modifying this field will break existing anchor links to this block'),
 
                     ...$this->arguments['blockClassName']::make()
                         ->locales($this->arguments['locales'])

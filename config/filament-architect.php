@@ -26,4 +26,5 @@ return [
     'attachmentFormats' => [
         \Codedor\MediaLibrary\Formats\Thumbnail::class,
     ],
+    'enable-slug-in-block' => false,
 ];
