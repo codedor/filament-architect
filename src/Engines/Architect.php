@@ -53,8 +53,8 @@ class Architect extends RenderEngine
             ->filter();
     }
 
-    public static function blockSlug(array $block): ?string
+    public static function blockSlug(array $block): string
     {
-        return data_get($block, 'slug', Str::slug(data_get($block, 'working_title')));
+        return data_get($block, 'slug') ?: Str::slug(data_get($block, 'working_title'));
     }
 }
