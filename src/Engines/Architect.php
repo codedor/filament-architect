@@ -27,7 +27,7 @@ class Architect extends RenderEngine
 
                     return $block::make()->render(
                         data: $blockData['data'],
-                    );
+                    )->with('slug', self::blockSlug($blockData['data']));
                 })
                 ->filter();
 
