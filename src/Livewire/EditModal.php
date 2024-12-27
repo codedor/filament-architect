@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -38,7 +39,10 @@ class EditModal extends Component implements HasForms, HasActions
                 ->statePath('state')
                 ->schema([
                     TextInput::make('working_title')
-                        ->helperText('This is purely to help you identify the block in the list of blocks.'),
+                        ->helperText('This is purely to help you identify the block in the list of blocks.')
+                        ->required(config('filament-architect.enable-slug-in-block'))
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(fn (Set $set, ?string $state, Get $get) => $get('slug') || $set('slug', Str::slug($state))),
 
                     TextInput::make('slug')
                         ->hidden(! config('filament-architect.enable-slug-in-block'))
