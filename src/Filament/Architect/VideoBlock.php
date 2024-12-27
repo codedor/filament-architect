@@ -2,7 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
-use Awcodes\FilamentOembed\Forms\Components\OEmbed;
+use Codedor\FilamentImageOrVideo\Filament\Components\VideoEmbed;
 use Illuminate\View\View;
 
 class VideoBlock extends BaseBlock
@@ -17,7 +17,7 @@ class VideoBlock extends BaseBlock
     public function schema(): array
     {
         return [
-            OEmbed::make('video'),
+            VideoEmbed::make('video'),
         ];
     }
 }

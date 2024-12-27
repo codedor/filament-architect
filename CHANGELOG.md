@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.0.0 - 2024-10-04
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/codedor/filament-architect/pull/23
+* Add Laravel 11 support + switch from "awcodes/filament-oembed" to "codedor/filament-image-or-video" by @gdebrauwer in https://github.com/codedor/filament-architect/pull/24
+
+### New Contributors
+
+* @gdebrauwer made their first contribution in https://github.com/codedor/filament-architect/pull/24
+
+**Full Changelog**: https://github.com/codedor/filament-architect/compare/v1.1.0...v2.0.0
+
 ## v1.1.0 - 2024-06-14
 
 ### What's Changed
