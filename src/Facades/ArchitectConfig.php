@@ -5,12 +5,12 @@ namespace Codedor\FilamentArchitect\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \self fromConfig()
- * @method static \self widthOptionsEnum(string|null $enumClass)
+ * @method static \Codedor\FilamentArchitect\ArchitectConfig fromConfig()
+ * @method static \Codedor\FilamentArchitect\ArchitectConfig widthOptionsEnum(string|null $enumClass)
  * @method static string|null getWidthOptionsEnum()
- * @method static \self buttonClasses(array $buttonClasses)
+ * @method static \Codedor\FilamentArchitect\ArchitectConfig buttonClasses(array $buttonClasses)
  * @method static array getButtonClasses()
- * @method static \self trackingActions(array $trackingActions)
+ * @method static \Codedor\FilamentArchitect\ArchitectConfig trackingActions(array $trackingActions)
  * @method static array getTrackingActions()
  *
  * @see \Codedor\FilamentArchitect\ArchitectConfig

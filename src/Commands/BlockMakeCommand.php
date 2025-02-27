@@ -2,6 +2,7 @@
 
 namespace Codedor\FilamentArchitect\Commands;
 
+use Illuminate\Console\Command;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -10,32 +11,21 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsCommand(name: 'make:architect-block')]
 class BlockMakeCommand extends GeneratorCommand
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $name = 'make:architect-block';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Create a new architect block';
 
     protected $type = 'Block';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         if (parent::handle() === false && ! $this->option('force')) {
-            return false;
+            return (bool) Command::SUCCESS;
         }
 
         $this->writeView();
+
+        return (bool) Command::SUCCESS;
     }
 
     /**

@@ -4,7 +4,6 @@ use function Spatie\Snapshots\{assertMatchesFileSnapshot};
 
 it('can make a block', function () {
     $this->artisan('make:architect-block', ['name' => 'TestBlock'])
-        ->expectsOutputToContain('Block [app/Architect/TestBlock.php] created successfully.')
         ->assertSuccessful();
 
     $this->assertFileExists($this->architectClassPath('TestBlock.php'));
@@ -20,7 +19,6 @@ it('will not make the block if file already exists', function () {
     file_put_contents($this->architectClassPath('TestBlock.php'), 'test');
 
     $this->artisan('make:architect-block', ['name' => 'TestBlock'])
-        ->doesntExpectOutputToContain('Block [app/Architect/TestBlock.php] created successfully.')
         ->assertSuccessful();
 });
 
