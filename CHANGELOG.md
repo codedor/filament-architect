@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.2.0 - 2025-02-28
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/codedor/filament-architect/pull/27
+* Upgrade to L12 by @jyrkidn in https://github.com/codedor/filament-architect/pull/28
+
+**Full Changelog**: https://github.com/codedor/filament-architect/compare/v2.1.0...v2.2.0
+
 ## v2.1.0 - 2024-12-27
 
 ### What's Changed
