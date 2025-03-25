@@ -8,7 +8,7 @@ class ArchitectConfig
 {
     protected ?string $widthOptionsEnum = null;
 
-    protected array $buttonClasses = [];
+    protected array|string $buttonClasses = [];
 
     protected array $trackingActions = [];
 
@@ -44,14 +44,14 @@ class ArchitectConfig
         return $this->widthOptionsEnum;
     }
 
-    public function buttonClasses(array $buttonClasses): self
+    public function buttonClasses(array|string $buttonClasses): self
     {
         $this->buttonClasses = $buttonClasses;
 
         return $this;
     }
 
-    public function getButtonClasses(): array
+    public function getButtonClasses(): array|string
     {
         return $this->buttonClasses;
     }
