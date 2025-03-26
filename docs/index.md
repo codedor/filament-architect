@@ -201,7 +201,7 @@ Default value:
 ### buttonClasses
 
 Here you can set the button classes that will be shown in the button component.
-This must be an array.
+This must be an array or a reference to an enum class.
 
 Default value:
 
@@ -211,6 +211,47 @@ Default value:
     'btn btn-link' => 'Text',
 ]
 ```
+
+#### Enum
+
+If you want to use an enum, you can create one like this:
+
+```php
+<?php
+
+namespace App\Enums;
+
+use Filament\Support\Contracts\HasLabel;
+
+enum ButtonClasses: string implements HasLabel
+{
+    case Primary = 'primary';
+    case Text = 'text';
+
+    public function getLabel(): ?string
+    {
+        return match ($this) {
+            self::Primary => 'Primary button',
+            self::Text => 'Text',
+        };
+    }
+
+    public function getCssClass(): string
+    {
+        return match ($this) {
+            self::Primary => 'btn btn-primary',
+            self::Text => 'btn btn-link',
+        };
+    }
+}
+```
+
+And set it in the config:
+
+```php
+'buttonClasses' => \App\Enums\ButtonClasses::class,
+```
+
 
 ### trackingActions
 
