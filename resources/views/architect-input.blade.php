@@ -15,7 +15,7 @@
                 :state-path="$getStatePath()"
                 :arguments="['row' => -1]"
                 :shown="count($state) === 0"
-                :label="count($state) === 0 ? 'Start from scratch' : 'Insert block'"
+                :label="count($state) === 0 ? __('filament-architect::admin.start from scratch') : __('filament-architect::admin.insert block')"
                 :aligned="count($state) === 0 ? 'left' : 'center'"
             >
                 @if (count($state) === 0 && $getHasTemplates())
