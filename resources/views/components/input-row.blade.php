@@ -100,7 +100,7 @@
                     'blockClassName' => $blockClassName,
                     'locales' => $locales,
                 ]"
-                tooltip="Edit"
+                :tooltip="__('filament-architect::admin.edit block')"
             />
 
             <x-filament-architect::icon-button
@@ -112,7 +112,7 @@
                     'uuid' => $uuid,
                     'row' => $rowKey,
                 ]"
-                tooltip="Delete"
+                :tooltip="__('filament-architect::admin.delete block')"
             />
         </div>
     </div>

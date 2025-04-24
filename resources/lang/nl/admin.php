@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'start from template' => 'Begin van uit een template',
+    'block' => 'Blok',
+    'template loaded' => 'De template is geladen',
+    'save as template' => 'Opslaan als template',
+    'save as new template' => 'Opslaan als nieuwe template',
+    'overwrite existing template' => 'Bestaande template overschrijven',
+    'template name' => 'Templatenaam',
+    'template name help text' => 'Zorg dat de naam uniek en beschrijvend is',
+    'template to overwrite' => 'Template om te overschrijven',
+    'template saved' => 'De template is opgeslagen',
+    'start from scratch' => 'Begin vanaf nul',
+    'insert block' => 'Blok toevoegen',
+    'delete block' => 'Blok verwijderen',
+    'edit block' => 'Blok bewerken',
+    'add block' => 'Blok toevoegen',
+    'add block between' => 'Blok tussenvoegen',
+    'preview :name' => 'Preview :Name',
+    'working title' => 'Werktitel',
+    'working title help' => 'Dit is puur om u te helpen het blok in de lijst met blokken te identificeren.',
+    'submit' => 'Opslaan',
+    'cancel' => 'Annuleren',
+];

@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'start from template' => 'Start from template',
+    'block' => 'Block',
+    'template loaded' => 'The template has been loaded',
+    'save as template' => 'Save as template',
+    'save as new template' => 'Save as new template',
+    'overwrite existing template' => 'Overwrite existing template',
+    'template name' => 'Template name',
+    'template name help text' => 'Make sure the name is unique and descriptive',
+    'template to overwrite' => 'Template to overwrite',
+    'template saved' => 'The template has been saved',
+    'start from scratch' => 'Start from scratch',
+    'insert block' => 'Insert block',
+    'delete block' => 'Delete Block',
+    'edit block' => 'Edit Block',
+    'add block' => 'Add Block',
+    'add block between' => 'Add Block Between',
+    'preview :name' => 'Preview :Name',
+    'working title' => 'Working Title',
+    'working title help' => 'This is purely to help you identify the block in the list of blocks.',
+    'submit' => 'Submit',
+    'cancel' => 'Cancel',
+];
