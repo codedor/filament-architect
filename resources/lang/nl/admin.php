@@ -22,4 +22,16 @@ return [
     'working title help' => 'Dit is puur om u te helpen het blok in de lijst met blokken te identificeren.',
     'submit' => 'Opslaan',
     'cancel' => 'Annuleren',
+    'button' => 'Knop',
+    'text on button' => 'Tekst op de knop',
+    'type' => 'Type',
+    'link' => 'Link',
+    'title' => 'Titel',
+    'title help' => 'Optioneel, wordt getoond bij het over de knop gaan',
+    'tracking information' => 'Tracking informatie',
+    'category' => 'Categorie',
+    'action' => 'Actie',
+    'label' => 'Label',
+    'non interaction' => 'Geen interactie',
+    'remove button' => 'Verwijder knop'
 ];

@@ -22,4 +22,16 @@ return [
     'working title help' => 'This is purely to help you identify the block in the list of blocks.',
     'submit' => 'Submit',
     'cancel' => 'Cancel',
+    'button' => 'Button',
+    'text on button' => 'Text on the button',
+    'type' => 'Type',
+    'link' => 'Link',
+    'title' => 'Title',
+    'title help' => 'Optional, will be displayed when hovering over the button',
+    'tracking information' => 'Tracking information',
+    'category' => 'Category',
+    'action' => 'Action',
+    'label' => 'Label',
+    'non interaction' => 'Non interaction',
+    'remove button' => 'Remove button'
 ];
