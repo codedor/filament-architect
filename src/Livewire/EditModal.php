@@ -39,7 +39,8 @@ class EditModal extends Component implements HasForms, HasActions
                 ->statePath('state')
                 ->schema([
                     TextInput::make('working_title')
-                        ->helperText('This is purely to help you identify the block in the list of blocks.')
+                        ->label(__('filament-architect::admin.working title'))
+                        ->helperText(__('filament-architect::admin.working title help'))
                         ->required(config('filament-architect.enable-slug-in-block'))
                         ->live(onBlur: true)
                         ->afterStateUpdated(fn (Set $set, ?string $state, Get $get) => $get('slug') || $set('slug', Str::slug($state))),

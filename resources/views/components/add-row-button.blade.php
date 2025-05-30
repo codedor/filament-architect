@@ -3,7 +3,7 @@
     'statePath',
     'arguments' => [],
     'shown' => false,
-    'label' => 'Insert block',
+    'label' => __('filament-architect::admin.insert block'),
     'aligned' => 'center',
 ])
 
