@@ -3,8 +3,6 @@
 namespace Codedor\FilamentArchitect\Tests;
 
 use Codedor\FilamentArchitect\Providers\FilamentArchitectServiceProvider;
-use FilamentTiptapEditor\Actions\LinkAction;
-use FilamentTiptapEditor\Enums\TiptapOutput;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\File;
 use Livewire\LivewireServiceProvider;
@@ -39,9 +37,6 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
-
-        config()->set('filament-tiptap-editor.output', TiptapOutput::Html);
-        config()->set('filament-tiptap-editor.link_action', LinkAction::class);
 
         config()->set('view.paths', [
             resource_path('views'),

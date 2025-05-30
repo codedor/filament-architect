@@ -9,14 +9,14 @@ use Codedor\FilamentArchitect\Filament\Fields\Traits\HasDuplicateAction;
 use Codedor\FilamentArchitect\Filament\Fields\Traits\HasToggleButton;
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
-use Filament\Support\Enums\ActionSize;
+use Filament\Support\Components\Attributes\ExposedLivewireMethod;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -29,7 +29,9 @@ class ArchitectInput extends Field
     protected string $view = 'filament-architect::architect-input';
 
     public null|Closure|iterable $blocks = null;
+
     public Closure|iterable $excludedBlocks = [];
+
     public Closure|iterable $extraBlocks = [];
 
     public null|Closure|iterable $locales = null;
@@ -37,6 +39,7 @@ class ArchitectInput extends Field
     public null|int|Closure $maxFieldsPerRow = 1;
 
     public Closure|bool $hasTemplates = true;
+
     public Closure|bool $hasPreview = true;
 
     protected function setUp(): void
@@ -49,71 +52,72 @@ class ArchitectInput extends Field
         $this->default([]);
 
         $this->registerActions([
-            fn (self $component): Action => $component->getArchitectPreviewAction(),
-            fn (self $component): Action => $component->getStartFromTemplateAction(),
-            fn (self $component): Action => $component->getSaveAsTemplateAction(),
-            fn (self $component): Action => $component->getAddBlockAction(),
-            fn (self $component): Action => $component->getAddBlockBetweenAction(),
-            fn (self $component): Action => $component->getDuplicateAction(),
-            fn (self $component): Action => $component->getDisableBlockAction(),
-            fn (self $component): Action => $component->getEnableBlockAction(),
-            fn (self $component): Action => $component->getEditBlockAction(),
-            fn (self $component): Action => $component->getDeleteBlockAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getArchitectPreviewAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getStartFromTemplateAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getSaveAsTemplateAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getAddBlockAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getAddBlockBetweenAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getDuplicateAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getDisableBlockAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getEnableBlockAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getEditBlockAction(),
+            fn (self $component): \Filament\Actions\Action => $component->getDeleteBlockAction(),
         ]);
 
-        $this->registerListeners([
-            'filament-architect::editedBlock' => [
-                function (self $component, string $statePath, array $arguments): void {
-                    if ($statePath !== $component->getStatePath()) {
-                        return;
-                    }
-
-                    $items = $component->getState();
-                    $items[$arguments['row']][$arguments['uuid']]['data'] = $arguments['form']['state'];
-                    $component->state($items);
-                },
-            ],
-            'reorder-row' => [
-                function (self $component, string $statePath, array $data): void {
-                    if ($statePath !== $component->getStatePath()) {
-                        return;
-                    }
-
-                    $items = $component->getState();
-
-                    $items = collect($items)
-                        ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
-                        ->values()
-                        ->toArray();
-
-                    $component->state($items);
-                },
-            ],
-            'reorder-column' => [
-                function (self $component, string $statePath, array $data): void {
-                    if ($statePath !== $component->getStatePath()) {
-                        return;
-                    }
-
-                    $items = $component->getState();
-
-                    $items[$data['row']] = collect($items[$data['row']])
-                        ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
-                        ->toArray();
-
-                    $component->state($items);
-                },
-            ],
-        ]);
+        // TODO: moved to dedicated method, but still to check how we have to dispatch these events in the blade files
+        // $this->registerListeners([
+        //     'filament-architect::editedBlock' => [
+        //         function (self $component, string $statePath, array $arguments): void {
+        //             if ($statePath !== $component->getStatePath()) {
+        //                 return;
+        //             }
+        //
+        //             $items = $component->getState();
+        //             $items[$arguments['row']][$arguments['uuid']]['data'] = $arguments['form']['state'];
+        //             $component->state($items);
+        //         },
+        //     ],
+        //     'reorder-row' => [
+        //         function (self $component, string $statePath, array $data): void {
+        //             if ($statePath !== $component->getStatePath()) {
+        //                 return;
+        //             }
+        //
+        //             $items = $component->getState();
+        //
+        //             $items = collect($items)
+        //                 ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
+        //                 ->values()
+        //                 ->toArray();
+        //
+        //             $component->state($items);
+        //         },
+        //     ],
+        //     'reorder-column' => [
+        //         function (self $component, string $statePath, array $data): void {
+        //             if ($statePath !== $component->getStatePath()) {
+        //                 return;
+        //             }
+        //
+        //             $items = $component->getState();
+        //
+        //             $items[$data['row']] = collect($items[$data['row']])
+        //                 ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
+        //                 ->toArray();
+        //
+        //             $component->state($items);
+        //         },
+        //     ],
+        // ]);
     }
 
-    public function getArchitectPreviewAction(): Action
+    public function getArchitectPreviewAction(): \Filament\Actions\Action
     {
-        return Action::make('architectPreview')
+        return \Filament\Actions\Action::make('architectPreview')
             ->icon('heroicon-o-eye')
             ->label("Preview {$this->getName()}")
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->extraAttributes([
                 'target' => '_blank',
                 'class' => 'dark:hover:!bg-gray-700/100 dark:!bg-gray-800' . (! ArchitectConfig::getPreviewAction() ? 'hidden' : ''),
@@ -121,16 +125,16 @@ class ArchitectInput extends Field
             ->url(ArchitectConfig::getPreviewAction());
     }
 
-    public function getStartFromTemplateAction(): Action
+    public function getStartFromTemplateAction(): \Filament\Actions\Action
     {
-        return Action::make('startFromTemplate')
+        return \Filament\Actions\Action::make('startFromTemplate')
             ->icon('heroicon-o-document-duplicate')
             ->label('Start from template')
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->closeModalByClickingAway(false)
             ->hidden(fn () => ! ((bool) ArchitectTemplate::count()))
-            ->form(fn () => [
+            ->schema(fn () => [
                 Select::make('block')
                     ->options(fn () => ArchitectTemplate::orderBy('name')->pluck('name', 'id'))
                     ->hiddenLabel()
@@ -151,17 +155,17 @@ class ArchitectInput extends Field
             ]);
     }
 
-    public function getSaveAsTemplateAction(): Action
+    public function getSaveAsTemplateAction(): \Filament\Actions\Action
     {
-        return Action::make('saveAsTemplate')
+        return \Filament\Actions\Action::make('saveAsTemplate')
             ->icon('heroicon-o-document-duplicate')
-            ->label("Save as template")
+            ->label('Save as template')
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->extraAttributes([
-                'class' => 'dark:hover:!bg-gray-700/100 dark:!bg-gray-800'
+                'class' => 'dark:hover:!bg-gray-700/100 dark:!bg-gray-800',
             ])
-            ->form(fn () => [
+            ->schema(fn () => [
                 Radio::make('new_overwrite')
                     ->hiddenLabel()
                     ->default('new')
@@ -174,13 +178,13 @@ class ArchitectInput extends Field
                 TextInput::make('name')
                     ->label('Template name')
                     ->helperText('Make sure the name is unique and descriptive')
-                    ->hidden(fn (Get $get) => $get('new_overwrite') === 'overwrite')
+                    ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get('new_overwrite') === 'overwrite')
                     ->required(),
 
                 Select::make('template')
                     ->label('Template to overwrite')
                     ->options(fn () => ArchitectTemplate::orderBy('name')->pluck('name', 'id'))
-                    ->hidden(fn (Get $get) => $get('new_overwrite') === 'new')
+                    ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get('new_overwrite') === 'new')
                     ->required(),
             ])
             ->action(function (array $data) {
@@ -202,13 +206,13 @@ class ArchitectInput extends Field
             });
     }
 
-    public function getDeleteBlockAction(): Action
+    public function getDeleteBlockAction(): \Filament\Actions\Action
     {
-        return Action::make('deleteBlock')
+        return \Filament\Actions\Action::make('deleteBlock')
             ->icon('heroicon-o-trash')
             ->hiddenLabel()
             ->color('danger')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->closeModalByClickingAway(false)
             ->requiresConfirmation()
             ->action(function (self $component, array $arguments) {
@@ -226,36 +230,36 @@ class ArchitectInput extends Field
             });
     }
 
-    public function getEditBlockAction(): Action
+    public function getEditBlockAction(): \Filament\Actions\Action
     {
-        return Action::make('editBlock')
+        return \Filament\Actions\Action::make('editBlock')
             ->icon('heroicon-o-pencil')
             ->hiddenLabel()
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->closeModalByClickingAway(false)
             ->modalSubmitAction(false)
             ->modalCancelAction(false)
-            ->modalContent(fn (self $component) => view(
+            ->modalContent(fn (self $component, Action $action) => view(
                 'filament-architect::edit-modal',
                 [
                     // TODO: This is a hack to get the arguments to the modal
                     // https://github.com/filamentphp/filament/issues/8763
-                    'arguments' => Arr::last($this->getLivewire()->mountedFormComponentActionsArguments),
+                    'arguments' => $action->getArguments(), // TODO: since fix does not apply anymore for Filament v4
                     'statePath' => $component->getStatePath(),
                 ]
             ));
     }
 
-    public function getBaseAddBlockAction(string $name): Action
+    public function getBaseAddBlockAction(string $name): \Filament\Actions\Action
     {
-        return Action::make($name)
+        return \Filament\Actions\Action::make($name)
             ->icon('heroicon-o-plus')
             ->hiddenLabel()
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->closeModalByClickingAway(false)
-            ->form(fn () => [
+            ->schema(fn () => [
                 Select::make('block')
                     ->options(fn () => collect($this->getBlocks())->map(fn ($b) => $b->getName()))
                     ->hiddenLabel()
@@ -263,7 +267,7 @@ class ArchitectInput extends Field
             ]);
     }
 
-    public function getAddBlockAction(): Action
+    public function getAddBlockAction(): \Filament\Actions\Action
     {
         return $this->getBaseAddBlockAction('addBlock')->action(function (self $component, array $arguments, array $data) {
             $newUuid = (string) Str::uuid();
@@ -290,7 +294,7 @@ class ArchitectInput extends Field
         });
     }
 
-    public function getAddBlockBetweenAction(): Action
+    public function getAddBlockBetweenAction(): \Filament\Actions\Action
     {
         return $this->getBaseAddBlockAction('addBlockBetween')->action(function (self $component, array $arguments, array $data) {
             $newUuid = (string) Str::uuid();
@@ -434,5 +438,38 @@ class ArchitectInput extends Field
         }
 
         return $items;
+    }
+
+    #[ExposedLivewireMethod]
+    public function editedBlock(array $arguments): void
+    {
+        $items = $this->getState();
+        $items[$arguments['row']][$arguments['uuid']]['data'] = $arguments['form']['state'];
+        $this->state($items);
+    }
+
+    #[ExposedLivewireMethod]
+    public function reorderRow(array $data): void
+    {
+        $items = $this->getState();
+
+        $items = collect($items)
+            ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
+            ->values()
+            ->toArray();
+
+        $this->state($items);
+    }
+
+    #[ExposedLivewireMethod]
+    public function reorderColumn(array $data): void
+    {
+        $items = $this->getState();
+
+        $items[$data['row']] = collect($items[$data['row']])
+            ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
+            ->toArray();
+
+        $this->state($items);
     }
 }

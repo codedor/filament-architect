@@ -2,10 +2,8 @@
 
 namespace Codedor\FilamentArchitect\Filament\Architect;
 
-use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Get;
-use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\View;
 
@@ -34,12 +32,12 @@ class TextBlock extends BaseBlock
                 ->maxValue(3)
                 ->extraInputAttributes(['min' => 1, 'max' => 3]),
 
-            Grid::make(1)->schema(function (Get $get) {
+            \Filament\Schemas\Components\Grid::make(1)->schema(function (\Filament\Schemas\Components\Utilities\Get $get) {
                 return collect()
                     ->pad($get('columns') ?? 1, null)
                     ->keys()
                     ->map(function (string $key) {
-                        return TiptapEditor::make("text.{$key}")
+                        return RichEditor::make("text.{$key}")
                             ->label('Text');
                     })
                     ->toArray();

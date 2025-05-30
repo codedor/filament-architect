@@ -6,7 +6,7 @@ use Codedor\FilamentArchitect\ArchitectFormats;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Radio;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\View\View;
 
 class MediaTextBlock extends BaseBlock
@@ -36,7 +36,7 @@ class MediaTextBlock extends BaseBlock
                 ->allowedFormats(ArchitectFormats::get())
                 ->required(),
 
-            TiptapEditor::make('description')
+            RichEditor::make('description')
                 ->label('Text to display'),
         ];
     }

@@ -10,17 +10,17 @@ use Filament\Pages\Page;
 use Illuminate\Support\Str;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
 class ArchitectTest extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationGroup = 'Architect';
+    protected static string | \UnitEnum | null $navigationGroup = 'Architect';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'filament-architect::filament.architect-test';
+    protected string $view = 'filament-architect::filament.architect-test';
 
     public ?array $data = [];
 
@@ -34,10 +34,10 @@ class ArchitectTest extends Page implements HasForms
         $this->form->fill();
     }
 
-    public function form(Form $form): Form
+    public function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 ArchitectInput::make('body')
                     ->required()
                     ->afterStateHydrated(static function (ArchitectInput $component, ?array $state): void {
@@ -52,7 +52,7 @@ class ArchitectTest extends Page implements HasForms
                             ];
 
                             $component->state($items);
-                            $component->getChildComponentContainers()[$newUuid]->fill();
+                            $component->getChildSchemas()[$newUuid]->fill();
                         }
                     }),
             ])

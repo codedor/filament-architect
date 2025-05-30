@@ -11,9 +11,9 @@ use Filament\Forms\Components\TextInput;
 
 class TrackingComponent
 {
-    public static function make(): Component
+    public static function make(): \Filament\Schemas\Components\Component
     {
-        return Section::make('Tracking information')
+        return \Filament\Schemas\Components\Section::make('Tracking information')
             ->statePath('tracking')
             ->collapsed()
             ->columns(2)
