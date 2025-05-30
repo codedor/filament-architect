@@ -7,8 +7,8 @@ use Codedor\FilamentArchitect\Filament\Components\ButtonComponent;
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
-use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\View\View;
 
 class CardBlock extends BaseBlock
@@ -35,7 +35,7 @@ class CardBlock extends BaseBlock
                     TextInput::make('title')
                         ->required(),
 
-                    TiptapEditor::make('description'),
+                    RichEditor::make('description'),
 
                     AttachmentInput::make('image')
                         ->allowedFormats(ArchitectFormats::get()),

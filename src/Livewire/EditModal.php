@@ -32,17 +32,17 @@ class EditModal extends Component implements HasForms, HasActions
         $this->form->fill($this->state);
     }
 
-    public function form(Form $form): Form
+    public function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
-        return $form->schema([
-            Group::make()
+        return $schema->components([
+            \Filament\Schemas\Components\Group::make()
                 ->statePath('state')
                 ->schema([
                     TextInput::make('working_title')
                         ->helperText('This is purely to help you identify the block in the list of blocks.')
                         ->required(config('filament-architect.enable-slug-in-block'))
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn (Set $set, ?string $state, Get $get) => $get('slug') || $set('slug', Str::slug($state))),
+                        ->afterStateUpdated(fn (\Filament\Schemas\Components\Utilities\Set $set, ?string $state, \Filament\Schemas\Components\Utilities\Get $get) => $get('slug') || $set('slug', Str::slug($state))),
 
                     TextInput::make('slug')
                         ->hidden(! config('filament-architect.enable-slug-in-block'))
