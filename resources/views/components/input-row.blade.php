@@ -72,7 +72,7 @@
                         'uuid' => $uuid,
                         'row' => $rowKey,
                     ]"
-                    tooltip="{{ $shown ? 'Hide' : 'Show' }}"
+                    tooltip="Duplicate"
                 />
             @endif
 
