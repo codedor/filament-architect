@@ -14,24 +14,24 @@ use Filament\Forms\Set;
 
 class ButtonComponent
 {
-    public static function make(string $statePath): Component
+    public static function make(string $statePath): \Filament\Schemas\Components\Component
     {
         return ViewField::make($statePath)
             ->view('filament-architect::components.button-field')
             ->registerActions([
-                Action::make('addButton')
-                    ->label(function (Get $get) use ($statePath) {
+                \Filament\Actions\Action::make('addButton')
+                    ->label(function (\Filament\Schemas\Components\Utilities\Get $get) use ($statePath) {
                         $currentText = $get("{$statePath}.text");
 
                         return $currentText ? $currentText : 'Button';
                     })
-                    ->icon(function (Get $get) use ($statePath) {
+                    ->icon(function (\Filament\Schemas\Components\Utilities\Get $get) use ($statePath) {
                         $currentText = $get("{$statePath}.text");
 
                         return $currentText ? 'heroicon-o-pencil' : 'heroicon-o-plus';
                     })
-                    ->fillForm(fn (Get $get) => $get($statePath))
-                    ->form([
+                    ->fillForm(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($statePath))
+                    ->schema([
                         TextInput::make('text')
                             ->label('Text on the button')
                             ->required(),
@@ -48,14 +48,14 @@ class ButtonComponent
 
                         TrackingComponent::make(),
                     ])
-                    ->action(function ($data, Set $set) use ($statePath) {
+                    ->action(function ($data, \Filament\Schemas\Components\Utilities\Set $set) use ($statePath) {
                         $set($statePath, $data);
                     }),
-                Action::make('removeButton')
+                \Filament\Actions\Action::make('removeButton')
                     ->color('danger')
                     ->label(__('Remove button'))
                     ->icon('heroicon-o-trash')
-                    ->action(fn ($data, Set $set) => $set($statePath, [])),
+                    ->action(fn ($data, \Filament\Schemas\Components\Utilities\Set $set) => $set($statePath, [])),
             ]);
     }
 }

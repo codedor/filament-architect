@@ -10,13 +10,13 @@ trait HasDuplicateAction
 {
     public Closure|bool $hasDuplicateAction = false;
 
-    public function getDuplicateAction(): Action
+    public function getDuplicateAction(): \Filament\Actions\Action
     {
-        return Action::make('duplicateBlock')
+        return \Filament\Actions\Action::make('duplicateBlock')
             ->icon('heroicon-o-document-duplicate')
             ->hiddenLabel()
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->requiresConfirmation()
             ->action(function (array $arguments, self $component) {
                 $items = $component->getState();
