@@ -4,7 +4,7 @@ namespace Codedor\FilamentArchitect\Filament\Fields\Traits;
 
 use Closure;
 use Filament\Forms\Components\Actions\Action;
-use Filament\Support\Enums\ActionSize;
+use Filament\Support\Enums\Size;
 
 trait HasToggleButton
 {

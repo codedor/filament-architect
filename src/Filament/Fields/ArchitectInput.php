@@ -14,10 +14,8 @@ use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Support\Components\Attributes\ExposedLivewireMethod;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -63,52 +61,6 @@ class ArchitectInput extends Field
             fn (self $component): \Filament\Actions\Action => $component->getEditBlockAction(),
             fn (self $component): \Filament\Actions\Action => $component->getDeleteBlockAction(),
         ]);
-
-        // TODO: moved to dedicated method, but still to check how we have to dispatch these events in the blade files
-        // $this->registerListeners([
-        //     'filament-architect::editedBlock' => [
-        //         function (self $component, string $statePath, array $arguments): void {
-        //             if ($statePath !== $component->getStatePath()) {
-        //                 return;
-        //             }
-        //
-        //             $items = $component->getState();
-        //             $items[$arguments['row']][$arguments['uuid']]['data'] = $arguments['form']['state'];
-        //             $component->state($items);
-        //         },
-        //     ],
-        //     'reorder-row' => [
-        //         function (self $component, string $statePath, array $data): void {
-        //             if ($statePath !== $component->getStatePath()) {
-        //                 return;
-        //             }
-        //
-        //             $items = $component->getState();
-        //
-        //             $items = collect($items)
-        //                 ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
-        //                 ->values()
-        //                 ->toArray();
-        //
-        //             $component->state($items);
-        //         },
-        //     ],
-        //     'reorder-column' => [
-        //         function (self $component, string $statePath, array $data): void {
-        //             if ($statePath !== $component->getStatePath()) {
-        //                 return;
-        //             }
-        //
-        //             $items = $component->getState();
-        //
-        //             $items[$data['row']] = collect($items[$data['row']])
-        //                 ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
-        //                 ->toArray();
-        //
-        //             $component->state($items);
-        //         },
-        //     ],
-        // ]);
     }
 
     public function getArchitectPreviewAction(): \Filament\Actions\Action
@@ -247,6 +199,7 @@ class ArchitectInput extends Field
                     // https://github.com/filamentphp/filament/issues/8763
                     'arguments' => $action->getArguments(), // TODO: since fix does not apply anymore for Filament v4
                     'statePath' => $component->getStatePath(),
+                    'key' => $component->getKey(),
                 ]
             ));
     }
@@ -441,20 +394,20 @@ class ArchitectInput extends Field
     }
 
     #[ExposedLivewireMethod]
-    public function editedBlock(array $arguments): void
+    public function editedBlock(string $row, string $uuid, array $form): void
     {
         $items = $this->getState();
-        $items[$arguments['row']][$arguments['uuid']]['data'] = $arguments['form']['state'];
+        $items[$row][$uuid]['data'] = $form['state'];
         $this->state($items);
     }
 
     #[ExposedLivewireMethod]
-    public function reorderRow(array $data): void
+    public function reorderRow(array $newKeys): void
     {
         $items = $this->getState();
 
         $items = collect($items)
-            ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
+            ->sortBy(fn ($item, $key) => array_search($key, $newKeys))
             ->values()
             ->toArray();
 
@@ -462,12 +415,12 @@ class ArchitectInput extends Field
     }
 
     #[ExposedLivewireMethod]
-    public function reorderColumn(array $data): void
+    public function reorderColumn(array $newKeys, string $row): void
     {
         $items = $this->getState();
 
-        $items[$data['row']] = collect($items[$data['row']])
-            ->sortBy(fn ($item, $key) => array_search($key, $data['newKeys']))
+        $items[$row] = collect($items[$row])
+            ->sortBy(fn ($item, $key) => array_search($key, $newKeys))
             ->toArray();
 
         $this->state($items);

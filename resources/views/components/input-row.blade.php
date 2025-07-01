@@ -1,5 +1,5 @@
 @php
-    use Filament\Support\Enums\ActionSize;
+    use Filament\Support\Enums\Size;
     use Filament\Support\Enums\IconSize;
 
     $blockClassName = get_architect_block($blocks, $block['type']);
@@ -57,7 +57,7 @@
                     color="gray"
                     icon="heroicon-o-arrows-right-left"
                     class="border-2 bg-white dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 dark:text-gray-100 dark:hover:text-white cursor-move m-0"
-                    :size="ActionSize::Small"
+                    :size="Size::Small"
                     :icon-size="IconSize::Small"
                     x-sortable-handle
                 />
@@ -72,7 +72,7 @@
                         'uuid' => $uuid,
                         'row' => $rowKey,
                     ]"
-                    tooltip="{{ $shown ? 'Hide' : 'Show' }}"
+                    tooltip="Duplicate"
                 />
             @endif
 

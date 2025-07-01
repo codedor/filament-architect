@@ -4,13 +4,9 @@ namespace Codedor\FilamentArchitect\Livewire;
 
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -19,7 +15,7 @@ class EditModal extends Component implements HasForms, HasActions
     use InteractsWithActions;
     use InteractsWithForms;
 
-    public string $statePath;
+    public string $formKey;
 
     public array $state;
 
@@ -41,7 +37,6 @@ class EditModal extends Component implements HasForms, HasActions
                     TextInput::make('working_title')
                         ->helperText('This is purely to help you identify the block in the list of blocks.')
                         ->required(config('filament-architect.enable-slug-in-block'))
-                        ->live(onBlur: true)
                         ->afterStateUpdated(fn (\Filament\Schemas\Components\Utilities\Set $set, ?string $state, \Filament\Schemas\Components\Utilities\Get $get) => $get('slug') || $set('slug', Str::slug($state))),
 
                     TextInput::make('slug')

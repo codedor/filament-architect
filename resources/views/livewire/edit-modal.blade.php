@@ -4,10 +4,10 @@
         if (! validated) {
             return
         }
-
-        this.$wire.$parent.dispatchFormEvent(
-            'filament-architect::editedBlock',
-            '{{ $statePath }}',
+            
+        this.$wire.$parent.callSchemaComponentMethod(
+            @js($formKey),
+            'editedBlock',
             {
                 row: '{{ $arguments['row'] }}',
                 uuid: '{{ $arguments['uuid'] }}',
