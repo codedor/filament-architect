@@ -192,16 +192,11 @@ class ArchitectInput extends Field
             ->closeModalByClickingAway(false)
             ->modalSubmitAction(false)
             ->modalCancelAction(false)
-            ->modalContent(fn (self $component, Action $action) => view(
-                'filament-architect::edit-modal',
-                [
-                    // TODO: This is a hack to get the arguments to the modal
-                    // https://github.com/filamentphp/filament/issues/8763
-                    'arguments' => $action->getArguments(), // TODO: since fix does not apply anymore for Filament v4
-                    'statePath' => $component->getStatePath(),
-                    'key' => $component->getKey(),
-                ]
-            ));
+            ->modalContent(fn (self $component, Action $action) => view('filament-architect::edit-modal', [
+                'arguments' => $action->getArguments(),
+                'statePath' => $component->getStatePath(),
+                'key' => $component->getKey(),
+            ]));
     }
 
     public function getBaseAddBlockAction(string $name): \Filament\Actions\Action
