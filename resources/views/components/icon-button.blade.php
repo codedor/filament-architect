@@ -1,5 +1,5 @@
 @php
-    use Filament\Support\Enums\ActionSize;
+    use Filament\Support\Enums\Size;
     use Filament\Support\Enums\IconSize;
 @endphp
 
@@ -15,7 +15,8 @@
 
 @php
     $wireClickActionArguments = \Illuminate\Support\Js::from($arguments);
-    $wireClickAction = "mountFormComponentAction('{$statePath}', '{$action->getName()}', {$wireClickActionArguments})"
+    $wireClickActionMeta = \Illuminate\Support\Js::from(['schemaComponent' => str_replace('data.', 'form.', $statePath)]);
+    $wireClickAction = "mountAction('{$action->getName()}', {$wireClickActionArguments}, {$wireClickActionMeta})"
 @endphp
 
 <x-dynamic-component
@@ -27,7 +28,7 @@
     :color="$color"
     :wire:click="$wireClickAction"
     :icon="$action->getIcon()"
-    :size="ActionSize::Small"
+    :size="Size::Small"
     :icon-size="IconSize::Small"
     :label="$label"
     :$tooltip
