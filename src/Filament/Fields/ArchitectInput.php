@@ -9,12 +9,13 @@ use Codedor\FilamentArchitect\Filament\Fields\Traits\HasDuplicateAction;
 use Codedor\FilamentArchitect\Filament\Fields\Traits\HasToggleButton;
 use Codedor\FilamentArchitect\Models\ArchitectTemplate;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Filament\Actions\Action;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Support\Components\Attributes\ExposedLivewireMethod;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -190,13 +191,29 @@ class ArchitectInput extends Field
             ->color('gray')
             ->size(\Filament\Support\Enums\Size::Small)
             ->closeModalByClickingAway(false)
-            ->modalSubmitAction(false)
-            ->modalCancelAction(false)
-            ->modalContent(fn (self $component, Action $action) => view('filament-architect::edit-modal', [
-                'arguments' => $action->getArguments(),
-                'statePath' => $component->getStatePath(),
-                'key' => $component->getKey(),
-            ]));
+            ->fillForm(fn (array $arguments) => $arguments['block']['data'] ?? [])
+            ->schema(fn (array $arguments) => [
+                TextInput::make('working_title')
+                    ->helperText('This is purely to help you identify the block in the list of blocks.')
+                    ->required(config('filament-architect.enable-slug-in-block'))
+                    ->afterStateUpdated(fn (Set $set, ?string $state, Get $get) => $get('slug') || $set('slug', Str::slug($state))),
+
+                TextInput::make('slug')
+                    ->hidden(! config('filament-architect.enable-slug-in-block'))
+                    ->helperText('This slug will be used to make anchor links. Modifying this field will break existing anchor links to this block'),
+
+                ...$arguments['blockClassName']::make()
+                    ->locales($arguments['locales'])
+                    ->schema(),
+            ])
+            ->action(function (array $arguments, array $data, self $component) {
+                $items = $component->getState();
+                $row = $arguments['row'];
+                $uuid = $arguments['uuid'];
+                
+                $items[$row][$uuid]['data'] = $data;
+                $component->state($items);
+            });
     }
 
     public function getBaseAddBlockAction(string $name): \Filament\Actions\Action
@@ -386,14 +403,6 @@ class ArchitectInput extends Field
         }
 
         return $items;
-    }
-
-    #[ExposedLivewireMethod]
-    public function editedBlock(string $row, string $uuid, array $form): void
-    {
-        $items = $this->getState();
-        $items[$row][$uuid]['data'] = $form['state'];
-        $this->state($items);
     }
 
     #[ExposedLivewireMethod]
