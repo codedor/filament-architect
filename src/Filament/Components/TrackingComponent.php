@@ -13,19 +13,23 @@ class TrackingComponent
 {
     public static function make(): Component
     {
-        return Section::make('Tracking information')
+        return Section::make(__('filament-architect::admin.tracking information'))
             ->statePath('tracking')
             ->collapsed()
             ->columns(2)
             ->schema([
-                TextInput::make('category'),
+                TextInput::make('category')
+                    ->label(__('filament-architect::admin.category')),
 
                 Select::make('action')
+                    ->label(__('filament-architect::admin.action'))
                     ->options(ArchitectConfig::getTrackingActions()),
 
-                TextInput::make('label'),
+                TextInput::make('label')
+                    ->label(__('filament-architect::admin.label')),
 
-                Checkbox::make('non_interaction'),
+                Checkbox::make('non_interaction')
+                    ->label(__('filament-architect::admin.non interaction')),
             ]);
     }
 }
