@@ -32,11 +32,11 @@
             })"
         >
             @foreach ($state ?? [] as $rowKey => $row)
-                <div class="@container">
-                    <div
-                        class="w-full flex gap-2 @sm:px-2 items-center"
-                        x-sortable-item="{{ $rowKey }}"
-                    >
+                <div
+                    class="@container"
+                    x-sortable-item="{{ $rowKey }}"
+                >
+                    <div class="w-full flex gap-2 @sm:px-2 items-center">
                         <div class="grow flex flex-col gap-2">
                             <div class="relative grow flex gap-2 items-center">
                                 <div class="flex flex-col gap-2">
