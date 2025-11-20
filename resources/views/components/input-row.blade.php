@@ -72,7 +72,7 @@
                         'uuid' => $uuid,
                         'row' => $rowKey,
                     ]"
-                    tooltip="Duplicate"
+                    :tooltip="__('filament-architect::admin.duplicate block')"
                 />
             @endif
 
@@ -85,7 +85,7 @@
                         'uuid' => $uuid,
                         'row' => $rowKey,
                     ]"
-                    tooltip="{{ $shown ? 'Hide' : 'Show' }}"
+                    tooltip="{{ $shown ? __('filament-architect::admin.hide block') : __('filament-architect::admin.show block') }}"
                 />
             @endif
 
@@ -100,7 +100,7 @@
                     'blockClassName' => $blockClassName,
                     'locales' => $locales,
                 ]"
-                tooltip="Edit"
+                :tooltip="__('filament-architect::admin.edit block')"
             />
 
             <x-filament-architect::icon-button
@@ -112,7 +112,7 @@
                     'uuid' => $uuid,
                     'row' => $rowKey,
                 ]"
-                tooltip="Delete"
+                :tooltip="__('filament-architect::admin.delete block')"
             />
         </div>
     </div>
