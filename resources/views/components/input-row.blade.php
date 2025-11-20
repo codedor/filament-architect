@@ -72,7 +72,7 @@
                         'uuid' => $uuid,
                         'row' => $rowKey,
                     ]"
-                    tooltip="__('filament-architect::admin.duplicate block')"
+                    :tooltip="__('filament-architect::admin.duplicate block')"
                 />
             @endif
 
