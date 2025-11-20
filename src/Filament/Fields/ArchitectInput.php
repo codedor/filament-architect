@@ -39,6 +39,8 @@ class ArchitectInput extends Field
     public Closure|bool $hasTemplates = true;
     public Closure|bool $hasPreview = true;
 
+    public null|Closure $afterUpdatingBlocksCall = null;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -105,6 +107,20 @@ class ArchitectInput extends Field
                 },
             ],
         ]);
+    }
+
+    public function state(mixed $state): static
+    {
+        $return = parent::state($state);
+
+        $this->callAfterUpdatingBlocks();
+
+        return $return;
+    }
+
+    public function callAfterUpdatingBlocks(): void
+    {
+        $this->evaluate($this->afterUpdatingBlocksCall);
     }
 
     public function getArchitectPreviewAction(): Action
@@ -408,6 +424,13 @@ class ArchitectInput extends Field
     public function getHasPreview(): bool
     {
         return $this->evaluate($this->hasPreview);
+    }
+
+    public function afterUpdatingBlocks(null|Closure $afterUpdatingBlocksCall): static
+    {
+        $this->afterUpdatingBlocksCall = $afterUpdatingBlocksCall;
+
+        return $this;
     }
 
     private function newBlock(array $data)

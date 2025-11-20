@@ -174,6 +174,15 @@ Default value:
 ]
 ```
 
+### afterUpdatingBlocks
+
+After sorting/editing/adding/deleting a block this closure will be called, you can pass the usual Filament component variables to it.
+
+```php
+ArchitectInput::make('body')
+    ->afterUpdatingBlocks(fn (Component $livewire) => $livewire->dispatch('refreshPreview')),
+```
+
 ### enableDuplicateButton
 
 Enables or disables (disabled by default) the "duplicate" action for the Architect, allowing the user to duplicate rows easily.
