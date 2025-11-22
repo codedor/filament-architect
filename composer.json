@@ -10,10 +10,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "codedor/filament-image-or-video": "dev-feature/filament-v4",
-        "codedor/filament-link-picker": "dev-feature/filament-v4",
-        "codedor/filament-media-library": "dev-feature/filament-v4",
-        "filament/filament": "^4.0",
+        "codedor/filament-image-or-video": "dev-feature/filament-v5",
+        "codedor/filament-link-picker": "dev-feature/filament-v5",
+        "codedor/filament-media-library": "dev-feature/filament-v5",
+        "filament/filament": "^4.0|^5.0",
         "illuminate/contracts": "^10.0|^11.0|^12.0",
         "spatie/laravel-package-tools": "^1.12"
     },
