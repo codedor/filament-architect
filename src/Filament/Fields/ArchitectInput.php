@@ -68,7 +68,9 @@ class ArchitectInput extends Field
     {
         return \Filament\Actions\Action::make('architectPreview')
             ->icon('heroicon-o-eye')
-            ->label("Preview {$this->getName()}")
+            ->label(__('filament-architect::admin.preview :name', [
+                'name' => $this->getName(),
+            ]))
             ->color('gray')
             ->size(\Filament\Support\Enums\Size::Small)
             ->extraAttributes([
@@ -82,13 +84,14 @@ class ArchitectInput extends Field
     {
         return \Filament\Actions\Action::make('startFromTemplate')
             ->icon('heroicon-o-document-duplicate')
-            ->label('Start from template')
+            ->label(__('filament-architect::admin.start from template'))
             ->color('gray')
             ->size(\Filament\Support\Enums\Size::Small)
             ->closeModalByClickingAway(false)
             ->hidden(fn () => ! ((bool) ArchitectTemplate::count()))
             ->schema(fn () => [
                 Select::make('block')
+                    ->label(__('filament-architect::admin.block'))
                     ->options(fn () => ArchitectTemplate::orderBy('name')->pluck('name', 'id'))
                     ->hiddenLabel()
                     ->required(),
@@ -99,7 +102,7 @@ class ArchitectInput extends Field
                 $component->state($template->body ?? []);
 
                 Notification::make()
-                    ->title('The template has been loaded')
+                    ->title(__('filament-architect::admin.template loaded'))
                     ->success()
                     ->send();
             })
@@ -112,7 +115,7 @@ class ArchitectInput extends Field
     {
         return \Filament\Actions\Action::make('saveAsTemplate')
             ->icon('heroicon-o-document-duplicate')
-            ->label('Save as template')
+            ->label(__('filament-architect::admin.save as template'))
             ->color('gray')
             ->size(\Filament\Support\Enums\Size::Small)
             ->extraAttributes([
@@ -124,18 +127,18 @@ class ArchitectInput extends Field
                     ->default('new')
                     ->reactive()
                     ->options([
-                        'new' => 'Save as new template',
-                        'overwrite' => 'Overwrite existing template',
+                        'new' => __('filament-architect::admin.save as new template'),
+                        'overwrite' => __('filament-architect::admin.overwrite existing template'),
                     ]),
 
                 TextInput::make('name')
-                    ->label('Template name')
-                    ->helperText('Make sure the name is unique and descriptive')
                     ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get('new_overwrite') === 'overwrite')
+                    ->label(__('filament-architect::admin.template name'))
+                    ->helperText(__('filament-architect::admin.template name help text'))
                     ->required(),
 
                 Select::make('template')
-                    ->label('Template to overwrite')
+                    ->label(__('filament-architect::admin.template to overwrite'))
                     ->options(fn () => ArchitectTemplate::orderBy('name')->pluck('name', 'id'))
                     ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get('new_overwrite') === 'new')
                     ->required(),
@@ -153,7 +156,7 @@ class ArchitectInput extends Field
                 }
 
                 Notification::make()
-                    ->title('The template has been saved')
+                    ->title(__('filament-architect::admin.template saved'))
                     ->success()
                     ->send();
             });
@@ -162,6 +165,7 @@ class ArchitectInput extends Field
     public function getDeleteBlockAction(): \Filament\Actions\Action
     {
         return \Filament\Actions\Action::make('deleteBlock')
+            ->label(__('filament-architect::admin.delete block'))
             ->icon('heroicon-o-trash')
             ->hiddenLabel()
             ->color('danger')
@@ -186,6 +190,7 @@ class ArchitectInput extends Field
     public function getEditBlockAction(): \Filament\Actions\Action
     {
         return \Filament\Actions\Action::make('editBlock')
+            ->label(__('filament-architect::admin.edit block'))
             ->icon('heroicon-o-pencil')
             ->hiddenLabel()
             ->color('gray')
@@ -210,7 +215,7 @@ class ArchitectInput extends Field
                 $items = $component->getState();
                 $row = $arguments['row'];
                 $uuid = $arguments['uuid'];
-                
+
                 $items[$row][$uuid]['data'] = $data;
                 $component->state($items);
             });
@@ -234,66 +239,70 @@ class ArchitectInput extends Field
 
     public function getAddBlockAction(): \Filament\Actions\Action
     {
-        return $this->getBaseAddBlockAction('addBlock')->action(function (self $component, array $arguments, array $data) {
-            $newUuid = (string) Str::uuid();
+        return $this->getBaseAddBlockAction('addBlock')
+            ->label(__('filament-architect::admin.add block'))
+            ->action(function (self $component, array $arguments, array $data) {
+                $newUuid = (string) Str::uuid();
 
-            $items = $component->getState();
-            $newBlock = $this->newBlock($data);
+                $items = $component->getState();
+                $newBlock = $this->newBlock($data);
 
-            // If the state is empty, add the new block to the start of the array
-            if (empty($items)) {
-                $items = [[$newUuid => $newBlock]];
+                // If the state is empty, add the new block to the start of the array
+                if (empty($items)) {
+                    $items = [[$newUuid => $newBlock]];
+                    $component->state($items);
+
+                    return;
+                }
+
+                // Insert between the current row and the next one
+                $items = array_merge(
+                    array_slice($items, 0, $arguments['row'] + 1),
+                    [[$newUuid => $newBlock]],
+                    array_slice($items, $arguments['row'] + 1),
+                );
+
                 $component->state($items);
-
-                return;
-            }
-
-            // Insert between the current row and the next one
-            $items = array_merge(
-                array_slice($items, 0, $arguments['row'] + 1),
-                [[$newUuid => $newBlock]],
-                array_slice($items, $arguments['row'] + 1),
-            );
-
-            $component->state($items);
-        });
+            });
     }
 
     public function getAddBlockBetweenAction(): \Filament\Actions\Action
     {
-        return $this->getBaseAddBlockAction('addBlockBetween')->action(function (self $component, array $arguments, array $data) {
-            $newUuid = (string) Str::uuid();
+        return $this->getBaseAddBlockAction('addBlockBetween')
+            ->label(__('filament-architect::admin.add block between'))
+            ->action(function (self $component, array $arguments, array $data) {
+                $newUuid = (string) Str::uuid();
 
-            $after = $arguments['insertAfter'] ?? null;
-            $newBlock = $this->newBlock($data);
-            $newBlock['width'] = 12;
+                $after = $arguments['insertAfter'] ?? null;
+                $newBlock = $this->newBlock($data);
+                $newBlock['width'] = 12;
 
-            // Insert between the current column and the next one
-            if ($after) {
-                $items = [];
-                foreach ($component->getState() as $rowKey => $row) {
-                    foreach ($row as $uuid => $item) {
-                        $items[$rowKey][$uuid] = $item;
+                // Insert between the current column and the next one
+                if ($after) {
+                    $items = [];
+                    foreach ($component->getState() as $rowKey => $row) {
+                        foreach ($row as $uuid => $item) {
+                            $items[$rowKey][$uuid] = $item;
 
-                        if ($uuid === $after) {
-                            $items[$rowKey][$newUuid] = $newBlock;
+                            if ($uuid === $after) {
+                                $items[$rowKey][$newUuid] = $newBlock;
+                            }
                         }
                     }
+                } else {
+                    // Add the new block to the start of the row array
+                    $items = $component->getState();
+
+                    $items[$arguments['row']] = array_merge(
+                        [$newUuid => $newBlock],
+                        $items[$arguments['row']],
+                    );
                 }
-            } else {
-                // Add the new block to the start of the row array
-                $items = $component->getState();
 
-                $items[$arguments['row']] = array_merge(
-                    [$newUuid => $newBlock],
-                    $items[$arguments['row']],
-                );
-            }
+                $items = $this->normalizeWidth($items);
 
-            $items = $this->normalizeWidth($items);
-
-            $component->state($items);
-        });
+                $component->state($items);
+            });
     }
 
     public function maxFieldsPerRow(null|int|Closure $maxFieldsPerRow): static

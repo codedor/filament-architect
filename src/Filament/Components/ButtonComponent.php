@@ -23,7 +23,7 @@ class ButtonComponent
                     ->label(function (\Filament\Schemas\Components\Utilities\Get $get) use ($statePath) {
                         $currentText = $get("{$statePath}.text");
 
-                        return $currentText ? $currentText : 'Button';
+                        return $currentText ? $currentText : __('filament-architect::admin.button');
                     })
                     ->icon(function (\Filament\Schemas\Components\Utilities\Get $get) use ($statePath) {
                         $currentText = $get("{$statePath}.text");
@@ -33,18 +33,21 @@ class ButtonComponent
                     ->fillForm(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($statePath))
                     ->schema([
                         TextInput::make('text')
-                            ->label('Text on the button')
+                            ->label(__('filament-architect::admin.text on button'))
                             ->required(),
 
                         Select::make('type')
+                            ->label(__('filament-architect::admin.type'))
                             ->options(ArchitectConfig::getButtonClasses())
                             ->required(),
 
                         LinkPickerInput::make('link')
+                            ->label(__('filament-architect::admin.link'))
                             ->required(),
 
                         TextInput::make('title')
-                            ->helperText('Optional, will be displayed when hovering over the button'),
+                            ->label(__('filament-architect::admin.title'))
+                            ->helperText(__('filament-architect::admin.title help')),
 
                         TrackingComponent::make(),
                     ])
@@ -53,7 +56,7 @@ class ButtonComponent
                     }),
                 \Filament\Actions\Action::make('removeButton')
                     ->color('danger')
-                    ->label(__('Remove button'))
+                    ->label(__('filament-architect::admin.remove button'))
                     ->icon('heroicon-o-trash')
                     ->action(fn ($data, \Filament\Schemas\Components\Utilities\Set $set) => $set($statePath, [])),
             ]);
