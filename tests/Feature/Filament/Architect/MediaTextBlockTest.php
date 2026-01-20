@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\MediaTextBlock;
+use Wotz\FilamentArchitect\Filament\Architect\MediaTextBlock;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
@@ -15,7 +15,7 @@ it('has a schema', function () {
             fn ($field) => $field
                 ->toBeInstanceOf(\Filament\Forms\Components\Radio::class),
             fn ($field) => $field
-                ->toBeInstanceOf(\Codedor\MediaLibrary\Filament\AttachmentInput::class),
+                ->toBeInstanceOf(\Wotz\MediaLibrary\Filament\AttachmentInput::class),
             fn ($field) => $field
                 ->toBeInstanceOf(RichEditor::class),
         );

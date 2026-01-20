@@ -1,8 +1,8 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Pages;
+namespace Wotz\FilamentArchitect\Filament\Pages;
 
-use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
+use Wotz\FilamentArchitect\Filament\Fields\ArchitectInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;

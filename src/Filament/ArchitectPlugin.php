@@ -1,9 +1,9 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament;
+namespace Wotz\FilamentArchitect\Filament;
 
-use Codedor\FilamentArchitect\Filament\Pages\ArchitectTest;
-use Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource;
+use Wotz\FilamentArchitect\Filament\Pages\ArchitectTest;
+use Wotz\FilamentArchitect\Filament\Resources\ArchitectTemplateResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 

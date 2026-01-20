@@ -1,14 +1,14 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Fields;
+namespace Wotz\FilamentArchitect\Filament\Fields;
 
 use Closure;
-use Codedor\FilamentArchitect\Facades\ArchitectConfig;
-use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
-use Codedor\FilamentArchitect\Filament\Fields\Traits\HasDuplicateAction;
-use Codedor\FilamentArchitect\Filament\Fields\Traits\HasToggleButton;
-use Codedor\FilamentArchitect\Models\ArchitectTemplate;
-use Codedor\LocaleCollection\Facades\LocaleCollection;
+use Wotz\FilamentArchitect\Facades\ArchitectConfig;
+use Wotz\FilamentArchitect\Filament\Architect\BaseBlock;
+use Wotz\FilamentArchitect\Filament\Fields\Traits\HasDuplicateAction;
+use Wotz\FilamentArchitect\Filament\Fields\Traits\HasToggleButton;
+use Wotz\FilamentArchitect\Models\ArchitectTemplate;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;

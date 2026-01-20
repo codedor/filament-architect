@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\CtaBlock;
+use Wotz\FilamentArchitect\Filament\Architect\CtaBlock;
 
 beforeEach(function () {
     $this->ctaBlock = new CtaBlock();

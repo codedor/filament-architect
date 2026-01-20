@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Enums\WidthOptions;
+use Wotz\FilamentArchitect\Enums\WidthOptions;
 
 it('has a toSelect method', function () {
     expect(WidthOptions::toSelect())

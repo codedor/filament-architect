@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\CardBlock;
+use Wotz\FilamentArchitect\Filament\Architect\CardBlock;
 use Filament\Forms\Components\Repeater;
 
 beforeEach(function () {

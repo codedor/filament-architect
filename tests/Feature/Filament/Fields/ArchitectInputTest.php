@@ -1,9 +1,9 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
-use Codedor\FilamentArchitect\Filament\Architect\ButtonBlock;
-use Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput;
-use Codedor\FilamentArchitect\Tests\Fixtures\Blocks\TestBlock;
+use Wotz\FilamentArchitect\Filament\Architect\BaseBlock;
+use Wotz\FilamentArchitect\Filament\Architect\ButtonBlock;
+use Wotz\FilamentArchitect\Filament\Fields\PageArchitectInput;
+use Wotz\FilamentArchitect\Tests\Fixtures\Blocks\TestBlock;
 use Filament\Forms\Components\Builder\Block;
 
 beforeEach(function () {

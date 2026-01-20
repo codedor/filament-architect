@@ -9,7 +9,7 @@ This package extends the default [Builder](https://filamentphp.com/docs/2.x/form
 You can install the package via composer:
 
 ```bash
-composer require codedor/filament-architect
+composer require wotz/filament-architect
 ```
 
 You can publish the config file with:
@@ -37,7 +37,7 @@ php artisan vendor:publish --tag="filament-architect-views"
 ## Usage
 
 ```php
-\Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput::make('body')
+\Wotz\FilamentArchitect\Filament\Fields\PageArchitectInput::make('body')
     ->required(),
 ```
 
@@ -65,7 +65,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-If you discover any security-related issues, please email info@codedor.be instead of using the issue tracker.
+If you discover any security-related issues, please email info@whoownsthezebra.be instead of using the issue tracker.
 
 ## License
 

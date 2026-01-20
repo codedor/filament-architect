@@ -1,11 +1,11 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Providers;
+namespace Wotz\FilamentArchitect\Providers;
 
-use Codedor\FilamentArchitect\ArchitectConfig;
-use Codedor\FilamentArchitect\Commands\BlockMakeCommand;
-use Codedor\FilamentArchitect\Livewire\ArchitectPreview;
-use Codedor\FilamentArchitect\Livewire\EditModal;
+use Wotz\FilamentArchitect\ArchitectConfig;
+use Wotz\FilamentArchitect\Commands\BlockMakeCommand;
+use Wotz\FilamentArchitect\Livewire\ArchitectPreview;
+use Wotz\FilamentArchitect\Livewire\EditModal;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

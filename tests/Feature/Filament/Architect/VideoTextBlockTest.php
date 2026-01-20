@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\VideoTextBlock;
+use Wotz\FilamentArchitect\Filament\Architect\VideoTextBlock;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Components\Fieldset;
 

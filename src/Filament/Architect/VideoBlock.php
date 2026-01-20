@@ -1,8 +1,8 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Architect;
+namespace Wotz\FilamentArchitect\Filament\Architect;
 
-use Codedor\FilamentImageOrVideo\Filament\Components\VideoEmbed;
+use Wotz\FilamentImageOrVideo\Filament\Components\VideoEmbed;
 use Illuminate\View\View;
 
 class VideoBlock extends BaseBlock

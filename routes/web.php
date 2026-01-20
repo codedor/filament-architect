@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Facades\BlockCollection;
+use Wotz\FilamentArchitect\Facades\BlockCollection;
 use Illuminate\Support\Facades\Route;
 
 if (app()->environment('local')) {

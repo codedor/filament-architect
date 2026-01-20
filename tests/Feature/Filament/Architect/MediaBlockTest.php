@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\MediaBlock;
+use Wotz\FilamentArchitect\Filament\Architect\MediaBlock;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;
