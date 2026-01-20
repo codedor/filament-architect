@@ -1,11 +1,11 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Architect;
+namespace Wotz\FilamentArchitect\Filament\Architect;
 
-use Codedor\FilamentArchitect\ArchitectFormats;
-use Codedor\FilamentArchitect\Facades\ArchitectConfig;
-use Codedor\MediaLibrary\Filament\AttachmentInput;
-use Codedor\MediaLibrary\Models\Attachment;
+use Wotz\FilamentArchitect\ArchitectFormats;
+use Wotz\FilamentArchitect\Facades\ArchitectConfig;
+use Wotz\MediaLibrary\Filament\AttachmentInput;
+use Wotz\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Get;
@@ -29,7 +29,7 @@ class MediaBlock extends BaseBlock
             Radio::make('width')
                 ->visible((bool) ArchitectConfig::getWidthOptionsEnum())
                 ->required()
-                ->options(function (Get $get) {
+                ->options(function (\Filament\Schemas\Components\Utilities\Get $get) {
                     $enum = ArchitectConfig::getWidthOptionsEnum();
 
                     if (! $enum) {

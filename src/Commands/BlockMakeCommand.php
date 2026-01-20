@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Commands;
+namespace Wotz\FilamentArchitect\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\GeneratorCommand;

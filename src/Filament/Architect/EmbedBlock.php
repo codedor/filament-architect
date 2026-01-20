@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Architect;
+namespace Wotz\FilamentArchitect\Filament\Architect;
 
 use Filament\Forms\Components\Textarea;
 use Illuminate\View\View;

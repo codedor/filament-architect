@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Fields;
+namespace Wotz\FilamentArchitect\Filament\Fields;
 
 class PageArchitectInput extends ArchitectInput
 {

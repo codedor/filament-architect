@@ -1,30 +1,29 @@
 {
-    "name": "codedor/filament-architect",
+    "name": "wotz/filament-architect",
     "description": "Extended Builder field for Filament",
     "keywords": [
-        "codedor",
+        "who owns the zebra",
         "laravel",
         "filament-architect"
     ],
-    "homepage": "https://github.com/codedor/filament-architect",
+    "homepage": "https://github.com/wotzebra/filament-architect",
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "awcodes/filament-tiptap-editor": "^3.2",
-        "codedor/filament-image-or-video": "^1.1",
-        "codedor/filament-link-picker": "^1.6",
-        "codedor/filament-media-library": "^2.0|^3.0",
-        "filament/filament": "^3.1",
+        "filament/filament": "^4.0|^5.0",
         "illuminate/contracts": "^10.0|^11.0|^12.0",
-        "spatie/laravel-package-tools": "^1.12"
+        "spatie/laravel-package-tools": "^1.12",
+        "wotz/filament-image-or-video": "^2.0",
+        "wotz/filament-link-picker": "^2.0",
+        "wotz/filament-media-library": "^4.0"
     },
     "require-dev": {
+        "larastan/larastan": "^2.0|^3.0",
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.0|^8.0",
-        "larastan/larastan": "^2.0|^3.0",
         "orchestra/testbench": "^8.0|^9.0|^10.0",
-        "pestphp/pest": "^2.0|^3.0",
-        "pestphp/pest-plugin-laravel": "^2.0|^3.0",
+        "pestphp/pest": "^2.0|^3.0|^4.0",
+        "pestphp/pest-plugin-laravel": "^2.0|^3.0|^4.0",
         "phpstan/extension-installer": "^1.1|^2.0",
         "phpstan/phpstan-deprecation-rules": "^1.0|^2.0",
         "phpstan/phpstan-phpunit": "^1.0|^2.0",
@@ -33,8 +32,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Codedor\\FilamentArchitect\\": "src",
-            "Codedor\\FilamentArchitect\\Database\\Factories\\": "database/factories"
+            "Wotz\\FilamentArchitect\\": "src",
+            "Wotz\\FilamentArchitect\\Database\\Factories\\": "database/factories"
         },
         "files": [
             "src/helpers.php"
@@ -42,13 +41,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Codedor\\FilamentArchitect\\Tests\\": "tests"
+            "Wotz\\FilamentArchitect\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Codedor\\FilamentArchitect\\Providers\\FilamentArchitectServiceProvider"
+                "Wotz\\FilamentArchitect\\Providers\\FilamentArchitectServiceProvider"
             ]
         }
     },

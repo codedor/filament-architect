@@ -1,10 +1,10 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Architect;
+namespace Wotz\FilamentArchitect\Filament\Architect;
 
-use Codedor\FilamentImageOrVideo\Filament\Components\VideoEmbed;
+use Wotz\FilamentImageOrVideo\Filament\Components\VideoEmbed;
 use Filament\Forms\Components\Radio;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\View\View;
 
 class VideoTextBlock extends BaseBlock
@@ -30,7 +30,7 @@ class VideoTextBlock extends BaseBlock
 
             VideoEmbed::make('video'),
 
-            TiptapEditor::make('description')
+            RichEditor::make('description')
                 ->label('Text')
                 ->required(),
         ];

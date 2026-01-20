@@ -1,22 +1,22 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Fields\Traits;
+namespace Wotz\FilamentArchitect\Filament\Fields\Traits;
 
 use Closure;
 use Filament\Forms\Components\Actions\Action;
-use Filament\Support\Enums\ActionSize;
+use Filament\Support\Enums\Size;
 
 trait HasDuplicateAction
 {
     public Closure|bool $hasDuplicateAction = false;
 
-    public function getDuplicateAction(): Action
+    public function getDuplicateAction(): \Filament\Actions\Action
     {
-        return Action::make('duplicateBlock')
+        return \Filament\Actions\Action::make('duplicateBlock')
             ->icon('heroicon-o-document-duplicate')
             ->hiddenLabel()
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->requiresConfirmation()
             ->action(function (array $arguments, self $component) {
                 $items = $component->getState();

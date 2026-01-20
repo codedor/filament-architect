@@ -1,11 +1,11 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Resources;
+namespace Wotz\FilamentArchitect\Filament\Resources;
 
-use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
-use Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput;
-use Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
-use Codedor\FilamentArchitect\Models\ArchitectTemplate;
+use Wotz\FilamentArchitect\Filament\Fields\ArchitectInput;
+use Wotz\FilamentArchitect\Filament\Fields\PageArchitectInput;
+use Wotz\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
+use Wotz\FilamentArchitect\Models\ArchitectTemplate;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,14 +16,14 @@ class ArchitectTemplateResource extends Resource
 {
     protected static ?string $model = ArchitectTemplate::class;
 
-    protected static ?string $navigationGroup = 'Architect';
+    protected static string | \UnitEnum | null $navigationGroup = 'Architect';
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    public static function form(Form $form): Form
+    public static function form(\Filament\Schemas\Schema $schema): \Filament\Schemas\Schema
     {
-        return $form->schema([
-            Forms\Components\Section::make()->schema([
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make()->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->unique(ignoreRecord: true),
@@ -40,11 +40,11 @@ class ArchitectTemplateResource extends Resource
                 Tables\Columns\TextColumn::make('name'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                \Filament\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

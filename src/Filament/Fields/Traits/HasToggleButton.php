@@ -1,22 +1,22 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Fields\Traits;
+namespace Wotz\FilamentArchitect\Filament\Fields\Traits;
 
 use Closure;
 use Filament\Forms\Components\Actions\Action;
-use Filament\Support\Enums\ActionSize;
+use Filament\Support\Enums\Size;
 
 trait HasToggleButton
 {
     public Closure|bool $enableShownButton = false;
 
-    public function getEnableBlockAction(string $name = 'enableBlock'): Action
+    public function getEnableBlockAction(string $name = 'enableBlock'): \Filament\Actions\Action
     {
-        return Action::make($name)
+        return \Filament\Actions\Action::make($name)
             ->icon('heroicon-o-eye-slash')
             ->hiddenLabel()
             ->color('gray')
-            ->size(ActionSize::Small)
+            ->size(\Filament\Support\Enums\Size::Small)
             ->action(function (self $component, array $arguments) {
                 $items = $component->getState();
                 $items[$arguments['row']][$arguments['uuid']]['shown'] = ! ($items[$arguments['row']][$arguments['uuid']]['shown'] ?? true);
@@ -24,7 +24,7 @@ trait HasToggleButton
             });
     }
 
-    public function getDisableBlockAction(): Action
+    public function getDisableBlockAction(): \Filament\Actions\Action
     {
         return $this->getEnableBlockAction('disableBlock')
             ->icon('heroicon-o-eye');

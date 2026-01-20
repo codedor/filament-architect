@@ -1,10 +1,11 @@
 @php
-    use Filament\Support\Enums\ActionSize;
+    use Filament\Support\Enums\Size;
     use Filament\Support\Enums\IconSize;
 
     $state = $getState() ?? [];
     $statePath = $getStatePath();
     $locales = $getLocales();
+    $key = $getKey();
 @endphp
 
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
@@ -27,7 +28,7 @@
         <div
             class="w-full flex flex-col gap-2"
             x-sortable
-            x-on:end.stop="$wire.dispatchFormEvent('reorder-row', '{{ $statePath }}', {
+            x-on:end.stop="$wire.callSchemaComponentMethod(@js($key), 'reorderRow', {
                 newKeys: $event.target.sortable.toArray(),
             })"
         >
@@ -53,7 +54,7 @@
                                             color="gray"
                                             icon="heroicon-o-arrows-up-down"
                                             class="border-2 dark:bg-white/5 dark:hover:bg-white/10 dark:border-gray-700 cursor-move m-0"
-                                            :size="ActionSize::Small"
+                                            :size="Size::Small"
                                             :icon-size="IconSize::Small"
                                             x-sortable-handle
                                         />
@@ -63,7 +64,7 @@
                                 <div
                                     class="grow w-full grid gap-2 grid-cols-12"
                                     x-sortable
-                                    x-on:end.stop="$wire.dispatchFormEvent('reorder-column', '{{ $statePath }}', {
+                                    x-on:end.stop="$wire.callSchemaComponentMethod(@js($key), 'reorder-column', {
                                         newKeys: $event.target.sortable.toArray(),
                                         row: '{{ $rowKey }}',
                                     })"

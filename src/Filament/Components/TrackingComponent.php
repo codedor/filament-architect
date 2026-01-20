@@ -1,19 +1,17 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Components;
+namespace Wotz\FilamentArchitect\Filament\Components;
 
-use Codedor\FilamentArchitect\Facades\ArchitectConfig;
 use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\Component;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Wotz\FilamentArchitect\Facades\ArchitectConfig;
 
 class TrackingComponent
 {
-    public static function make(): Component
+    public static function make(): \Filament\Schemas\Components\Component
     {
-        return Section::make(__('filament-architect::admin.tracking information'))
+        return \Filament\Schemas\Components\Section::make(__('filament-architect::admin.tracking information'))
             ->statePath('tracking')
             ->collapsed()
             ->columns(2)

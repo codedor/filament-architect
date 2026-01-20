@@ -1,12 +1,12 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Architect;
+namespace Wotz\FilamentArchitect\Filament\Architect;
 
-use Codedor\FilamentArchitect\ArchitectFormats;
-use Codedor\MediaLibrary\Filament\AttachmentInput;
-use Codedor\MediaLibrary\Models\Attachment;
+use Wotz\FilamentArchitect\ArchitectFormats;
+use Wotz\MediaLibrary\Filament\AttachmentInput;
+use Wotz\MediaLibrary\Models\Attachment;
 use Filament\Forms\Components\Radio;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\View\View;
 
 class MediaTextBlock extends BaseBlock
@@ -36,7 +36,7 @@ class MediaTextBlock extends BaseBlock
                 ->allowedFormats(ArchitectFormats::get())
                 ->required(),
 
-            TiptapEditor::make('description')
+            RichEditor::make('description')
                 ->label('Text to display'),
         ];
     }

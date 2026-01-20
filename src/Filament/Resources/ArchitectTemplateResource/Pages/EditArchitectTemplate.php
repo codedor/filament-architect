@@ -1,8 +1,8 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
+namespace Wotz\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
 
-use Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource;
+use Wotz\FilamentArchitect\Filament\Resources\ArchitectTemplateResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 

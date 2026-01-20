@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect;
+namespace Wotz\FilamentArchitect;
 
 class ArchitectFormats
 {

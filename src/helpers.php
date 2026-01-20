@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
+use Wotz\FilamentArchitect\Filament\Architect\BaseBlock;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 

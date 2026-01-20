@@ -1,13 +1,9 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property Codedor\\\\FilamentArchitect\\\\Livewire\\\\EditModal\\:\\:\\$form.$#"
+			message: "#^Access to an undefined property Wotz\\\\FilamentArchitect\\\\Livewire\\\\EditModal\\:\\:\\$form.$#"
 			count: 3
 			path: src/Livewire/EditModal.php
-		-
-			message: "#^Access to an undefined property Filament\\\\Forms\\\\Contracts\\\\HasForms\\:\\:\\$mountedFormComponentActionsArguments.$#"
-			count: 1
-			path: src/Filament/Fields/ArchitectInput.php
 		-
 			message: "#^Unsafe usage of new static\\(\\).$#"
 			count: 1
@@ -17,7 +13,7 @@ parameters:
 			count: 1
 			path: src/Filament/Architect/BaseBlock.php
 		-
-			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<int,int\\>\\:\\:map\\(\\) expects callable\\(int, int\\)\\: FilamentTiptapEditor\\\\TiptapEditor, Closure\\(string\\)\\: FilamentTiptapEditor\\\\TiptapEditor given.$#"
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<int,int\\>\\:\\:map\\(\\) expects callable\\(int, int\\)\\: Filament\\\\Forms\\\\Components\\\\RichEditor, Closure\\(string\\)\\: Filament\\\\Forms\\\\Components\\\\RichEditor given.$#"
 			count: 1
 			path: src/Filament/Architect/TextBlock.php
 		-
@@ -30,10 +26,6 @@ parameters:
 			path: src/Livewire/ArchitectPreview.php
 		-
 			message: "#^Parameter \\#1 \\$view of function view expects view-string\\|null, string given.$#"
-			count: 1
-			path: src/Filament/Fields/ArchitectInput.php
-		-
-			message: "#^Property Codedor\\\\FilamentArchitect\\\\Filament\\\\Fields\\\\ArchitectInput\\:\\:\\$view \\(view-string\\) does not accept default value of type string.$#"
 			count: 1
 			path: src/Filament/Fields/ArchitectInput.php
 		-

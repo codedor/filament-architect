@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Engines;
+namespace Wotz\FilamentArchitect\Engines;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Htmlable;

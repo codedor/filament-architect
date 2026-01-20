@@ -1,8 +1,8 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Architect;
+namespace Wotz\FilamentArchitect\Filament\Architect;
 
-use Codedor\FilamentArchitect\Filament\Components\ButtonComponent;
+use Wotz\FilamentArchitect\Filament\Components\ButtonComponent;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Illuminate\View\View;

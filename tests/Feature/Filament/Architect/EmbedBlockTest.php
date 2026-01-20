@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\EmbedBlock;
+use Wotz\FilamentArchitect\Filament\Architect\EmbedBlock;
 use Filament\Forms\Components\Textarea;
 
 beforeEach(function () {

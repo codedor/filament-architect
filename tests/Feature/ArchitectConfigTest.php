@@ -1,7 +1,7 @@
 <?php
 
-use Codedor\FilamentArchitect\Enums\WidthOptions;
-use Codedor\FilamentArchitect\Facades\ArchitectConfig;
+use Wotz\FilamentArchitect\Enums\WidthOptions;
+use Wotz\FilamentArchitect\Facades\ArchitectConfig;
 
 it('can fill from config', function () {
     config()->set([
@@ -32,7 +32,7 @@ it('can fill from config', function () {
 });
 
 it('can set empty enum', function () {
-    $architectConfig = new \Codedor\FilamentArchitect\ArchitectConfig();
+    $architectConfig = new \Wotz\FilamentArchitect\ArchitectConfig();
 
     $architectConfig->widthOptionsEnum(null);
 
@@ -40,15 +40,15 @@ it('can set empty enum', function () {
 });
 
 it('throws error if enum does not exist', function () {
-    $architectConfig = new \Codedor\FilamentArchitect\ArchitectConfig();
+    $architectConfig = new \Wotz\FilamentArchitect\ArchitectConfig();
 
-    $architectConfig->widthOptionsEnum(\Codedor\FilamentArchitect\ArchitectConfig::class);
+    $architectConfig->widthOptionsEnum(\Wotz\FilamentArchitect\ArchitectConfig::class);
 
     expect($architectConfig->getWidthOptionsEnum())->toBeNull();
 })->throws(Exception::class);
 
 it('can set preview action', function () {
-    $architectConfig = new \Codedor\FilamentArchitect\ArchitectConfig();
+    $architectConfig = new \Wotz\FilamentArchitect\ArchitectConfig();
 
     $architectConfig->previewAction(fn () => 'preview');
 

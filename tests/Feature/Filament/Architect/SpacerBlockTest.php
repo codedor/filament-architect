@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\SpacerBlock;
+use Wotz\FilamentArchitect\Filament\Architect\SpacerBlock;
 use Filament\Forms\Components\TextInput;
 
 beforeEach(function () {

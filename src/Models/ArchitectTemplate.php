@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Models;
+namespace Wotz\FilamentArchitect\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

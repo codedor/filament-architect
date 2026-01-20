@@ -2,8 +2,8 @@
 
 namespace {{ namespace }};
 
-use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
 use Illuminate\View\View;
+use Wotz\FilamentArchitect\Filament\Architect\BaseBlock;
 
 class {{ class }} extends BaseBlock
 {

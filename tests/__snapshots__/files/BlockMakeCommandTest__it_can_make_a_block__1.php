@@ -2,8 +2,8 @@
 
 namespace App\Architect;
 
-use Codedor\FilamentArchitect\Filament\Architect\BaseBlock;
 use Illuminate\View\View;
+use Wotz\FilamentArchitect\Filament\Architect\BaseBlock;
 
 class TestBlock extends BaseBlock
 {
