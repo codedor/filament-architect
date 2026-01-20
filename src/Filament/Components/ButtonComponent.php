@@ -1,9 +1,9 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Components;
+namespace Wotz\FilamentArchitect\Filament\Components;
 
-use Codedor\FilamentArchitect\Facades\ArchitectConfig;
-use Codedor\LinkPicker\Filament\LinkPickerInput;
+use Wotz\FilamentArchitect\Facades\ArchitectConfig;
+use Wotz\LinkPicker\Filament\LinkPickerInput;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Select;

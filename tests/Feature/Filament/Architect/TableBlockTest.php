@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\TableBlock;
+use Wotz\FilamentArchitect\Filament\Architect\TableBlock;
 use Filament\Forms\Components\RichEditor;
 
 beforeEach(function () {

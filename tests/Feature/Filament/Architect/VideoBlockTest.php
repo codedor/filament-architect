@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\VideoBlock;
+use Wotz\FilamentArchitect\Filament\Architect\VideoBlock;
 use Filament\Schemas\Components\Fieldset;
 
 beforeEach(function () {

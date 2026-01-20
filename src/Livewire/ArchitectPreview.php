@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Livewire;
+namespace Wotz\FilamentArchitect\Livewire;
 
 use Livewire\Component;
 

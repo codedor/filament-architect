@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Engines;
+namespace Wotz\FilamentArchitect\Engines;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;

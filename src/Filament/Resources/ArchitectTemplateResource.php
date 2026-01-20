@@ -1,11 +1,11 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Resources;
+namespace Wotz\FilamentArchitect\Filament\Resources;
 
-use Codedor\FilamentArchitect\Filament\Fields\ArchitectInput;
-use Codedor\FilamentArchitect\Filament\Fields\PageArchitectInput;
-use Codedor\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
-use Codedor\FilamentArchitect\Models\ArchitectTemplate;
+use Wotz\FilamentArchitect\Filament\Fields\ArchitectInput;
+use Wotz\FilamentArchitect\Filament\Fields\PageArchitectInput;
+use Wotz\FilamentArchitect\Filament\Resources\ArchitectTemplateResource\Pages;
+use Wotz\FilamentArchitect\Models\ArchitectTemplate;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;

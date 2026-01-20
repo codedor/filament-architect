@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\SliderBlock;
+use Wotz\FilamentArchitect\Filament\Architect\SliderBlock;
 use Filament\Forms\Components\Repeater;
 
 beforeEach(function () {

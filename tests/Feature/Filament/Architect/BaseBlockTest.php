@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Tests\Fixtures\Blocks\TestBlock;
+use Wotz\FilamentArchitect\Tests\Fixtures\Blocks\TestBlock;
 use Illuminate\View\View;
 
 beforeEach(function () {

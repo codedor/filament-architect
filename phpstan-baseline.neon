@@ -1,7 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property Codedor\\\\FilamentArchitect\\\\Livewire\\\\EditModal\\:\\:\\$form.$#"
+			message: "#^Access to an undefined property Wotz\\\\FilamentArchitect\\\\Livewire\\\\EditModal\\:\\:\\$form.$#"
 			count: 3
 			path: src/Livewire/EditModal.php
 		-

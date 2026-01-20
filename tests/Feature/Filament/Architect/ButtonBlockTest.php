@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\FilamentArchitect\Filament\Architect\ButtonBlock;
+use Wotz\FilamentArchitect\Filament\Architect\ButtonBlock;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;

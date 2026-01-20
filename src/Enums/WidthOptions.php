@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Enums;
+namespace Wotz\FilamentArchitect\Enums;
 
 enum WidthOptions: string implements WidthOptionsInterface
 {

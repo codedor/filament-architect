@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\FilamentArchitect\Filament\Fields\Traits;
+namespace Wotz\FilamentArchitect\Filament\Fields\Traits;
 
 use Closure;
 use Filament\Forms\Components\Actions\Action;
