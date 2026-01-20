@@ -54,7 +54,7 @@
                                             color="gray"
                                             icon="heroicon-o-arrows-up-down"
                                             class="border-2 dark:bg-white/5 dark:hover:bg-white/10 dark:border-gray-700 cursor-move m-0"
-                                            :size="ActionSize::Small"
+                                            :size="Size::Small"
                                             :icon-size="IconSize::Small"
                                             x-sortable-handle
                                         />
