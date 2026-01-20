@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v3.0.0 - 2026-01-20
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/codedor/filament-architect/pull/39
+* Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/codedor/filament-architect/pull/38
+* Filament v4 upgrade by @jyrkidn in https://github.com/codedor/filament-architect/pull/32
+* Filament v4 upgrade by @jyrkidn in https://github.com/codedor/filament-architect/pull/37
+
+**Full Changelog**: https://github.com/codedor/filament-architect/compare/v2.4.0...v3.0.0
+
 ## v2.4.0 - 2025-11-20
 
 ### What's Changed
