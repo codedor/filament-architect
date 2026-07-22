@@ -27,7 +27,7 @@
         "phpstan/extension-installer": "^1.1|^2.0",
         "phpstan/phpstan-deprecation-rules": "^1.0|^2.0",
         "phpstan/phpstan-phpunit": "^1.0|^2.0",
-        "spatie/pest-plugin-snapshots": "^2.0",
+        "spatie/pest-plugin-snapshots": "^2.3.1",
         "tightenco/duster": "^1.0"
     },
     "autoload": {
