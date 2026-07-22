@@ -252,6 +252,8 @@ class ArchitectInput extends Field
                     $items = [[$newUuid => $newBlock]];
                     $component->state($items);
 
+                    $this->mountEditBlockAction($component, 0, $newUuid, $newBlock, $data);
+
                     return;
                 }
 
@@ -263,6 +265,8 @@ class ArchitectInput extends Field
                 );
 
                 $component->state($items);
+
+                $this->mountEditBlockAction($component, $arguments['row'] + 1, $newUuid, $newBlock, $data);
             });
     }
 
@@ -302,7 +306,28 @@ class ArchitectInput extends Field
                 $items = $this->normalizeWidth($items);
 
                 $component->state($items);
+
+                $this->mountEditBlockAction($component, $arguments['row'], $newUuid, $newBlock, $data);
             });
+    }
+
+    protected function mountEditBlockAction(self $component, int|string $row, string $uuid, array $block, array $data): void
+    {
+        $livewire = $component->getLivewire();
+
+        if (! method_exists($livewire, 'replaceMountedAction')) {
+            return;
+        }
+
+        $livewire->replaceMountedAction('editBlock', [
+            'row' => $row,
+            'uuid' => $uuid,
+            'block' => $block,
+            'blockClassName' => get_class($this->getBlocks()[$data['block']]),
+            'locales' => $component->getLocales(),
+        ], [
+            'schemaComponent' => $component->getKey(),
+        ]);
     }
 
     public function maxFieldsPerRow(null|int|Closure $maxFieldsPerRow): static
